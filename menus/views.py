@@ -8,4 +8,8 @@ from .models import *
 
 
 def index(request):
-    pass
+    contex = Recipe.objects.all()
+    print(contex)
+    return render(request, 'menus/index.html', {
+        'results': contex
+    })
