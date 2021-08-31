@@ -13,3 +13,19 @@ def index(request):
     return render(request, 'menus/index.html', {
         'results': contex
     })
+
+
+def recipe(request):
+    data = Menu.objects.all()
+    title = []
+    dish = []
+    drinks = []
+    for i in data:
+        title.append(i.title)
+        dish.append(i.dish)
+        drinks.append(i.drinks)
+    return render(request, 'menus/recipes.html', {
+        'data': title,
+        'dish': dish,
+        'drinks': drinks
+    })
