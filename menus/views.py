@@ -22,10 +22,16 @@ def recipe(request):
     drinks = []
     for i in data:
         title.append(i.title)
-        dish.append(i.dish)
+        image = Dish.objects.filter(image=i.dish.image)
+        print(image)
+        for pic in image:
+            picture = pic.image
+            dish.append(picture)
+            print(picture)
         drinks.append(i.drinks)
+    print(dish[0])
     return render(request, 'menus/recipes.html', {
         'data': title,
-        'dish': dish,
+        'dish': dish[0],
         'drinks': drinks
     })
