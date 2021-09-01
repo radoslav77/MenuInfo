@@ -26,12 +26,12 @@ def recipe(request):
         print(image)
         for pic in image:
             picture = pic.image
-            dish.append(picture)
-            print(picture)
+            dish.append(pic)
+            # print(picture)
         drinks.append(i.drinks)
-    print(dish[0])
+    # print(dish[0])
     return render(request, 'menus/recipes.html', {
-        'data': title,
+        'data': title[0],
         'dish': dish[0],
-        'drinks': drinks
+        'drinks': drinks[0]
     })
