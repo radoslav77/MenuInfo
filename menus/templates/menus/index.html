@@ -24,7 +24,7 @@
                 <li><a href="">Your Menu </a></li>
                 <li><a href="{% url 'recipe' %}">Recipes</a></li>
                 <li><a href="">Handover</a></li>
-                <li><a href="#">Input Recipe</a></li>
+                <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
                 <li><a href="">Input menu</a></li>
                 
@@ -50,7 +50,11 @@
         </div>
     </div>
  <h1 id="id"> My prject</h1>    
-
+<ul>
+    {% for data in results %}
+        <li>{{data}}</li>
+    {% endfor %}
+</ul>
 
 <img src="media/media/cute fox.png" alt="">
     <script src="{% static 'script.js' %}"></script>

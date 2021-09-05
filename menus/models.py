@@ -4,7 +4,6 @@ from django.db.models.deletion import CASCADE
 # Create your models here.
 
 
-
 class Dish(models.Model):
     TYPE = (
         ('Starters', 'Starters'),
@@ -25,17 +24,17 @@ class Dish(models.Model):
     class Meta:
         ordering = ['title']
 
+
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
     for_dish = models.CharField(max_length=200, default=None)
     recipe = models.TextField()
     method = models.TextField()
 
+    objects = models.Manager()
+
     def __str__(self):
         return f'{self.title}'
-
-    class Meta:
-        ordering = ['title']
 
 
 class Menu(models.Model):
@@ -48,6 +47,7 @@ class Menu(models.Model):
 
     class Meta:
         ordering = ['title']
+
 
 class Beverage(models.Model):
     TYPE_ALCOHOL = (

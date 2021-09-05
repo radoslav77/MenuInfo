@@ -26,7 +26,7 @@ class Dish(forms.ModelForm):
 
     class Meta:
         model = Dish
-        fields = ('title', 'type', 'description','image')
+        fields = ('title', 'type', 'description', 'image')
 
 
 class Menu(forms.ModelForm):
