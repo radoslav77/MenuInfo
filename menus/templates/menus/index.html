@@ -24,6 +24,10 @@
                 <li><a href="">Your Menu </a></li>
                 <li><a href="{% url 'recipe' %}">Recipes</a></li>
                 <li><a href="">Handover</a></li>
+                <li><a href="#">Input Recipe</a></li>
+                <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
+                <li><a href="">Input menu</a></li>
+                
                 {% if not user.is_authenticated %}
                 <li><a href="">Login</a></li>
                 {% else  %}
@@ -46,12 +50,7 @@
         </div>
     </div>
  <h1 id="id"> My prject</h1>    
- {% for item in results %}
- {{ item.title}}
- {{ item.dish}}
- {{ item.recipe }}
- {{item.method}}
-{% endfor %}
+
 
 <img src="media/media/cute fox.png" alt="">
     <script src="{% static 'script.js' %}"></script>

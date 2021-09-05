@@ -5,6 +5,7 @@ from django.urls import reverse
 
 # Create your views here.
 from .models import *
+from .models import *
 
 
 def index(request):
@@ -34,4 +35,14 @@ def recipe(request):
         'data': title[0],
         'dish': dish[0],
         'drinks': drinks[0]
+    })
+
+
+def dish_input(request):
+    if request.method == 'POST':
+        form = Dish(request.POST, request.FILES)
+        print(form)
+
+    return render(request, 'menus/recipe-input.html', {
+        'form': Dish()
     })
