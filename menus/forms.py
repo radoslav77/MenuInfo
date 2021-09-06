@@ -19,7 +19,7 @@ class Recipe(forms.ModelForm):
     class Meta:
         model = Recipe
 
-        fields = ('title', 'for_dish', 'recipe', 'method')
+        fields = ('title', 'selector', 'for_dish', 'recipe', 'method')
 
 
 class Dish(forms.ModelForm):
@@ -33,7 +33,7 @@ class Menu(forms.ModelForm):
 
     class Meta:
         model = Menu
-        fields = ('title', 'dish', 'drinks')
+        fields = ('title', 'starter', 'main', 'dessert', 'drinks')
 
 
 class Beverage(forms.ModelForm):

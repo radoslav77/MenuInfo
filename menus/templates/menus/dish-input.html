@@ -7,10 +7,23 @@
         <form action="{% url 'dish_input' %}" method="POST"  enctype="multipart/form-data" style="display: flex;flex-direction: column;">
             {% csrf_token %}
             {{form}}
+            <p>Recipe for the dish</p>
             {{form1}}
+
+          
+ 
             <input type="submit" style="margin-top: 10px;">
-            <p>Example picture: https://radoslav77.github.io/pictures/images/noPictureDesserts.jpg</p>
-        </form>
-        
+
+        </form> 
+         To Add more recipes to this dish click <a href="{% url 'recipe_input' %}" >here</a>
+        <script>
+            const title = document.getElementById('id_title')
+            const ForDish = document.getElementById('id_for_dish')
+            console.log(title.innerText)
+            ForDish.addEventListener('click', () => {
+               
+            })
+           
+        </script>
     </div>
     {% endblock %}

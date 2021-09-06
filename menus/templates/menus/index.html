@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="">Breakfast</a></li>
                 <li><a href="">DDR Breaks</a></li>
-                <li><a href="}">Plated Menus</a></li>
+                <li><a href="{% url 'plated' %}">Plated Menus</a></li>
                 {% if user.is_staff %}
                 <li><a href="">Madera</a></li>
                 {% endif %}
@@ -26,7 +26,7 @@
                 <li><a href="">Handover</a></li>
                 <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
-                <li><a href="">Input menu</a></li>
+                <li><a href="{% url 'menu_input' %}">Input menu</a></li>
                 
                 {% if not user.is_authenticated %}
                 <li><a href="">Login</a></li>

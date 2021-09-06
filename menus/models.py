@@ -25,30 +25,6 @@ class Dish(models.Model):
         ordering = ['title']
 
 
-class Recipe(models.Model):
-    title = models.CharField(max_length=200)
-    for_dish = models.CharField(max_length=200, default=None)
-    recipe = models.TextField()
-    method = models.TextField()
-
-    objects = models.Manager()
-
-    def __str__(self):
-        return f'{self.title}'
-
-
-class Menu(models.Model):
-    title = models.CharField(max_length=200)
-    dish = models.ForeignKey('Dish', on_delete=models.CASCADE,)
-    drinks = models.ForeignKey('Beverage', on_delete=models.CASCADE,)
-
-    def __str__(self):
-        return f'{self.title}'
-
-    class Meta:
-        ordering = ['title']
-
-
 class Beverage(models.Model):
     TYPE_ALCOHOL = (
         ('Wine', 'Wine'),
@@ -67,6 +43,41 @@ class Beverage(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+
+class Recipe(models.Model):
+    RANGE = (
+        ('main', 'Main'),
+        ('starter', 'Starter'),
+        ('dessert', 'Dessert')
+    )
+    selector = models.CharField(choices=RANGE, max_length=50)
+    title = models.CharField(max_length=200)
+    for_dish = models.CharField(max_length=200, default=None)
+    recipe = models.TextField()
+    method = models.TextField()
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return f'{self.title}'
+
+
+class Menu(models.Model):
+    title = models.CharField(max_length=200)
+    starter = models.ForeignKey(
+        'Dish', on_delete=models.CASCADE, related_name='startee')
+    main = models.ForeignKey(
+        'Dish', on_delete=models.CASCADE, related_name='main')
+    dessert = models.ForeignKey(
+        'Dish', on_delete=models.CASCADE, related_name='dessert')
+    drinks = models.ForeignKey('Beverage', on_delete=models.CASCADE,)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        ordering = ['title']
 
     class Meta:
         ordering = ['title']

@@ -25,14 +25,14 @@ admin.site.register(Beverage, BeverageAdmin)
 
 
 class DishAdmin(admin.ModelAdmin):
-    list_display = ('id','type', 'description')
+    list_display = ('id', 'type', 'description')
 
 
 admin.site.register(Dish, DishAdmin)
 
 
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'dish', 'drinks')
+    list_display = ('id', 'title', 'starter', 'main', 'dessert', 'drinks')
 
 
 admin.site.register(Menu, MenuAdmin)

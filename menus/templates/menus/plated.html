@@ -1,0 +1,12 @@
+{% extends 'menus/base.html' %}
+{% block style %}
+
+    {% endblock %}
+{% block body %}
+ <h1 id="id"> My prject</h1>    
+<ul>
+    {% for data in results %}
+        <a href="{% url 'detail' data %}"><li>{{data}}</li></a>
+    {% endfor %}
+</ul>
+{% endblock %}
