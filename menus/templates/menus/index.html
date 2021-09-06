@@ -21,8 +21,8 @@
                 {% if user.is_staff %}
                 <li><a href="">Madera</a></li>
                 {% endif %}
-                <li><a href="">Your Menu </a></li>
-                <li><a href="{% url 'recipe' %}">Recipes</a></li>
+                <li><a href="{% url 'your_menu' %}">Your Menu </a></li>
+                <li><a href="">Recipes</a></li>
                 <li><a href="">Handover</a></li>
                 <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>

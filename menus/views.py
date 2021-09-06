@@ -19,7 +19,7 @@ def index(request):
     })
 
 
-def recipe(request):
+def your_menu(request):
     data = menudata.objects.all()
     title = []
     dish = []
@@ -110,7 +110,24 @@ def plated(request):
 
 def detail(request, data):
     data1 = recipedata.objects.filter(title=data)
-    print(data)
+    img = dishdata.objects.filter(title=data)
+    image = []
+    for pic in img:
+        image.append(pic)
+        print(pic)
+
+    ing = []
+    ingr = []
+    for i in data1:
+        ingr = i.recipe.split(',')
+        ing.append(ingr[0:-1])
+
+        for j in ing:
+            i = j[0][0]
+            ingr.append(i[0:-1])
+
     return render(request, 'menus/detail.html', {
-        'data': data1[0]
+        'data': data1[0],
+        'ing': ingr,
+        'img': image[0]
     })

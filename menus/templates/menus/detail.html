@@ -1,12 +1,45 @@
 {% extends 'menus/base.html' %}
-{% block style %}
+{% load static %} 
+<style>
+    .recipe {
+        background-color: salmon;
+        box-shadow: 0 2px 3px rgba(0, 0, 1, 0.5);
+    }
+    ul{
+        text-decoration: none;
+    }
+    ul li {
+        text-decoration: none;
+    }
+    .container-details{
+        display: flex;
+        flex-direction: row;
+    }
+</style>
 
-    {% endblock %}
+
 {% block body %}
  <h1 id="id"> My prject</h1>    
-<ul>
-  
-        <a href="media/{{data.image}}"><li>{{data}}</li></a>
 
-</ul>
+  <div class="container-details">    
+    <a href="/media/{{img.image}}">
+        <img id="pic" src="/media/{{img.image}}" alt=""></img>
+        <p> {{img}}</p>
+    </a>
+        <h4>Recipe</h4>
+        <div class="recipe" style="box-shadow:0 2px 3px rgba(0, 0, 1, 0.5) ;">
+            <ul>
+                {% for i in ing %}
+                <li>{{i}}</li>
+                {% endfor %}
+            </ul>
+           
+        </div>
+        <h4>method</h4>
+        <div class="method">
+            {{data.method}}
+        </div>
+  </div>        
+  <a href="{% url 'plated' %}"> Back to recipes</a>
+
 {% endblock %}
