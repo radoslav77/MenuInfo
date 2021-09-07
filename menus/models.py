@@ -40,6 +40,7 @@ class Beverage(models.Model):
     type_alcochol = models.CharField(max_length=200, choices=TYPE_ALCOHOL)
     description = models.TextField(max_length=2000)
     brand = models.CharField(max_length=150)
+    dish = models.CharField(max_length=200)
 
     def __str__(self):
         return f'{self.title}'
@@ -49,7 +50,9 @@ class Recipe(models.Model):
     RANGE = (
         ('main', 'Main'),
         ('starter', 'Starter'),
-        ('dessert', 'Dessert')
+        ('dessert', 'Dessert'),
+        ('breakfast', 'Breakfast'),
+        ('ddrbreaks', 'DDRbreaks')
     )
     selector = models.CharField(choices=RANGE, max_length=50)
     title = models.CharField(max_length=200)

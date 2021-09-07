@@ -148,7 +148,7 @@ def beverage(request):
 
             return redirect('index')
     global GLOBAL_TITLE
-    print(GLOBAL_TITLE)
+
     return render(request, 'menus/beverage.html', {
         'form': Beverage(),
         'title': GLOBAL_TITLE
