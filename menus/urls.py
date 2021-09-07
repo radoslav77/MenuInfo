@@ -11,4 +11,5 @@ urlpatterns = [
     path('menu-input', views.menu_input, name='menu_input'),
     path('plated', views.plated, name='plated'),
     path('detail/<str:data>', views.detail, name='detail'),
+    path('beverage', views.beverage, name='beverage')
 ]

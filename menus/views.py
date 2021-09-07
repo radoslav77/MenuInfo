@@ -12,6 +12,9 @@ from .models import Dish as dishdata
 from .forms import *
 
 
+GLOBAL_TITLE = ''
+
+
 def index(request):
 
     return render(request, 'menus/index.html', {
@@ -85,7 +88,7 @@ def menu_input(request):
         if form.is_valid:
             data = form.save(commit=False)
             data.save()
-            print(data)
+            # print(data)
 
             return redirect('index')
 
@@ -126,8 +129,28 @@ def detail(request, data):
             i = j[0][0]
             ingr.append(i[0:-1])
 
+    global GLOBAL_TITLE
+    GLOBAL_TITLE = data1[0]
+
     return render(request, 'menus/detail.html', {
         'data': data1[0],
         'ing': ingr,
         'img': image[0]
+    })
+
+
+def beverage(request):
+    if request.method == 'POST':
+        form = Beverage(request.POST)
+        if form.is_valid:
+            data = form.save(commit=False)
+            data.save()
+
+            return redirect('index')
+    global GLOBAL_TITLE
+    print(GLOBAL_TITLE)
+    return render(request, 'menus/beverage.html', {
+        'form': Beverage(),
+        'title': GLOBAL_TITLE
+
     })
