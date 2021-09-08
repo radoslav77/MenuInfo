@@ -40,7 +40,6 @@ class Beverage(models.Model):
     type_alcochol = models.CharField(max_length=200, choices=TYPE_ALCOHOL)
     description = models.TextField(max_length=2000)
     brand = models.CharField(max_length=150)
-    dish = models.CharField(max_length=200)
 
     def __str__(self):
         return f'{self.title}'
@@ -82,5 +81,10 @@ class Menu(models.Model):
     class Meta:
         ordering = ['title']
 
+
+class Pairing(models.Model):
+    dish = models.CharField(max_length=200)
+    drink = models.ForeignKey('Beverage', on_delete=models.CASCADE)
+
     class Meta:
-        ordering = ['title']
+        ordering = ['dish']

@@ -9,6 +9,7 @@ from .models import Recipe, Dish, Beverage, Menu
 from .models import Recipe as recipedata
 from .models import Menu as menudata
 from .models import Dish as dishdata
+from .models import Pairing as pairdata
 from .forms import *
 
 
@@ -114,6 +115,16 @@ def plated(request):
 def detail(request, data):
     data1 = recipedata.objects.filter(title=data)
     img = dishdata.objects.filter(title=data)
+    drink = pairdata.objects.filter(dish=data)
+    print(data1)
+    print(img)
+    print(drink)
+
+    sug_drink = []
+    for t in drink:
+
+        sug_drink.append(t.drink)
+
     image = []
     for pic in img:
         image.append(pic)
@@ -133,9 +144,10 @@ def detail(request, data):
     GLOBAL_TITLE = data1[0]
 
     return render(request, 'menus/detail.html', {
-        'data': data1[0],
+        'data': data1,
         'ing': ingr,
-        'img': image[0]
+        'img': image[0],
+        'drink': sug_drink[0]
     })
 
 
@@ -153,4 +165,20 @@ def beverage(request):
         'form': Beverage(),
         'title': GLOBAL_TITLE
 
+    })
+
+
+def pairing(request, img):
+
+    if request.method == 'POST':
+        form = Pairing(request.POST)
+        if form.is_valid:
+            data = form.save(commit=False)
+            data.save()
+
+            return redirect('plated')
+
+    return render(request, 'menus/pairing.html', {
+        'form': Pairing(),
+        'title': img
     })

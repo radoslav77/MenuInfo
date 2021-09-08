@@ -41,3 +41,10 @@ class Beverage(forms.ModelForm):
     class Meta:
         model = Beverage
         fields = ('title', 'type_alcochol', 'description', 'brand')
+
+
+class Pairing(forms.ModelForm):
+
+    class Meta:
+        model = Pairing
+        fields = ('dish', 'drink')

@@ -39,7 +39,11 @@
         <div class="method">
             {{data.method}}
         </div>
-        <a href="{% url 'beverage'  %}">Add Beverage suggestion to this dish</a>
+        <div class="drink">
+            <p>Suggested pairing dring is : <strong>{{drink}}</strong> </p>
+        </div>
+        <a href="{% url 'beverage'  %}">Add Beverage suggestion to this dish</a> <br>
+        <a href="{% url 'pairing' img %}">Pair this dish with Bevarige</a>
   </div>        
   <a href="{% url 'plated' %}"> Back to recipes</a>
 
