@@ -25,22 +25,48 @@ def index(request):
 
 def your_menu(request):
     data = menudata.objects.all()
+    beverage = pairdata.objects.all()
+
+    bev = []
     title = []
     dish = []
     drinks = []
+    dishs = []
     for i in data:
         title.append(i.title)
         image = dishdata.objects.filter(image=i.main.image)
         image1 = dishdata.objects.filter(image=i.starter.image)
         image2 = dishdata.objects.filter(image=i.dessert.image)
 
+        main = recipedata.objects.filter(title=i.main)
+        starter = recipedata.objects.filter(title=i.starter)
+        dessert = recipedata.objects.filter(title=i.dessert)
+
         for pic in image:
             dish.append(pic)
+        for t in starter:
+            dishs.append(t)
+            # print(t)
         for pic in image1:
             dish.append(pic)
+        for t in main:
+            dishs.append(t)
+            # print(t)
         for pic in image2:
             dish.append(pic)
+        for t in dessert:
+            dishs.append(t)
+            # print(t)
         drinks.append(i.drinks)
+    print(data)
+    for b in beverage:
+        for d in bev:
+            if b.dish == d:
+                print('hello')
+        #sprint(b.dish, b.drink)
+
+    if beverage in dish:
+        print(beverage)
     # print(dish[])
     return render(request, 'menus/recipes.html', {
         'data': title[0],
@@ -116,15 +142,17 @@ def detail(request, data):
     data1 = recipedata.objects.filter(title=data)
     img = dishdata.objects.filter(title=data)
     drink = pairdata.objects.filter(dish=data)
-    print(data1)
-    print(img)
-    print(drink)
 
     sug_drink = []
     for t in drink:
-
         sug_drink.append(t.drink)
 
+    title_drink = []
+    for d in sug_drink:
+        title_drink.append(d)
+
+    print(d)
+    # print(sug_drink)
     image = []
     for pic in img:
         image.append(pic)
@@ -147,7 +175,7 @@ def detail(request, data):
         'data': data1,
         'ing': ingr,
         'img': image[0],
-        'drink': sug_drink[0]
+        'drink': title_drink
     })
 
 
@@ -182,3 +210,57 @@ def pairing(request, img):
         'form': Pairing(),
         'title': img
     })
+
+
+def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
+    elif request.method == 'POST':
+        form = registrationForm(request.POST or None)
+        if form.is_valid():
+            user = form.save()
+
+            raw_password = form.cleaned_data.get('password1')
+
+            user = authenticate(username=user.username, password=raw_password)
+            # login user
+            login(request, user)
+            return redirect('index')
+    else:
+        form = registrationForm()
+    return render(request, 'menus/register.html', {'form': form})
+
+
+def login_user(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+        # if not logged in then log in
+    else:
+        if request.method == "POST":
+            username = request.POST['username']
+            password = request.POST['password']
+
+            # Check credential
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('index')
+                else:
+                    return render(request, 'menus/login.html', {'error': "Your account has been desaibled."})
+
+            else:
+                return render(request, 'menus/login.html', {'error': 'Invalid username or password. Try Again.'})
+
+        return render(request, 'menus/login.html')
+
+
+def logout_user(request):
+    if request.user.is_authenticated:
+
+        logout(request)
+        return redirect('login_user')
+    else:
+        return redirect('login_user')
