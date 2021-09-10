@@ -40,7 +40,7 @@
             {{data.method}}
         </div>
         <div class="drink">
-            <p>Suggested pairing dring is : <strong>{{drink}}</strong> </p>
+            <p>Suggested pairing dring is : <strong>{% for d in drink %} {{d}}, {% endfor %}</strong> </p>
         </div>
         <a href="{% url 'beverage'  %}">Add Beverage suggestion to this dish</a> <br>
         <a href="{% url 'pairing' img %}">Pair this dish with Bevarige</a>

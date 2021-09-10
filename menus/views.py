@@ -26,6 +26,7 @@ def index(request):
 def your_menu(request):
     data = menudata.objects.all()
     beverage = pairdata.objects.all()
+    dish_recipe = recipedata.objects.all()
 
     bev = []
     title = []
@@ -38,36 +39,37 @@ def your_menu(request):
         image1 = dishdata.objects.filter(image=i.starter.image)
         image2 = dishdata.objects.filter(image=i.dessert.image)
 
-        main = recipedata.objects.filter(title=i.main)
-        starter = recipedata.objects.filter(title=i.starter)
-        dessert = recipedata.objects.filter(title=i.dessert)
-
         for pic in image:
             dish.append(pic)
-        for t in starter:
-            dishs.append(t)
-            # print(t)
+
         for pic in image1:
             dish.append(pic)
-        for t in main:
-            dishs.append(t)
-            # print(t)
+
         for pic in image2:
             dish.append(pic)
-        for t in dessert:
-            dishs.append(t)
-            # print(t)
-        drinks.append(i.drinks)
-    print(data)
-    for b in beverage:
-        for d in bev:
-            if b.dish == d:
-                print('hello')
-        #sprint(b.dish, b.drink)
 
-    if beverage in dish:
-        print(beverage)
-    # print(dish[])
+        drinks.append(i.drinks)
+
+    for t in dish_recipe:
+        dishs.append(t.title)
+
+    for b in beverage:
+
+        if b.dish in dishs:
+            print(b.drink.title)
+            bev.append({
+                'dish': b.dish,
+                'drink': b.drink.title,
+            })
+            return render(request, 'menus/recipes.html', {
+                'data': title[0],
+                'dish': dish[0],
+                'dish1': dish[1],
+                'dish2': dish[2],
+                'drinks': drinks[0],
+                'bev': bev
+            })
+    print(bev)
     return render(request, 'menus/recipes.html', {
         'data': title[0],
         'dish': dish[0],
@@ -149,10 +151,8 @@ def detail(request, data):
 
     title_drink = []
     for d in sug_drink:
-        title_drink.append(d)
+        title_drink.append(d.title)
 
-    print(d)
-    # print(sug_drink)
     image = []
     for pic in img:
         image.append(pic)
