@@ -1,7 +1,10 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse
+from django.http import JsonResponse
+import json
 
 
 # Create your views here.
@@ -14,6 +17,7 @@ from .forms import *
 
 
 GLOBAL_TITLE = ''
+bev = []
 
 
 def index(request):
@@ -23,12 +27,16 @@ def index(request):
     })
 
 
+def drinks(request):
+
+    return HttpResponse(json.dumps(bev), content_type="application/json")
+
+
 def your_menu(request):
     data = menudata.objects.all()
     beverage = pairdata.objects.all()
     dish_recipe = recipedata.objects.all()
 
-    bev = []
     title = []
     dish = []
     drinks = []
@@ -52,24 +60,20 @@ def your_menu(request):
 
     for t in dish_recipe:
         dishs.append(t.title)
-
+    bev_drink = []
     for b in beverage:
 
         if b.dish in dishs:
-            print(b.drink.title)
-            bev.append({
-                'dish': b.dish,
-                'drink': b.drink.title,
-            })
-            return render(request, 'menus/recipes.html', {
-                'data': title[0],
-                'dish': dish[0],
-                'dish1': dish[1],
-                'dish2': dish[2],
-                'drinks': drinks[0],
-                'bev': bev
-            })
-    print(bev)
+            bev_data = pairdata.objects.filter(dish=b.dish)
+
+            for d in bev_data:
+                # print(d.drink)
+                bev_drink.append({
+                    'dish': d.dish,
+                    'drink': d.drink.title,
+                })
+    bev.append(bev_drink)
+
     return render(request, 'menus/recipes.html', {
         'data': title[0],
         'dish': dish[0],

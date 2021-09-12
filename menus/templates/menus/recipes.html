@@ -7,37 +7,102 @@
 <h1>{{data}}</h1>
 <p>Name of the dish;</p>
 <p>Starter</p>
-<h2>{{dish1}}</h2>
+<div class="name-starter" id="salad">
+    <h2>{{dish1}}</h2>
+</div>
 <a href="media\{{dish1.image}}">
     <img id="pic" src="media/{{dish1.image}}" alt=""></img>
 </a>
 <h2>
-    {% if bev%}
-    <p>{{bev}}</p>
-    {% endif %}
+    <div class="drink" id="starter">
+
+    </div>
 </h2>
 <p>Main</p>
-<h2>{{dish}}</h2>
+<div class="name-main" id="mainmain">
+    <h2>{{dish}}</h2>
+</div>
 <a href="media\{{dish.image}}">
     <img id="pic" src="media/{{dish.image}}" alt=""></img>
 </a>
 <h2>
-    {% if bev %}
-    <p>{{bev}}</p>
-    {% endif %}
+    <div class="drink" id="main">
+
+    </div>
 </h2>
 <p>Dessert</p>
-<h2>{{dish2}}</h2>
+<div class="name-dessert" id="des" >
+    <h2>{{dish2}}</h2>
+</div>
 <a href="media\{{dish2.image}}">
     <img id="pic" src="media/{{dish2.image}}" alt=""></img>
 </a>
 <h2>
-    {% if bev %}
-    <p>{{bev}}</p>
-    {% endif %}
+<div class="drink" id="dessert">
+
+</div>
 </h2>
 <p>Suggested drink with the dish:</p> 
 <h1>{{drinks}}</h1>
 
+<script>
+const  API_DATA = '{% url 'drinks' %}'
+getDrinks(API_DATA)
+
+async function getDrinks(url) {
+    const res = await fetch(url)
+    const data = await res.json()
+    
+    var EntryDrinks = data[0]
+    var drinks = []
+  
+    EntryDrinks.forEach(drink => {
+        //console.log(drink.dish)
+        
+        const StarterNameEl = document.getElementById('salad').innerText
+        const MainNameEl = document.getElementById('mainmain').innerText
+        const DessertNameEl = document.getElementById('des').innerText
+
+        //console.log(StarterNameEl)
+       // console.log(MainNameEl)
+       // console.log(DessertNameEl)
+             
+        
+
+            if(drink.dish === DessertNameEl){
+                
+                if (!drinks.includes(drink.drink) ){
+                    drinks.push(drink.drink)
+                }    
+
+                const DessertDrinkContainer = document.getElementById('dessert')
+                DessertDrinkContainer.innerText = drinks
+
+                //console.log(drinks)
+                
+            } 
+            if (drink.dish === MainNameEl){
+
+                if (!drinks.includes(drink.drink) ){
+                    drinks.push(drink.drink)
+                }    
+                const MainDrinkContainer = document.getElementById('main')
+                MainDrinkContainer.innerText = drinks
+
+            } 
+            if (drink.dish === StarterNameEl){
+                if (!drinks.includes(drink.drink) ){
+                    drinks.push(drink.drink)
+                }
+                    
+                const StarterDrinkContainer = document.getElementById('starter')
+                StarterDrinkContainer.innerText = drinks
+            }
+       
+        
+    });
+   
+}
+</script>
 
 {% endblock %}
