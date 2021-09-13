@@ -104,6 +104,18 @@ async function getDrinks(url) {
     });
    
 }
+
+
+const URL_DATA = '{% url 'alergy' %}'
+    getAlergy(URL_DATA) 
+    
+    async function getAlergy(url) {
+    const res = await fetch(url)
+    const data = await res.json()
+
+    console.log(data)
+    }
+
 </script>
 
 {% endblock %}
