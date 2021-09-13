@@ -67,18 +67,7 @@
   <a href="{% url 'plated' %}"> Back to recipes</a>
 
 <script>
-    const URL_DATA = '{% url 'alergy' %}'
-    getDrinks(URL_DATA) 
-    
-    async function getDrinks(url) {
-    const res = await fetch(url)
-    const data = await res.json()
 
-    const titleEl = document.getElementById('title')
-    
-    var title = titleEl.innerText
-
-    console.log(title)
 
     const allergents = {
             dairy : ['Milk','Butter', 'Cream','Yogurt','Cheese'],
@@ -100,7 +89,7 @@
         const recipeData = document.getElementById('recipes')
         let dataText = []
         const i = recipeData.innerText.split('\n')
-
+        console.log(i)
 
         ContainAllergents()
 
@@ -268,7 +257,7 @@ function ContainAllergents() {
     })
 }
 
-    }
+    
 </script>
 
 {% endblock %}
