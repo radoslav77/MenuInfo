@@ -14,8 +14,8 @@
     <img id="pic" src="media/{{dish1.image}}" alt=""></img>
 </a>
 <h2>
-    <div class="drink" id="starter">
-
+    <div class="drink" >
+        <input type="button" value="" id="starter">
     </div>
 </h2>
 <div class="contain" id="starter_alergy" >
@@ -112,16 +112,18 @@
 
 const  API_DATA = '{% url 'drinks' %}'
 getDrinks(API_DATA)
+    var drinks = []
+    var drinks_starter = []
+    var drinks_dessert = []
+  
 
+    
 async function getDrinks(url) {
     const res = await fetch(url)
     const data = await res.json()
     
     var EntryDrinks = data[0]
-    var drinks = []
-    var drinks_starter = []
-    var drinks_dessert = []
-  
+
     EntryDrinks.forEach(drink => {
         //console.log(drink.dish)
         
@@ -138,7 +140,20 @@ async function getDrinks(url) {
                 if (!drinks_dessert.includes(drink.drink) ){
                     drinks_dessert.push(drink.drink)
                     const DessertDrinkContainer = document.getElementById('dessert')
-                    DessertDrinkContainer.innerText = drinks_dessert
+                
+                    console.log(drinks_dessert)
+                    drinks_dessert.forEach((b,idx) => {
+
+                        const NewDrink = document.createElement('input')
+                        NewDrink.type = 'button'
+                        NewDrink.value = b
+                        NewDrink.id = b
+                        DessertDrinkContainer.appendChild(NewDrink)
+
+                    })
+
+
+                    
                 }    
 
 
@@ -150,7 +165,16 @@ async function getDrinks(url) {
                 if(!drinks.includes(drink.drink)){
                     drinks.push(drink.drink)
                     const MainDrinkContainer = document.getElementById('main')
-                    MainDrinkContainer.innerText = drinks
+                  
+                    
+                   // console.log(main_drinks)
+
+                    drinks.forEach(b => {
+                        const NewDrink = document.createElement('input')
+                        NewDrink.type = 'button'
+                        NewDrink.value = b
+                        MainDrinkContainer.appendChild(NewDrink)
+                    })
                 }
 
             } 
@@ -160,7 +184,7 @@ async function getDrinks(url) {
                         drinks_starter.push(drink.drink)
                    
                         const StarterDrinkContainer = document.getElementById('starter')
-                        StarterDrinkContainer.innerText = drinks_starter
+                        StarterDrinkContainer.value = drinks_starter
                     }
 
                 
@@ -172,6 +196,8 @@ async function getDrinks(url) {
     });
    
 }
+
+
     const allergents = {
             dairy : ['Milk','Butter', 'Cream','Yogurt','Cheese'],
             gluten : ['Flour', 'Oats', 'Barley','Waffle'],
