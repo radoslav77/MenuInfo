@@ -42,7 +42,7 @@ def alergy(request):
             'dish': i.for_dish,
             'recipe': i.recipe,
         })
-    print(recipe_data)
+    # print(recipe_data)
     return HttpResponse(json.dumps(recipe_data), content_type="application/json")
 
 
