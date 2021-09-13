@@ -18,5 +18,6 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout_user'),
 
     # API
-    path('drinks', views.drinks, name='drinks')
+    path('drinks', views.drinks, name='drinks'),
+    path('alergy', views.alergy, name='alergy')
 ]

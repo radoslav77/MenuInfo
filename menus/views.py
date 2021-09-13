@@ -22,6 +22,7 @@ bev = []
 
 def index(request):
     print(bev)
+
     return render(request, 'menus/index.html', {
 
     })
@@ -30,6 +31,19 @@ def index(request):
 def drinks(request):
 
     return HttpResponse(json.dumps(bev), content_type="application/json")
+
+
+def alergy(request):
+    data = recipedata.objects.all()
+    recipe_data = []
+    for i in data:
+        recipe_data.append({
+            'title': i.title,
+            'dish': i.for_dish,
+            'recipe': i.recipe,
+        })
+    print(recipe_data)
+    return HttpResponse(json.dumps(recipe_data), content_type="application/json")
 
 
 def your_menu(request):
@@ -160,7 +174,7 @@ def detail(request, data):
     image = []
     for pic in img:
         image.append(pic)
-        print(pic)
+        # print(pic)
 
     ing = []
     ingr = []
