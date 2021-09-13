@@ -8,11 +8,12 @@ import json
 
 
 # Create your views here.
-from .models import Recipe, Dish, Beverage, Menu
+
 from .models import Recipe as recipedata
 from .models import Menu as menudata
 from .models import Dish as dishdata
 from .models import Pairing as pairdata
+from .models import Beverage as beveragedata
 from .forms import *
 
 
@@ -44,6 +45,18 @@ def alergy(request):
         })
     # print(recipe_data)
     return HttpResponse(json.dumps(recipe_data), content_type="application/json")
+
+
+def drink_sammary(request):
+    drinks_discription = beveragedata.objects.all()
+    drinks_data = []
+    for i in drinks_discription:
+        drinks_data.append({
+            'title': i.title,
+            'description': i.description,
+            'type': i.type_alcochol
+        })
+    return HttpResponse(json.dumps(drinks_data), content_type="application/json")
 
 
 def your_menu(request):

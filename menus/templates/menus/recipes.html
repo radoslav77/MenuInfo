@@ -106,9 +106,9 @@
     const Main =document.getElementById('main_alergy').children
     const Desserts =document.getElementById('desserts_alergy')
 
-    console.log(Starter)
-    console.log(Main)
-    console.log(Desserts)
+   // console.log(Starter)
+   // console.log(Main)
+   // console.log(Desserts)
 
 const  API_DATA = '{% url 'drinks' %}'
 getDrinks(API_DATA)
@@ -119,6 +119,8 @@ async function getDrinks(url) {
     
     var EntryDrinks = data[0]
     var drinks = []
+    var drinks_starter = []
+    var drinks_dessert = []
   
     EntryDrinks.forEach(drink => {
         //console.log(drink.dish)
@@ -133,32 +135,37 @@ async function getDrinks(url) {
 
             if(drink.dish === DessertNameEl){
                 
-                if (!drinks.includes(drink.drink) ){
-                    drinks.push(drink.drink)
+                if (!drinks_dessert.includes(drink.drink) ){
+                    drinks_dessert.push(drink.drink)
+                    const DessertDrinkContainer = document.getElementById('dessert')
+                    DessertDrinkContainer.innerText = drinks_dessert
                 }    
 
-                const DessertDrinkContainer = document.getElementById('dessert')
-                DessertDrinkContainer.innerText = drinks
+
 
                 //console.log(drinks)
                 
             } 
             if (drink.dish === MainNameEl){
-
-                if (!drinks.includes(drink.drink) ){
+                if(!drinks.includes(drink.drink)){
                     drinks.push(drink.drink)
-                }    
-                const MainDrinkContainer = document.getElementById('main')
-                MainDrinkContainer.innerText = drinks
+                    const MainDrinkContainer = document.getElementById('main')
+                    MainDrinkContainer.innerText = drinks
+                }
 
             } 
             if (drink.dish === StarterNameEl){
-                if (!drinks.includes(drink.drink) ){
-                    drinks.push(drink.drink)
-                }
                     
-                const StarterDrinkContainer = document.getElementById('starter')
-                StarterDrinkContainer.innerText = drinks
+                    if(!drinks_starter.includes(drink.drink)){
+                        drinks_starter.push(drink.drink)
+                   
+                        const StarterDrinkContainer = document.getElementById('starter')
+                        StarterDrinkContainer.innerText = drinks_starter
+                    }
+
+                
+                    
+
             }
        
         
@@ -184,7 +191,7 @@ async function getDrinks(url) {
         }
 
  const des = Desserts.children
-        console.log(des)
+        ///console.log(des)
 
 const URL_DATA = '{% url 'alergy' %}'
     getAlergy(URL_DATA) 
@@ -489,7 +496,24 @@ function ContainAllergents() {
 }
 
 
-    console.log(data)
+
+    }
+
+
+    const URL_DRINK_DATA = '{% url 'drink_sammary' %}'
+    getDrinksData(URL_DRINK_DATA)
+
+    const StareterDrinkData = document.getElementById('starter')
+    var drink_data = StareterDrinkData.innerHTML
+    console.log(drink_data)
+
+    async function getDrinksData(url){
+        const res = await fetch(url)
+        const data = await res.json()
+        data.forEach(arr => {
+            console.log(arr.description, '->', arr.title)
+        })
+        console.log(data)
     }
 
 </script>
