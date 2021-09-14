@@ -177,13 +177,14 @@ async function getDrinks(url) {
     });
 
                     const DessertDrinkContainer = document.getElementById('dessert')
-                    console.log(drinks_dessert)
+                    //console.log(drinks_dessert)
                     drinks_dessert.forEach((b,idx) => {
 
                         const NewDrink = document.createElement('input')
                         NewDrink.type = 'button'
                         NewDrink.value = b
                         NewDrink.id = b
+
                         DessertDrinkContainer.appendChild(NewDrink)
 
                     })
@@ -192,6 +193,8 @@ async function getDrinks(url) {
                         const NewDrink = document.createElement('input')
                         NewDrink.type = 'button'
                         NewDrink.value = b
+                        NewDrink.id = b
+
                         MainDrinkContainer.appendChild(NewDrink)
                     })
 
@@ -200,6 +203,8 @@ async function getDrinks(url) {
                         const NewDrink = document.createElement('input')
                         NewDrink.type = 'button'
                         NewDrink.value = b
+                        NewDrink.id = b
+
                         MainDrinkContainer.appendChild(NewDrink)
                     })
    
@@ -537,9 +542,7 @@ function ContainAllergents() {
     const URL_DRINK_DATA = '{% url 'drink_sammary' %}'
     getDrinksData(URL_DRINK_DATA)
 
-    const StareterDrinkData = document.getElementById('starter')
-    var drink_data = StareterDrinkData.innerHTML
-    console.log(drink_data)
+
 
     async function getDrinksData(url){
         const res = await fetch(url)
@@ -548,6 +551,16 @@ function ContainAllergents() {
             console.log(arr.description, '->', arr.title)
         })
         console.log(data)
+        const DessertDrinkContainer = document.getElementById('dessert').children
+        console.log(DessertDrinkContainer)      
+        
+        Array.from(document.getElementsByClassName("drink")).forEach(function(item) {
+        
+            console.log(item.id);
+           
+
+
+});
     }
 
 </script>
