@@ -14,8 +14,8 @@
     <img id="pic" src="media/{{dish1.image}}" alt=""></img>
 </a>
 <h2>
-    <div class="drink" >
-        <input type="button" value="" id="starter">
+    <div class="drink" id="starter" >
+       <!-- <input type="button" value="" id="starter">-->
     </div>
 </h2>
 <div class="contain" id="starter_alergy" >
@@ -139,8 +139,44 @@ async function getDrinks(url) {
                 
                 if (!drinks_dessert.includes(drink.drink) ){
                     drinks_dessert.push(drink.drink)
-                    const DessertDrinkContainer = document.getElementById('dessert')
+                    
+                }    
+
+
+
+                //console.log(drinks)
                 
+            }
+
+
+            if (drink.dish === MainNameEl){
+                if(!drinks.includes(drink.drink)){
+                    drinks.push(drink.drink)
+                   
+                  
+                    
+                   // console.log(main_drinks)
+                }
+
+            } 
+            if (drink.dish === StarterNameEl){
+                    
+                    if(!drinks_starter.includes(drink.drink)){
+                        drinks_starter.push(drink.drink)
+                   
+                        
+                        
+                    }
+
+                
+                    
+
+            }
+       
+        
+    });
+
+                    const DessertDrinkContainer = document.getElementById('dessert')
                     console.log(drinks_dessert)
                     drinks_dessert.forEach((b,idx) => {
 
@@ -151,49 +187,21 @@ async function getDrinks(url) {
                         DessertDrinkContainer.appendChild(NewDrink)
 
                     })
-
-
-                    
-                }    
-
-
-
-                //console.log(drinks)
-                
-            } 
-            if (drink.dish === MainNameEl){
-                if(!drinks.includes(drink.drink)){
-                    drinks.push(drink.drink)
                     const MainDrinkContainer = document.getElementById('main')
-                  
-                    
-                   // console.log(main_drinks)
-
                     drinks.forEach(b => {
                         const NewDrink = document.createElement('input')
                         NewDrink.type = 'button'
                         NewDrink.value = b
                         MainDrinkContainer.appendChild(NewDrink)
                     })
-                }
 
-            } 
-            if (drink.dish === StarterNameEl){
-                    
-                    if(!drinks_starter.includes(drink.drink)){
-                        drinks_starter.push(drink.drink)
-                   
-                        const StarterDrinkContainer = document.getElementById('starter')
-                        StarterDrinkContainer.value = drinks_starter
-                    }
-
-                
-                    
-
-            }
-       
-        
-    });
+                    const StarterDrinkContainer = document.getElementById('starter')
+                    drinks_starter.forEach(b => {
+                        const NewDrink = document.createElement('input')
+                        NewDrink.type = 'button'
+                        NewDrink.value = b
+                        MainDrinkContainer.appendChild(NewDrink)
+                    })
    
 }
 
