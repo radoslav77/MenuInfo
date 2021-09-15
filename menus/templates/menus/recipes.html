@@ -551,12 +551,19 @@ function ContainAllergents() {
             console.log(arr.description, '->', arr.title)
         })
         console.log(data)
-        const DessertDrinkContainer = document.getElementById('dessert').children
-        console.log(DessertDrinkContainer)      
+        
+            
+        
+
         
         Array.from(document.getElementsByClassName("drink")).forEach(function(item) {
         
             console.log(item.id);
+            let inputEl = document.getElementById(item.id)
+            console.log(inputEl)
+            inputEl.addEventListener('mouseover', () =>{
+                console.log(inputEl)
+            })
            
 
 
