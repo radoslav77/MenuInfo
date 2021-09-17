@@ -74,8 +74,10 @@
 <h2>
 <div class="drink" id="dessert">
 
-</div>
+</div><br><br>
+<div id="info">
 
+</div>
 </h2>
 <div class="contain" id="desserts_alergy" >
     <h2>Contains:</h2>
@@ -112,7 +114,7 @@
 
 const  API_DATA = '{% url 'drinks' %}'
 getDrinks(API_DATA)
-    var drinks = []
+    var drinks = [] 
     var drinks_starter = []
     var drinks_dessert = []
   
@@ -548,9 +550,9 @@ function ContainAllergents() {
         const res = await fetch(url)
         const data = await res.json()
         data.forEach(arr => {
-            console.log(arr.description, '->', arr.title)
-        })
-        console.log(data)
+           // console.log(arr.description, '->', arr.title)
+        
+       // console.log(data)
         
             
         
@@ -559,12 +561,56 @@ function ContainAllergents() {
         Array.from(document.getElementsByClassName("drink")).forEach(function(item) {
         
             console.log(item.id);
-            let inputEl = document.getElementById(item.id)
-            console.log(inputEl)
-            inputEl.addEventListener('mouseover', () =>{
-                console.log(inputEl)
+            let inputEls = []
+            let inputEl =document.getElementsByTagName('input')
+            for(let i = 0 ; i < inputEl.length ; i++){
+               // console.log(inputEl[i])
+                inputEls.push(inputEl[i])
+            }
+            inputEls.forEach((element) => {
+                var el = element
+                el.addEventListener('click', () => {
+                   console.log(el.id)
+                    var Info = document.getElementById('info')
+                   // Info.innerHTML = el.id
+                    for( let i = 0; i < arr.title.length; i++){
+                       
+                        if(arr.title.includes(el.id)){
+                                Info.innerHTML = arr.description
+                            }
+                    }       
+                        
+                    console.log(arr.description, '->', arr.title)
+        
+                })
+                
             })
-           
+
+
+    })
+
+/*
+            getXYPosition()
+           var myX, myY, xyOn, myMouseX, myMouseY
+           xyOn = true
+
+           function getXYPosition(e) {
+               myMouseX = (e || event).clientX
+               myMouseY = (e || event).clientY
+               if(document.documentElement.scrollTop > 0) {
+                   myMouseY = myMouseX + document.documentElement.scrollTop
+               }
+               if(xyOn) {
+                   alert('X is' + myMouseX + '\nY is' + myMouseY)
+               }
+
+               function toggleXY() {
+                   xyOn = !xyOn
+                   document,getElementById('xyLink').blur()
+                   return false
+               }
+               document.onmouseup = getXYPosition
+           } */
 
 
 });
