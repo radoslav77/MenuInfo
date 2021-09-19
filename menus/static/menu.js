@@ -10,8 +10,8 @@
    // console.log(Main)
    // console.log(Desserts)
 
-const  API_DATA =('/drinks')
-getDrinks(API_DATA)
+const  API_DATA_DRINKS =('/drinks')
+getDrinks(API_DATA_DRINKS)
     var drinks = [] 
     var drinks_starter = []
     var drinks_dessert = []
@@ -516,3 +516,20 @@ function ContainAllergents() {
     }
 
 
+    const slidDiv = document.querySelector('.drink-wrapper')
+
+
+    window.addEventListener('click', ()=>{
+        
+        slidDiv.style.transform = 'translateX(135%)'
+        slidDiv.style.display = 'block'
+        /*
+        if(window.scrollY > slidDiv.offsetHeight){
+            slidDiv.style.transform= `translateX(0%)`
+            console.log(slidDiv.offsetHeight)
+        } else {
+            slidDiv.style.transform = 'translateX(110%)'
+        }
+        */
+
+    })

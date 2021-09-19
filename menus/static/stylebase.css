@@ -11,8 +11,8 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  background-color: rgb(196, 202, 209);
 }
 
 .nav {

@@ -68,6 +68,7 @@ def your_menu(request):
     dish = []
     drinks = []
     dishs = []
+    descriptions = []
     for i in data:
         title.append(i.title)
         image = dishdata.objects.filter(image=i.main.image)
@@ -75,12 +76,15 @@ def your_menu(request):
         image2 = dishdata.objects.filter(image=i.dessert.image)
 
         for pic in image:
+            descriptions.append(pic.description)
             dish.append(pic)
 
         for pic in image1:
+            descriptions.append(pic.description)
             dish.append(pic)
 
         for pic in image2:
+            descriptions.append(pic.description)
             dish.append(pic)
 
         drinks.append(i.drinks)
@@ -107,6 +111,7 @@ def your_menu(request):
         'dish1': dish[1],
         'dish2': dish[2],
         'drinks': drinks[0],
+        'description': descriptions,
     })
 
 
