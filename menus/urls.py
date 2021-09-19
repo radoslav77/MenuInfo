@@ -20,5 +20,6 @@ urlpatterns = [
     # API
     path('drinks', views.drinks, name='drinks'),
     path('alergy', views.alergy, name='alergy'),
-    path('drink_sammary', views.drink_sammary, name='drink_sammary')
+    path('drink_sammary', views.drink_sammary, name='drink_sammary'),
+    path('description_api', views.description_api, name='views.description_api')
 ]

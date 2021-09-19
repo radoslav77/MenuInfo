@@ -539,3 +539,35 @@ function ContainAllergents() {
         slidDiv.style.transform= `translateX(-150%)`
     })
 
+    const URL_DESCRIPTION_DATA = ('/description_api')
+    getDescriptionData(URL_DESCRIPTION_DATA)
+
+
+
+    async function getDescriptionData(url){
+        const res = await fetch(url)
+        const data = await res.json()
+        
+        data.forEach(arr => {
+           // console.log(arr.title)
+            var starter = document.getElementById('salad')
+            if(arr.title === starter.innerText){
+                var starterDescription = document.getElementById('starter-description')
+                starterDescription.innerText = arr.description
+                //console.log(starterDescription)
+            }
+            var starter = document.getElementById('mainmain')
+            if(arr.title === starter.innerText){
+                var starterDescription = document.getElementById('main-description')
+                starterDescription.innerText = arr.description
+                //console.log(starterDescription)
+            }
+            var starter = document.getElementById('des')
+            if(arr.title === starter.innerText){
+                var starterDescription = document.getElementById('dessert-description')
+                starterDescription.innerText = arr.description
+                //console.log(starterDescription)
+            }
+        })
+
+    }

@@ -43,6 +43,7 @@ h2 {
 .dish-container img{
     width: fit-content;
     height: fit-content;
+    box-shadow: 0 2px 3px rgba(0, 0, 1, 0.5);
 }
 .drink {
 
@@ -142,8 +143,8 @@ i:active{
             <img id="pic" src="media/{{dish1.image}}" alt=""></img>
         </a>
 
-        <div class="description">
-            {{description}}
+        <div class="description" id="starter-description">
+            
         </div>
             <div class="container-drinks">
                 <p id="drink">For best expirients here are the pairing choices for your meal!</p>
@@ -178,8 +179,8 @@ i:active{
         <a href="media\{{dish.image}}">
             <img id="pic" src="media/{{dish.image}}" alt=""></img>
         </a>
-        <div class="description">
-            {{description}}
+        <div class="description" id="main-description">
+           
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
@@ -214,8 +215,8 @@ i:active{
         <a href="media\{{dish2.image}}">
             <img id="pic" src="media/{{dish2.image}}" alt=""></img>
         </a>
-        <div class="description">
-            {{description}}
+        <div class="description" id="dessert-description">
+           
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>

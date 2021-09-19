@@ -19,6 +19,7 @@ from .forms import *
 
 GLOBAL_TITLE = ''
 bev = []
+descriptions = []
 
 
 def index(request):
@@ -59,6 +60,10 @@ def drink_sammary(request):
     return HttpResponse(json.dumps(drinks_data), content_type="application/json")
 
 
+def description_api(request):
+    return HttpResponse(json.dumps(descriptions), content_type="application/json")
+
+
 def your_menu(request):
     data = menudata.objects.all()
     beverage = pairdata.objects.all()
@@ -68,7 +73,7 @@ def your_menu(request):
     dish = []
     drinks = []
     dishs = []
-    descriptions = []
+
     for i in data:
         title.append(i.title)
         image = dishdata.objects.filter(image=i.main.image)
@@ -79,21 +84,29 @@ def your_menu(request):
             dish.append(pic)
             des = dishdata.objects.filter(title=i.main.title)
             for d in des:
-                descriptions.append(d.description)
+                descriptions.append({
+                    'title': d.title,
+                    'description': d.description
+                })
         for pic in image1:
             dish.append(pic)
             des = dishdata.objects.filter(title=i.starter.title)
             for d in des:
-                print(d.title)
-                descriptions.append(d.description)
+                descriptions.append({
+                    'title': d.title,
+                    'description': d.description
+                })
         for pic in image2:
             dish.append(pic)
             des = dishdata.objects.filter(title=i.dessert.title)
             for d in des:
-                descriptions.append(d.description)
+                descriptions.append({
+                    'title': d.title,
+                    'description': d.description
+                })
 
         drinks.append(i.drinks)
-    # print(descriptions)
+
     for t in dish_recipe:
         dishs.append(t.title)
     bev_drink = []
@@ -116,7 +129,7 @@ def your_menu(request):
         'dish1': dish[1],
         'dish2': dish[2],
         'drinks': drinks[0],
-        'description': descriptions,
+
     })
 
 
