@@ -1,5 +1,4 @@
-
-const  API_DATA = '{% url 'drinks' %}'
+const  API_DATA = ('/drinks')
 getDrinks(API_DATA)
 
 async function getDrinks(url) {

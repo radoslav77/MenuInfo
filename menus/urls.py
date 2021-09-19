@@ -20,5 +20,5 @@ urlpatterns = [
     # API
     path('drinks', views.drinks, name='drinks'),
     path('alergy', views.alergy, name='alergy'),
-    path('drinks-data', views.drink_sammary, name='drink_sammary')
+    path('drink_sammary', views.drink_sammary, name='drink_sammary')
 ]
