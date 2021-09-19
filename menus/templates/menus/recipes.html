@@ -41,7 +41,8 @@ h2 {
     color: crimson;
 }
 .dish-container img{
-
+    width: fit-content;
+    height: fit-content;
 }
 .drink {
 
@@ -73,6 +74,7 @@ h2 {
     font-weight: 100;
     font-size: small;
     letter-spacing: normal;
+    border-top: solid 1px #000;
 
 }
 input{
@@ -99,7 +101,7 @@ input:active{
     
     /*display: none;*/
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-    transform: translateX(410%);
+    transform: translateX(-150%);
     transition: transform 3s ease-in-out;
 }
 #info{
@@ -120,15 +122,15 @@ button {
 i:active{
     transform: scale(90%);
 }
-#text{
-    display: none;
-}
+
 
 </style>
 {% endblock %}
 
 {% block body %}
  <h1>{{data}}</h1>
+ <p>Your drinks for Tonight's Party!</p> 
+ <h1>{{drinks}}</h1>
 <div class="menu-container">
     <div class="dish-container">
        <p>Your Starter course today:</p>
@@ -143,12 +145,13 @@ i:active{
         <div class="description">
             {{description}}
         </div>
-        
-            <div class="drink" id="starter" >
+            <div class="container-drinks">
                 <p id="drink">For best expirients here are the pairing choices for your meal!</p>
-            <!-- <input type="button" value="" id="starter">-->
+                <div class="drink" id="starter" >
+                    
+                <!-- <input type="button" value="" id="starter">-->
+                </div>
             </div>
-        
         <div class="contain" id="starter_alergy" >
             <h2>Contains:</h2>
             <div class="allergy" hidden></div>
@@ -178,9 +181,12 @@ i:active{
         <div class="description">
             {{description}}
         </div>
+        <div class="container-drinks">
+            <p id="drink">For best expirients here are the pairing choices for your meal!</p>
             <div class="drink" id="main">
-                <p id="drink">For best expirients here are the pairing choices for your meal!</p>
+              
             </div>
+        </div>
         
         <div class="contain" id="main_alergy" >
             <h2>Contains:</h2>
@@ -211,9 +217,12 @@ i:active{
         <div class="description">
             {{description}}
         </div>
-        <div class="drink" id="dessert">
+        <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
+            <div class="drink" id="dessert">
+               
 
+            </div>
         </div>
 
        
@@ -235,15 +244,13 @@ i:active{
             <div class="sulphites" hidden></div>
         </div>
     </div>
-    <div class="drink-wrapper">
-        <div class="info" style="height: 200px; width: 400px;  border: 2px solid blue;" >
-        <div id="info" >
+        <div class="drink-wrapper">
+            <div class="info" style="height: 200px; width: 400px;  border: 2px solid blue;" >
+                <div id="info" >
+                </div>
+            <button id="close"><i  class="fas fa-times"></i></button>
         </div>
-        <button id="close"><i  class="fas fa-times"></i></button>
     </div>
-    </div>
-    <p>Suggested drink with the dish:</p> 
-    <h1>{{drinks}}</h1>
 </div>
 
 

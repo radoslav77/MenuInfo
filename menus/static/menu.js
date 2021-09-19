@@ -1,4 +1,4 @@
-    const StarterNameEl = document.getElementById('starter').innerText
+    const StarterNameEl = document.getElementById('salad').innerText
     const MainNameEl = document.getElementById('mainmain').innerText
     const DessertNameEl = document.getElementById('des').innerText
 
@@ -8,7 +8,7 @@
     const slidDiv = document.querySelector('.drink-wrapper')
    // console.log(Starter)
    // console.log(Main)
-   // console.log(Desserts)
+   // console.log(StarterNameEl)
 
 const  API_DATA_DRINKS =('/drinks')
 getDrinks(API_DATA_DRINKS)
@@ -104,7 +104,8 @@ async function getDrinks(url) {
                     MainDrinkContainer.removeChild(MainDrinkContainer.firstChild)
 
                     const StarterDrinkContainer = document.getElementById('starter')
-                    drinks_starter.forEach(b => {
+                    //console.log(drinks_starter)
+                    drinks_starter.forEach(b => {                       
                         const NewDrink = document.createElement('input')
                         NewDrink.type = 'button'
                         NewDrink.value = b
@@ -468,36 +469,38 @@ function ContainAllergents() {
             //console.log(item.id);
             let inputEls = []
             let inputEl =document.getElementsByTagName('input')
+            //console.log(inputEl.length)
             for(let i = 0 ; i < inputEl.length ; i++){
-               // console.log(inputEl[i])
+                
+                //console.log(inputEl[i])
                 inputEls.push(inputEl[i])
             }
             inputEls.forEach((element) => {
                 var el = element
                 el.addEventListener('click', () => {
-                
-                        slidDiv.style.display = 'block'
-                        slidDiv.style.transform = 'translateX(135%)'
+                   // console.log(el)
+                        slidDiv.scrollIntoView()
+                        slidDiv.style.transform = 'translateX(30vw)' 
                 
                    
-                   console.log(el.id)
+                   //console.log(el.id)
                     var Info = document.getElementById('info')
                    // Info.innerHTML = el.id
                     for( let i = 0; i < arr.title.length; i++){
                        
                         if(arr.title.includes(el.id)){
                                 Info.innerHTML = arr.description
-                                console.log(item.id)
+                                //console.log(item.id)
                             }
                     }       
                         
                     //console.log(arr.description, '->', arr.title)
                    
                 })
-                
+                 
             })
 
-   
+           
     })
 
 /*
@@ -530,26 +533,9 @@ function ContainAllergents() {
 
    
     const closeDiv = document.getElementById('close')
-    const inputElements =document.getElementsByTagName('input')
   
-
     closeDiv.addEventListener('click', () => {
-        slidDiv.style.display = 'none'
-    })
-
-    for(let i = 0; i<inputElements.length; i++){
-        console.log(inputElements[i])
-    }
-
-
-
-    window.addEventListener('scroll', () => {
-        if(window.scrollY > slidDiv.offsetHeight){
-            slidDiv.style.transform= `translateX(410%)`
-            //console.log(slidDiv.offsetHeight)
-        } else {
-            slidDiv.style.transform = 'translateX(110%)'
-        }
         
+        slidDiv.style.transform= `translateX(-150%)`
     })
 

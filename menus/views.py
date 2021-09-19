@@ -76,19 +76,24 @@ def your_menu(request):
         image2 = dishdata.objects.filter(image=i.dessert.image)
 
         for pic in image:
-            descriptions.append(pic.description)
             dish.append(pic)
-
+            des = dishdata.objects.filter(title=i.main.title)
+            for d in des:
+                descriptions.append(d.description)
         for pic in image1:
-            descriptions.append(pic.description)
             dish.append(pic)
-
+            des = dishdata.objects.filter(title=i.starter.title)
+            for d in des:
+                print(d.title)
+                descriptions.append(d.description)
         for pic in image2:
-            descriptions.append(pic.description)
             dish.append(pic)
+            des = dishdata.objects.filter(title=i.dessert.title)
+            for d in des:
+                descriptions.append(d.description)
 
         drinks.append(i.drinks)
-
+    # print(descriptions)
     for t in dish_recipe:
         dishs.append(t.title)
     bev_drink = []
