@@ -102,6 +102,27 @@ input:active{
     transform: translateX(410%);
     transition: transform 3s ease-in-out;
 }
+#info{
+padding: 10px;
+text-align: center;
+}
+
+button {
+    background: transparent;
+    border: none;
+}
+.info i{
+    position: absolute;
+    font-size: 18px;
+    bottom: 10px;
+    right: 10px;
+}
+i:active{
+    transform: scale(90%);
+}
+#text{
+    display: none;
+}
 
 </style>
 {% endblock %}
@@ -215,9 +236,11 @@ input:active{
         </div>
     </div>
     <div class="drink-wrapper">
-        <div id="info" style="height: 200px; width: 400px;  border: 2px solid blue;">
-            <button><i class="fas fa-times"></i></button>
+        <div class="info" style="height: 200px; width: 400px;  border: 2px solid blue;" >
+        <div id="info" >
         </div>
+        <button id="close"><i  class="fas fa-times"></i></button>
+    </div>
     </div>
     <p>Suggested drink with the dish:</p> 
     <h1>{{drinks}}</h1>

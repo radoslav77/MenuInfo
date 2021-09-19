@@ -22,7 +22,7 @@ bev = []
 
 
 def index(request):
-    print(bev)
+   # print(bev)
 
     return render(request, 'menus/index.html', {
 

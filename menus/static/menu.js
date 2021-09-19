@@ -5,7 +5,7 @@
     const Starter =document.getElementById('starter_alergy').children
     const Main =document.getElementById('main_alergy').children
     const Desserts =document.getElementById('desserts_alergy')
-
+    const slidDiv = document.querySelector('.drink-wrapper')
    // console.log(Starter)
    // console.log(Main)
    // console.log(Desserts)
@@ -77,7 +77,7 @@ async function getDrinks(url) {
     });
 
                     const DessertDrinkContainer = document.getElementById('dessert')
-                    //console.log(drinks_dessert)
+                    //console.log(DessertDrinkContainer)
                     drinks_dessert.forEach((b,idx) => {
 
                         const NewDrink = document.createElement('input')
@@ -85,9 +85,12 @@ async function getDrinks(url) {
                         NewDrink.value = b
                         NewDrink.id = b
 
-                        DessertDrinkContainer.appendChild(NewDrink)
 
+
+                        DessertDrinkContainer.appendChild(NewDrink)
                     })
+                    DessertDrinkContainer.removeChild(DessertDrinkContainer.firstChild)
+                        
                     const MainDrinkContainer = document.getElementById('main')
                     drinks.forEach(b => {
                         const NewDrink = document.createElement('input')
@@ -98,6 +101,8 @@ async function getDrinks(url) {
                         MainDrinkContainer.appendChild(NewDrink)
                     })
 
+                    MainDrinkContainer.removeChild(MainDrinkContainer.firstChild)
+
                     const StarterDrinkContainer = document.getElementById('starter')
                     drinks_starter.forEach(b => {
                         const NewDrink = document.createElement('input')
@@ -105,8 +110,10 @@ async function getDrinks(url) {
                         NewDrink.value = b
                         NewDrink.id = b
 
-                        MainDrinkContainer.appendChild(NewDrink)
+                        StarterDrinkContainer.appendChild(NewDrink)
                     })
+                    StarterDrinkContainer.removeChild(StarterDrinkContainer.firstChild)
+
    
 }
 
@@ -458,7 +465,7 @@ function ContainAllergents() {
         
         Array.from(document.getElementsByClassName("drink")).forEach(function(item) {
         
-            console.log(item.id);
+            //console.log(item.id);
             let inputEls = []
             let inputEl =document.getElementsByTagName('input')
             for(let i = 0 ; i < inputEl.length ; i++){
@@ -468,6 +475,11 @@ function ContainAllergents() {
             inputEls.forEach((element) => {
                 var el = element
                 el.addEventListener('click', () => {
+                
+                        slidDiv.style.display = 'block'
+                        slidDiv.style.transform = 'translateX(135%)'
+                
+                   
                    console.log(el.id)
                     var Info = document.getElementById('info')
                    // Info.innerHTML = el.id
@@ -480,12 +492,12 @@ function ContainAllergents() {
                     }       
                         
                     //console.log(arr.description, '->', arr.title)
-        
+                   
                 })
                 
             })
 
-
+   
     })
 
 /*
@@ -516,20 +528,28 @@ function ContainAllergents() {
     }
 
 
-    const slidDiv = document.querySelector('.drink-wrapper')
+   
+    const closeDiv = document.getElementById('close')
+    const inputElements =document.getElementsByTagName('input')
+  
+
+    closeDiv.addEventListener('click', () => {
+        slidDiv.style.display = 'none'
+    })
+
+    for(let i = 0; i<inputElements.length; i++){
+        console.log(inputElements[i])
+    }
 
 
-    window.addEventListener('click', ()=>{
-        
-        slidDiv.style.transform = 'translateX(135%)'
-        slidDiv.style.display = 'block'
-        /*
+
+    window.addEventListener('scroll', () => {
         if(window.scrollY > slidDiv.offsetHeight){
-            slidDiv.style.transform= `translateX(0%)`
-            console.log(slidDiv.offsetHeight)
+            slidDiv.style.transform= `translateX(410%)`
+            //console.log(slidDiv.offsetHeight)
         } else {
             slidDiv.style.transform = 'translateX(110%)'
         }
-        */
-
+        
     })
+
