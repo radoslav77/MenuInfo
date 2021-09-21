@@ -43,3 +43,10 @@ class PairingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Pairing, PairingAdmin)
+
+
+class Beverage_allergetsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'ing')
+
+
+admin.site.register(Beverage_allergets, Beverage_allergetsAdmin)

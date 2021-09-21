@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.db.models.fields import TextField
 
 # Create your models here.
 
@@ -88,3 +89,8 @@ class Pairing(models.Model):
 
     class Meta:
         ordering = ['dish']
+
+
+class Beverage_allergets(models.Model):
+    name = models.CharField(max_length=200)
+    ing = models.TextField()

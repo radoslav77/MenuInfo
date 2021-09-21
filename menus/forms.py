@@ -48,3 +48,10 @@ class Pairing(forms.ModelForm):
     class Meta:
         model = Pairing
         fields = ('dish', 'drink')
+
+
+class Beverage_allergets(forms.ModelForm):
+
+    class Meta:
+        model = Beverage_allergets
+        fields = ('name', 'ing')

@@ -245,6 +245,7 @@ def beverage(request):
 
     return render(request, 'menus/beverage.html', {
         'form': Beverage(),
+        'form1': Beverage_allergets(),
         'title': GLOBAL_TITLE
 
     })
