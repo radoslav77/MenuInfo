@@ -502,7 +502,7 @@ function ContainAllergents() {
                                     console.log(el.value) 
                                     //containsContainer.removeChild(newEntry.firstChild)
                                 }
-                               getBevarigeContaint(arr)
+                               getBevarigeContaint(arr, el.value)
                             })
 
                             //console.log(el.value)
@@ -598,7 +598,26 @@ function ContainAllergents() {
     }
 
 
-function getBevarigeContaint(containt) {
-    var BeverageConatent = [containt]   
-    console.log(BeverageConatent)
+function getBevarigeContaint(containt, el) {
+    var BeverageConatent = new Array(containt)
+
+        for (let i = 0; i < BeverageConatent.length; i++){
+            BeverageConatent.forEach(e => {
+               
+                if (el === e.title) {
+                    //console.log(containt.title)
+                    console.log(el)
+                    console.log(e.ingredients)
+                    var dataBeverage = e.ingredients.split(' ')
+                    
+                    console.log(n)
+                }
+                //console.log(e)
+            })
+        }
+        
+        
+
+    
+    
 }
