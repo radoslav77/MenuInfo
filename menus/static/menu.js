@@ -482,6 +482,8 @@ function ContainAllergents() {
                 var el = element
                 el.addEventListener('click', () => {
                    // console.log(el)
+                        var containsContainer = document.getElementById('drink-contain')
+                        
                         slidDiv.scrollIntoView()
                         slidDiv.style.transform = 'translateX(30vw)' 
                         
@@ -492,20 +494,55 @@ function ContainAllergents() {
                         async function getDrinkIng(url) {
                             const res = await fetch(url)
                             const data = await res.json()
-                            var containsContainer = document.getElementById('drink-contain')
+                            
                             data.forEach(arr => {
                                 if (el.value == arr.title) {
-                                    
-                                    var newEntry = document.createElement('p')
-                                    newEntry.innerText = arr.ingredients
-                                    containsContainer.appendChild(newEntry)
-                                    console.log(el.value) 
-                                    //containsContainer.removeChild(newEntry.firstChild)
+                                                                 
+                                    var dataBeverage = arr.ingredients.split(/[ , .]+/)
+                                    const bevAllergy = {
+                                                    sulphites : ['sulphites', 'Sulphites', 'sulfitos', 'Sulfitos', 'sulfites', 'Sulfites'],
+                                                    gluten : ['gluten', 'Gluten']
+                                                }
+                            
+                                    var Sulphites = bevAllergy.sulphites
+                                    var Gluten = bevAllergy.gluten
+                            
+                                                
+
+                                    Sulphites.forEach(elemnet => {
+                                                    
+                                        dataBeverage.forEach(word => {
+                                            const found = dataBeverage.find(elemnet => elemnet.toLowerCase() == word.toLowerCase()) 
+                                                        
+                                            const SulphiteContainer = document.getElementById('sulph')
+                                            if ( word == elemnet  || word == elemnet.toLowerCase()){
+                                                           
+                                                SulphiteContainer.hidden = false
+                                                SulphiteContainer.innerText = 'Sulphites,'
+                                                } 
+                                        })
+                            
+                                    })
+                                    Gluten.forEach(elemnet => {
+                                                    
+                                        dataBeverage.forEach(word => {
+                                            const found = dataBeverage.find(elemnet => elemnet.toLowerCase() == word.toLowerCase()) 
+                                                        
+                                            const GlutenContainer = document.getElementById('glut')
+                                            if ( word == elemnet  || word == elemnet.toLowerCase()){
+                                                           
+                                                GlutenContainer.hidden = false
+                                                GlutenContainer.innerText = 'Gluten,'
+                                            } 
+                                        })
+                            
+                                    })
+                            
                                 }
-                               getBevarigeContaint(arr, el.value)
+                             
                             })
 
-                            //console.log(el.value)
+                          
                         }
                    
                    //console.log(el.id)
@@ -558,10 +595,13 @@ function ContainAllergents() {
 
    
     const closeDiv = document.getElementById('close')
-  
+    const GlutenContainer = document.getElementById('glut')
+    const SulphiteContainer = document.getElementById('sulph')
     closeDiv.addEventListener('click', () => {
         
-        slidDiv.style.transform= `translateX(-150%)`
+        slidDiv.style.transform = `translateX(-150%)`
+        GlutenContainer.hidden = true
+        SulphiteContainer.hidden = true
     })
 
     const URL_DESCRIPTION_DATA = ('/description_api')
@@ -598,26 +638,3 @@ function ContainAllergents() {
     }
 
 
-function getBevarigeContaint(containt, el) {
-    var BeverageConatent = new Array(containt)
-
-        for (let i = 0; i < BeverageConatent.length; i++){
-            BeverageConatent.forEach(e => {
-               
-                if (el === e.title) {
-                    //console.log(containt.title)
-                    console.log(el)
-                    console.log(e.ingredients)
-                    var dataBeverage = e.ingredients.split(' ')
-                    
-                    console.log(n)
-                }
-                //console.log(e)
-            })
-        }
-        
-        
-
-    
-    
-}

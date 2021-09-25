@@ -20,7 +20,7 @@ body{
 }
 .dish-container{
     margin: 10px;
-    border: 2px solid #000;
+    box-shadow: 0 0 3px rgba(0, 0, 1, 0.966);
     width: 460px;
     padding: 25px;
     display: flex;
@@ -43,7 +43,7 @@ h2 {
 .dish-container img{
     width: fit-content;
     height: fit-content;
-    box-shadow: 0 2px 3px rgba(0, 0, 1, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 1, 0.966);
 }
 .drink {
 
@@ -76,15 +76,20 @@ h2 {
     font-size: small;
     letter-spacing: normal;
     border-top: solid 1px #000;
+    
 
 }
 input{
     margin: 3px;
     font-size: 16px;
+    font-weight: bold;
     text-decoration-line: underline;
     color: #000;
     background: transparent;
     border: none;
+    width: 100%;
+
+    
 }
 input:hover{
     cursor: pointer;
@@ -99,15 +104,17 @@ input:active{
 }
 .drink-wrapper{
     margin-right: 60%;
-    
+    position: relative;
     /*display: none;*/
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-    transform: translateX(-150%);
-    transition: transform 3s ease-in-out;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    transform: translateX(-210%);
+    transition: transform 2s ease-in-out;
+    text-align: left;
 }
 #info{
 padding: 10px;
 text-align: center;
+margin: bottom 1rem;
 }
 
 button {
@@ -125,16 +132,33 @@ i:active{
 }
 
 .drink-allergy{
-    border: 1px solid red;
-    height: 50px;
-    margin-top: 40%;
+    width: 90%;
+    box-shadow:0 0 3px rgba(255, 0, 0, 0.966);
+    height: auto;
+    margin-top: auto;
+    margin-left: 10px;
     text-align: left;
+    display: flex;
+    flex-direction: row;
+
+    
 }
 
 .drink-allergy h3{
-    color: red;
-    margin: 10px;
+    color: red;    
+}
+
+.drink-contain{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin-bottom: 15px;
     
+}
+
+.drink-contain p {
+    margin: 10px;
+    margin-top: 17px;
 }
 </style>
 {% endblock %}
@@ -256,12 +280,16 @@ i:active{
             <div class="sulphites" hidden></div>
         </div>
     </div>
-        <div class="drink-wrapper" style="height: 200px; width: 400px;  border: 2px solid blue;">
+        <div class="drink-wrapper" >
             <div class="info"  >
                 <div id="info" ></div>
-                    <div class="drink-allergy">
-                        <h3>Contains:</h3>
-                        <div class="drink-contain" id="drink-contain"></div>
+                    <div class="drink-allergy">                        
+                        <div class="drink-contain" id="drink-contain">
+                            <h3>Contains:</h3>
+                            <p id="sulph" hidden></p>
+                            <p id="glut" hidden></p>
+                        </div>
+
                     </div>
             <button id="close"><i  class="fas fa-times"></i></button>
         </div>
