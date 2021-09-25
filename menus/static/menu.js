@@ -500,9 +500,9 @@ function ContainAllergents() {
                                     newEntry.innerText = arr.ingredients
                                     containsContainer.appendChild(newEntry)
                                     console.log(el.value) 
-                                    containsContainer.removeChild(newEntry.firstChild)
+                                    //containsContainer.removeChild(newEntry.firstChild)
                                 }
-                               
+                               getBevarigeContaint(arr)
                             })
 
                             //console.log(el.value)
@@ -597,3 +597,8 @@ function ContainAllergents() {
 
     }
 
+
+function getBevarigeContaint(containt) {
+    var BeverageConatent = [containt]   
+    console.log(BeverageConatent)
+}
