@@ -196,13 +196,24 @@ def plated(request):
     res = recipedata.objects.all()
 
     results = []
+    starters = []
+    desserts = []
+    mains = []
     for i in res:
         if i.for_dish not in results:
             results.append(i.for_dish)
-
-    # print(results)
+        if i.selector == 'dessert':
+            desserts.append(i)
+        elif i.selector == 'main':
+            mains.append(i)
+        elif i.selector == 'starter':
+            starters.append(i)
+    print(starters)
     return render(request, 'menus/plated.html', {
-        'results': results
+        'results': results,
+        'starters': starters,
+        'mains': mains,
+        'desserts': desserts,
     })
 
 

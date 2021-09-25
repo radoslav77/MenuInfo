@@ -9,4 +9,34 @@
         <a href="{% url 'detail' data %}"><li>{{data}}</li></a>
     {% endfor %}
 </ul>
+<div class="starters">
+    <h2>Starters</h2>
+    <ul class="starters">
+        {% if starters %}
+            {% for starter  in starters %}
+            <a href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div class="mains">
+    <h2>Mains</h2>
+    <ul class="mains">
+        {% if mains %}
+            {% for main  in mains %}
+            <a href="{% url 'detail' main %}"><li>{{main}}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div class="desserts">
+    <h2>Desserts</h2>
+    <ul class="desserts">
+        {% if desserts %}
+            {% for dessert  in desserts %}
+            <a href="{% url 'detail' dessert %}"><li>{{dessert}}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
 {% endblock %}
