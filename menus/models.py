@@ -94,3 +94,6 @@ class Pairing(models.Model):
 class Beverage_allergets(models.Model):
     name = models.CharField(max_length=200)
     ing = models.TextField()
+
+    def __str__(self):
+        return f'{self.name}'

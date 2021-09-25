@@ -14,6 +14,7 @@ from .models import Menu as menudata
 from .models import Dish as dishdata
 from .models import Pairing as pairdata
 from .models import Beverage as beveragedata
+from .models import Beverage_allergets as beverage_allergets
 from .forms import *
 
 
@@ -62,6 +63,17 @@ def drink_sammary(request):
 
 def description_api(request):
     return HttpResponse(json.dumps(descriptions), content_type="application/json")
+
+
+def beverage_ing(request):
+    bev_ing = beverage_allergets.objects.all()
+    bev_ingredients = []
+    for i in bev_ing:
+        bev_ingredients.append({
+            'title': i.name,
+            'ingredients': i.ing
+        })
+    return HttpResponse(json.dumps(bev_ingredients), content_type="application/json")
 
 
 def your_menu(request):
@@ -236,9 +248,14 @@ def detail(request, data):
 def beverage(request):
     if request.method == 'POST':
         form = Beverage(request.POST)
+        title = request.POST['title']
+        ingr = request.POST['ing']
         if form.is_valid:
             data = form.save(commit=False)
             data.save()
+            data1 = beverage_allergets(name=title, ing=ingr)
+            print(data1)
+            data1.save()
 
             return redirect('index')
     global GLOBAL_TITLE
@@ -278,7 +295,8 @@ def register(request):
 
             raw_password = form.cleaned_data.get('password1')
 
-            user = authenticate(username=user.username, password=raw_password)
+            user = authenticate(username=user.username,
+                                password=raw_password)
             # login user
             login(request, user)
             return redirect('index')

@@ -54,4 +54,4 @@ class Beverage_allergets(forms.ModelForm):
 
     class Meta:
         model = Beverage_allergets
-        fields = ('name', 'ing')
+        fields = ('ing',)

@@ -470,6 +470,9 @@ function ContainAllergents() {
             let inputEls = []
             let inputEl =document.getElementsByTagName('input')
             //console.log(inputEl.length)
+            
+            
+                        
             for(let i = 0 ; i < inputEl.length ; i++){
                 
                 //console.log(inputEl[i])
@@ -481,7 +484,29 @@ function ContainAllergents() {
                    // console.log(el)
                         slidDiv.scrollIntoView()
                         slidDiv.style.transform = 'translateX(30vw)' 
-                
+                        
+                        // beverage allergants
+                        const URL_DRINK_ING = ('/beverage_ing')
+                        getDrinkIng(URL_DRINK_ING)
+                    
+                        async function getDrinkIng(url) {
+                            const res = await fetch(url)
+                            const data = await res.json()
+                            var containsContainer = document.getElementById('drink-contain')
+                            data.forEach(arr => {
+                                if (el.value == arr.title) {
+                                    
+                                    var newEntry = document.createElement('p')
+                                    newEntry.innerText = arr.ingredients
+                                    containsContainer.appendChild(newEntry)
+                                    console.log(el.value) 
+                                    containsContainer.removeChild(newEntry.firstChild)
+                                }
+                               
+                            })
+
+                            //console.log(el.value)
+                        }
                    
                    //console.log(el.id)
                     var Info = document.getElementById('info')
@@ -571,3 +596,4 @@ function ContainAllergents() {
         })
 
     }
+
