@@ -1,42 +1,161 @@
 {% extends 'menus/base.html' %}
 {% block style %}
-
+<style>
+    .body-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100vw;
+    }
+    .img{
+        width: 400px;
+        height: 300px;
+        margin: 10px;
+       box-shadow: 0 0 4px rgb(0, 0, 0);
+    }
+    img{
+        object-fit: fill;
+        
+    }
+    .container{
+        box-shadow: 0 0 5px rgba(0,0,1,0.999);
+        margin: 20px;
+        padding: 15px;
+    }
+    .recipe-container{
+        background-color: #f1f1f1;
+        width: 90vw;
+        height: fit-content;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 0 5px rgba(0,0,1,0.999);
+        margin-bottom: 50px;
+        
+    }
+    h3{
+        text-transform: uppercase;
+        text-indent: 10px;
+        letter-spacing: 1px;
+        text-decoration-line: underline;
+    }
+    ul li{
+        list-style-type: none;
+        letter-spacing: 1px;
+        font-size: 16px;
+        line-height: 30px;
+        margin-left: -30px;
+        
+    }
+    ul li a{
+        text-decoration: none;
+    }
+    a:link {
+         text-decoration: none;
+    }
+</style>
     {% endblock %}
 {% block body %}
- <h1 id="id"> My prject</h1>    
-<ul>
-    {% for data in results %}
-        <a href="{% url 'detail' data %}"><li>{{data}}</li></a>
-    {% endfor %}
-</ul>
-<div class="starters">
-    <h2>Starters</h2>
-    <ul class="starters">
-        {% if starters %}
-            {% for starter  in starters %}
-            <a href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
-            {% endfor %}
-        {% endif %}
-    </ul>
+<div class="body-container">
+    <div class="starter container">
+        <div class="starters">
+            <h2>Starters</h2>
+            <div class="img starter">
+                <img src="static/pictures/starter.jpg" alt="static/pictures/starter.jpg" width="400" height="300">
+            </div>
+
+        </div>
+    </div>
+    <div class="main container">
+        <div class="mains">       
+            <h2>Mains</h2>
+            <div class="img main">
+                <img src="static/pictures/main.jpg" alt="static/pictures/main.jpg" width="400" height="300">
+            </div>           
+
+        </div>
+    </div>
+    <div class="dessert container">
+        <div class="desserts">
+            <h2>Desserts</h2>
+            <div class="img dessert">
+                 <img src="static/pictures/dessert.jpg" alt="static/pictures/dessert.jpg" width="400" height="300">
+            </div>        
+        </div>
+    </div>
+    <div class="recipe-container">
+        <div class="recipe-starter" hidden>
+            <h3>Starters</h3>
+            <ul class="starters">
+                {% if starters %}
+                    {% for starter  in starters %}
+                    <a href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <a href="{% url 'plated' %}">Back to recipe list</a>
+        </div>
+        <div class="recipe-main" hidden>
+            <h3>Mains</h3>
+            <ul class="mains">
+                {% if mains %}
+                    {% for main  in mains %}
+                    <a href="{% url 'detail' main %}"><li>{{main}}</li></a>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <a href="{% url 'plated' %}">Back to recipe list</a>
+        </div>
+        <div class="recipe-dessert" hidden>
+            <h3>Desserts</h3>
+            <ul class="desserts">
+                {% if desserts %}
+                    {% for dessert  in desserts %}
+                    <a href="{% url 'detail' dessert %}"><li>{{dessert}}</li></a>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <a href="{% url 'plated' %}">Back to recipe list</a>
+        </div>
+    </div>
 </div>
-<div class="mains">
-    <h2>Mains</h2>
-    <ul class="mains">
-        {% if mains %}
-            {% for main  in mains %}
-            <a href="{% url 'detail' main %}"><li>{{main}}</li></a>
-            {% endfor %}
-        {% endif %}
-    </ul>
-</div>
-<div class="desserts">
-    <h2>Desserts</h2>
-    <ul class="desserts">
-        {% if desserts %}
-            {% for dessert  in desserts %}
-            <a href="{% url 'detail' dessert %}"><li>{{dessert}}</li></a>
-            {% endfor %}
-        {% endif %}
-    </ul>
-</div>
+<script>
+    const PicContainer = document.querySelectorAll('.img')
+    const DessertContainer = document.querySelector('.recipe-dessert')
+    const MainContainer = document.querySelector('.recipe-main')
+    const StarterContainer = document.querySelector('.recipe-starter')
+
+    PicContainer.forEach((container, idx) => {
+       
+       container.addEventListener('click', () => {
+           if(idx == 0){
+               StarterContainer.hidden = false
+               StarterContainer.scrollIntoView()
+               DessertContainer.hidden = true
+               MainContainer.hidden = true
+               
+           }
+           if(idx == 1){
+               MainContainer.hidden = false
+               MainContainer.scrollIntoView()
+               DessertContainer.hidden = true
+               StarterContainer.hidden = true
+           }
+           if(idx == 2){
+               DessertContainer.hidden = false
+               DessertContainer.scrollIntoView()
+               StarterContainer.hidden = true
+               MainContainer.hidden = true
+           }
+       })
+       container.addEventListener('dblclick', () => {
+                StarterContainer.hidden = true
+                DessertContainer.hidden = true
+                MainContainer.hidden = true
+       })
+    })
+</script>
 {% endblock %}
