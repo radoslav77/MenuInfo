@@ -132,6 +132,7 @@ i:active {
   text-align: left;
   display: flex;
   flex-direction: row;
+  overflow: auto;
 }
 
 .drink-allergy h3 {
