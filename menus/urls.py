@@ -12,7 +12,7 @@ urlpatterns = [
     path('plated', views.plated, name='plated'),
     path('detail/<str:data>', views.detail, name='detail'),
     path('beverage', views.beverage, name='beverage'),
-    path('pair/<str:img>', views.pairing, name='pairing'),
+    path('pair/<str:title>', views.pairing, name='pairing'),
     path('register', views.register, name='register'),
     path('login', views.login_user, name='login_user'),
     path('logout', views.logout_user, name='logout_user'),
@@ -22,5 +22,6 @@ urlpatterns = [
     path('alergy', views.alergy, name='alergy'),
     path('drink_sammary', views.drink_sammary, name='drink_sammary'),
     path('description_api', views.description_api, name='description_api'),
-    path('beverage_ing', views.beverage_ing, name='beverage_ing')
+    path('beverage_ing', views.beverage_ing, name='beverage_ing'),
+    path('js_form', views.js_form, name='js_form')
 ]

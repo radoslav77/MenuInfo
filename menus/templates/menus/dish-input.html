@@ -1,36 +1,38 @@
 {% extends 'menus/base.html' %}
 {% block style %}
-    <style>
-        body{
-            margin-bottom: 50px;
-        }
-        form{
-            font-family: inherit;
-        }
-    </style>
-    {% endblock %}
-    {% block body %}
-    <div class="input">
-        <form action="{% url 'dish_input' %}" method="POST"  enctype="multipart/form-data" style="display: flex;flex-direction: column;">
-            {% csrf_token %}
-            {{form}}
-            <p>Recipe for the dish</p>
-            {{form1}}
+<style>
+    body {
+        margin-bottom: 50px;
+    }
 
-          
- 
-            <input type="submit" style="margin-top: 10px;">
+    form {
+        font-family: inherit;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="input">
+    <form action="{% url 'dish_input' %}" method="POST" enctype="multipart/form-data"
+        style="display: flex;flex-direction: column;">
+        {% csrf_token %}
+        {{form}}
+        <p>Recipe for the dish</p>
+        {{form1}}
 
-        </form> 
-         To Add more recipes to this dish click <a href="{% url 'recipe_input' %}" >here</a>
-        <script>
-            const title = document.getElementById('id_title')
-            const ForDish = document.getElementById('id_for_dish')
-            console.log(title.innerText)
-            ForDish.addEventListener('click', () => {
-               
-            })
-           
-        </script>
-    </div>
-    {% endblock %}
+
+
+        <input type="submit" style="margin-top: 10px;">
+
+    </form>
+    To Add more recipes to this dish click <a href="{% url 'js_form' %}">here</a>
+    <script>
+        const title = document.getElementById('id_title')
+        const ForDish = document.getElementById('id_for_dish')
+
+        ForDish.addEventListener('click', () => {
+
+        })
+
+    </script>
+</div>
+{% endblock %}

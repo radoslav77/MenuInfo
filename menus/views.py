@@ -76,6 +76,16 @@ def beverage_ing(request):
     return HttpResponse(json.dumps(bev_ingredients), content_type="application/json")
 
 
+def js_form(requets):
+    form = Recipe()
+    elements = []
+    for el in form:
+        elements.append(el)
+    print(elements)
+    return redirect('index')
+    # return HttpResponse(json.dumps(elements), content_type="application/json")
+
+
 def your_menu(request):
     data = menudata.objects.all()
     beverage = pairdata.objects.all()
@@ -295,7 +305,7 @@ def beverage(request):
     })
 
 
-def pairing(request, img):
+def pairing(request, title):
 
     if request.method == 'POST':
         form = Pairing(request.POST)
@@ -307,7 +317,7 @@ def pairing(request, img):
 
     return render(request, 'menus/pairing.html', {
         'form': Pairing(),
-        'title': img
+        'title': title
     })
 
 

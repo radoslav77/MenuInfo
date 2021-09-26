@@ -1,36 +1,53 @@
 {% extends 'menus/base.html' %}
 {% block style %}
 
-    {% endblock %}
-    {% block body %}
-    <h3>Beverige suggetion for <strong>{{title}}</strong></h3>
-    <div class="input">
-        <form action="{% url 'beverage' %}" method="POST"  enctype="multipart/form-data" style="display: flex;flex-direction: column;">
-            {% csrf_token %}
-            {{form}}
-            {{form1}}
-          
-            <input type="submit" style="margin-top: 10px;">
-            <p>Example picture: https://radoslav77.github.io/pictures/images/noPictureDesserts.jpg</p>
-        </form>
-        
-    </div>
-    <script>
-        const titleInput = document.getElementById('id_title')
-        const nameInput = document.getElementById('id_name')
-        var labels = document.getElementsByTagName('LABEL')
-              
-        nameInput.hidden = true
-        for (var i = 0; i < labels.length; i++) {
-            if (labels[i].htmlFor != '') {
+<style>
+    #id_brand {
+        background-color: #fff;
+    }
+
+    #submit-btn {
+        background-color: #f1f1f1f1;
+        box-shadow: 0 0 3px rgba(0, 0, 1, 0.9);
+        margin-top: 10px;
+
+    }
+</style>
+{% endblock %}
+{% block body %}
+{% if title %}
+<h3>Beverige suggetion for <strong>{{title}}</strong></h3>
+{% else %}
+<h3>Please Input Your Beverige Data</h3>
+{% endif %}
+<div class="input">
+    <form action="{% url 'beverage' %}" method="POST" enctype="multipart/form-data"
+        style="display: flex;flex-direction: column;">
+        {% csrf_token %}
+        {{form}}
+        {{form1}}
+
+        <input type="submit" style="margin-top: 10px;" id="submit-btn">
+
+    </form>
+
+</div>
+<script>
+    const titleInput = document.getElementById('id_title')
+    const nameInput = document.getElementById('id_name')
+    var labels = document.getElementsByTagName('LABEL')
+
+    nameInput.hidden = true
+    for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor != '') {
             var elem = document.getElementById(labels[i].htmlFor);
-           
+
             if (elem)
-                elem.label = labels[i]; 
+                elem.label = labels[i];
 
-                console.log(elem.label)        
+            console.log(elem.label)
         }
-}
+    }
 
-    </script>
-    {% endblock %}
+</script>
+{% endblock %}
