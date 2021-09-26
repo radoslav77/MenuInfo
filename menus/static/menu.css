@@ -10,7 +10,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 90%;
+  width: 100vw;
   padding: 10px 20px;
 }
 .dish-container {
@@ -48,6 +48,7 @@ h2 {
 }
 
 .contain {
+  background-color: #f1f1f1;
   border: 1px solid red;
   padding: 5px;
   display: flex;
@@ -122,6 +123,7 @@ i:active {
 }
 
 .drink-allergy {
+  background-color: #f1f1f1;
   width: 90%;
   box-shadow: 0 0 3px rgba(255, 0, 0, 0.966);
   height: auto;

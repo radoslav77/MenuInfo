@@ -6,9 +6,7 @@
     const Main =document.getElementById('main_alergy').children
     const Desserts =document.getElementById('desserts_alergy')
     const slidDiv = document.querySelector('.drink-wrapper')
-   // console.log(Starter)
-   // console.log(Main)
-   // console.log(StarterNameEl)
+
 
 const  API_DATA_DRINKS =('/drinks')
 getDrinks(API_DATA_DRINKS)
@@ -25,16 +23,7 @@ async function getDrinks(url) {
     var EntryDrinks = data[0]
 
     EntryDrinks.forEach(drink => {
-        //console.log(drink.dish)
-        
-
-
-        //console.log(StarterNameEl)
-       // console.log(MainNameEl)
-       // console.log(DessertNameEl)
-             
-        
-
+       
             if(drink.dish === DessertNameEl){
                 
                 if (!drinks_dessert.includes(drink.drink) ){
@@ -42,20 +31,12 @@ async function getDrinks(url) {
                     
                 }    
 
-
-
-                //console.log(drinks)
-                
             }
-
 
             if (drink.dish === MainNameEl){
                 if(!drinks.includes(drink.drink)){
                     drinks.push(drink.drink)
-                   
-                  
-                    
-                   // console.log(main_drinks)
+
                 }
 
             } 
@@ -68,53 +49,46 @@ async function getDrinks(url) {
                         
                     }
 
-                
-                    
-
             }
-       
-        
-    });
+    })
+const DessertDrinkContainer = document.getElementById('dessert')
+//console.log(DessertDrinkContainer)
+drinks_dessert.forEach((b,idx) => {
 
-                    const DessertDrinkContainer = document.getElementById('dessert')
-                    //console.log(DessertDrinkContainer)
-                    drinks_dessert.forEach((b,idx) => {
-
-                        const NewDrink = document.createElement('input')
-                        NewDrink.type = 'button'
-                        NewDrink.value = b
-                        NewDrink.id = b
+    const NewDrink = document.createElement('input')
+    NewDrink.type = 'button'
+    NewDrink.value = b
+    NewDrink.id = b
 
 
 
-                        DessertDrinkContainer.appendChild(NewDrink)
-                    })
-                    DessertDrinkContainer.removeChild(DessertDrinkContainer.firstChild)
-                        
-                    const MainDrinkContainer = document.getElementById('main')
-                    drinks.forEach(b => {
-                        const NewDrink = document.createElement('input')
-                        NewDrink.type = 'button'
-                        NewDrink.value = b
-                        NewDrink.id = b
+    DessertDrinkContainer.appendChild(NewDrink)
+})
+DessertDrinkContainer.removeChild(DessertDrinkContainer.firstChild)
+    
+const MainDrinkContainer = document.getElementById('main')
+drinks.forEach(b => {
+    const NewDrink = document.createElement('input')
+    NewDrink.type = 'button'
+    NewDrink.value = b
+    NewDrink.id = b
 
-                        MainDrinkContainer.appendChild(NewDrink)
-                    })
+    MainDrinkContainer.appendChild(NewDrink)
+})
 
-                    MainDrinkContainer.removeChild(MainDrinkContainer.firstChild)
+MainDrinkContainer.removeChild(MainDrinkContainer.firstChild)
 
-                    const StarterDrinkContainer = document.getElementById('starter')
-                    //console.log(drinks_starter)
-                    drinks_starter.forEach(b => {                       
-                        const NewDrink = document.createElement('input')
-                        NewDrink.type = 'button'
-                        NewDrink.value = b
-                        NewDrink.id = b
+const StarterDrinkContainer = document.getElementById('starter')
+//console.log(drinks_starter)
+drinks_starter.forEach(b => {                       
+    const NewDrink = document.createElement('input')
+    NewDrink.type = 'button'
+    NewDrink.value = b
+    NewDrink.id = b
 
-                        StarterDrinkContainer.appendChild(NewDrink)
-                    })
-                    StarterDrinkContainer.removeChild(StarterDrinkContainer.firstChild)
-
+    StarterDrinkContainer.appendChild(NewDrink)
+})
+StarterDrinkContainer.removeChild(StarterDrinkContainer.firstChild)
    
 }
 
@@ -156,290 +130,288 @@ const URL_DATA =('/alergy')
 
     })
      
-     
 
+    function ContainAllergents() {
+        data.forEach(arr => {
+            var recipeData = arr.recipe 
+            const i = recipeData.split(',')
+        
+            i.forEach(e => {
+                var num = e.split(/\s+/)
+                var dairies = allergents.dairy
+                var glutens = allergents.gluten
+                var nuts = allergents.nuts
+                var eggs = allergents.eggs
+                var peanuts = allergents.peanut
+                var celery = allergents.celery
+                var crustaceans = allergents.crustaceans
+                var fish =  allergents.fish
+                var lupin = allergents.lupin
+                var molluscs = allergents.molluscs
+                var mustard = allergents.mustard
+                var sesame = allergents.sesame
+                var soya = allergents.soy
+                var sulphites = allergents.sulphites
 
-function ContainAllergents() {
-    data.forEach(arr => {
-        var recipeData = arr.recipe 
-        const i = recipeData.split(',')
-    
-        i.forEach(e => {
-            var num = e.split(/\s+/)
-            var dairies = allergents.dairy
-            var glutens = allergents.gluten
-            var nuts = allergents.nuts
-            var eggs = allergents.eggs
-            var peanuts = allergents.peanut
-            var celery = allergents.celery
-            var crustaceans = allergents.crustaceans
-            var fish =  allergents.fish
-            var lupin = allergents.lupin
-            var molluscs = allergents.molluscs
-            var mustard = allergents.mustard
-            var sesame = allergents.sesame
-            var soya = allergents.soy
-            var sulphites = allergents.sulphites
-
-            peanuts.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if (found == all || found == all.toLowerCase()){ 
-                    if(DessertNameEl === arr.title){            
-                        des[1].hidden = false
-                        des[1].innerText = 'Peanuts,'
+                peanuts.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if (found == all || found == all.toLowerCase()){ 
+                        if(DessertNameEl === arr.title){            
+                            des[1].hidden = false
+                            des[1].innerText = 'Peanuts,'
+                        }
+                        if(StarterNameEl === arr.title){            
+                            Starter[1].hidden = false
+                            Starter[1].innerText = 'Peanuts,'
+                        }
+                        if(MainNameEl === arr.title){            
+                            Main[1].hidden = false
+                            Main[1].innerText = 'Peanuts,'
+                        }  
                     }
-                    if(StarterNameEl === arr.title){            
-                        Starter[1].hidden = false
-                        Starter[1].innerText = 'Peanuts,'
+                })
+
+                eggs.forEach((all, idx) => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){                
+                    if(DessertNameEl === arr.title){
+                            des[2].hidden = false
+                            des[2].innerHTML = 'Eggs,'
                     }
-                    if(MainNameEl === arr.title){            
-                        Main[1].hidden = false
-                        Main[1].innerText = 'Peanuts,'
+                    if(StarterNameEl === arr.title){
+                            Starter[2].hidden = false
+                            Starter[2].innerHTML = 'Eggs,'
+                    }
+                    if(MainNameEl === arr.title){
+                            Main[2].hidden = false
+                            Main[2].innerHTML = 'Eggs,'
+                    }
+
                     }  
-                }
-            })
 
-            eggs.forEach((all, idx) => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){                
-                   if(DessertNameEl === arr.title){
-                        des[2].hidden = false
-                        des[2].innerHTML = 'Eggs,'
-                   }
-                   if(StarterNameEl === arr.title){
-                        Starter[2].hidden = false
-                        Starter[2].innerHTML = 'Eggs,'
-                   }
-                   if(MainNameEl === arr.title){
-                        Main[2].hidden = false
-                        Main[2].innerHTML = 'Eggs,'
-                   }
+                    
+                })
 
-                }  
-
-                
-            })
-
-            glutens.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                   if(DessertNameEl === arr.title){
-                    des[3].hidden = false
-                    des[3].innerText = 'Gluten,'
-                   }
-                   if(StarterNameEl === arr.title){
-                    Starter[3].hidden = false
-                    Starter[3].innerText = 'Gluten,'
-                   }
-                   if(MainNameEl === arr.title){
-                    Main[3].hidden = false
-                    Main[3].innerText = 'Gluten,'
-                   }
-                }
-            })
-
-            dairies.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
+                glutens.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
                     if(DessertNameEl === arr.title){
-                        des[5].hidden = false
-                        des[5].innerText = 'Dairy,'
-                    }
-                    if(MainNameEl === arr.title){
-                        Main[5].hidden = false
-                        Main[5].innerText = 'Dairy,'
+                        des[3].hidden = false
+                        des[3].innerText = 'Gluten,'
                     }
                     if(StarterNameEl === arr.title){
-                        Starter[5].hidden = false
-                        Starter[5].innerText = 'Diary,'
-                    }
-                }
-            })
-
-            nuts.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                    des[4].hidden = false
-                    des[4].innerText = 'Nuts,'
-                    }
-                    if(StarterNameEl === arr.title){
-                    Starter[4].hidden = false
-                    Starter[4].innerText = 'Nuts,'
+                        Starter[3].hidden = false
+                        Starter[3].innerText = 'Gluten,'
                     }
                     if(MainNameEl === arr.title){
-                    Main[4].hidden = false
-                    Main[4].innerText = 'Nuts,'
+                        Main[3].hidden = false
+                        Main[3].innerText = 'Gluten,'
                     }
-                }
-            })
+                    }
+                })
 
-            celery.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
+                dairies.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                            des[5].hidden = false
+                            des[5].innerText = 'Dairy,'
+                        }
+                        if(MainNameEl === arr.title){
+                            Main[5].hidden = false
+                            Main[5].innerText = 'Dairy,'
+                        }
+                        if(StarterNameEl === arr.title){
+                            Starter[5].hidden = false
+                            Starter[5].innerText = 'Diary,'
+                        }
+                    }
+                })
+
+                nuts.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                        des[4].hidden = false
+                        des[4].innerText = 'Nuts,'
+                        }
+                        if(StarterNameEl === arr.title){
+                        Starter[4].hidden = false
+                        Starter[4].innerText = 'Nuts,'
+                        }
+                        if(MainNameEl === arr.title){
+                        Main[4].hidden = false
+                        Main[4].innerText = 'Nuts,'
+                        }
+                    }
+                })
+
+                celery.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                        des[6].hidden = false
+                        des[6].innerText = 'Celery,'
+                        }
+                        if(StarterNameEl === arr.title){
+                        Starter[6].hidden = false
+                        Starter[6].innerText = 'Celery,'
+                        }
+                        if(MainNameEl === arr.title){
+                        Main[6].hidden = false
+                        Main[6].innerText = 'Celery,'
+                        }
+                    }
+                })
+
+                crustaceans.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
                     if(DessertNameEl === arr.title){
-                    des[6].hidden = false
-                    des[6].innerText = 'Celery,'
+                        des[7].hidden = false
+                        des[7].innerText = 'Crustaceans,'
                     }
                     if(StarterNameEl === arr.title){
-                    Starter[6].hidden = false
-                    Starter[6].innerText = 'Celery,'
+                        Starter[7].hidden = false
+                        Starter[7].innerText = 'Crustaceans,'
                     }
                     if(MainNameEl === arr.title){
-                    Main[6].hidden = false
-                    Main[6].innerText = 'Celery,'
+                        Main[7].hidden = false
+                        Main[7].innerText = 'Crustaceans,'
                     }
-                }
-            })
+                    }
+                })
 
-            crustaceans.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                   if(DessertNameEl === arr.title){
-                    des[7].hidden = false
-                    des[7].innerText = 'Crustaceans,'
-                   }
-                   if(StarterNameEl === arr.title){
-                    Starter[7].hidden = false
-                    Starter[7].innerText = 'Crustaceans,'
-                   }
-                   if(MainNameEl === arr.title){
-                    Main[7].hidden = false
-                    Main[7].innerText = 'Crustaceans,'
-                   }
-                }
-            })
+                fish.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                        des[8].hidden = false
+                        des[8].innerText = 'Fish,'
+                        }
+                        if(StarterNameEl === arr.title){
+                        Starter[8].hidden = false
+                        Starter[8].innerText = 'Fish,'
+                        }
+                        if(MainNameEl === arr.title){
+                        Main[8].hidden = false
+                        Main[8].innerText = 'Fish,'
+                        }
+                    }
+                })
 
-            fish.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
+                lupin.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                        des[9].hidden = false
+                        des[9].innerText = 'Lupin,'
+                        }
+                        if(StarterNameEl === arr.title){
+                        Starter[9].hidden = false
+                        Starter[9].innerText = 'Lupin,'
+                        }
+                        if(MainNameEl === arr.title){
+                        Main[9].hidden = false
+                        Main[9].innerText = 'Lupin,'
+                        }
+                    }
+                })
+
+                molluscs.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
                     if(DessertNameEl === arr.title){
-                    des[8].hidden = false
-                    des[8].innerText = 'Fish,'
+                        des[10].hidden = false
+                        des[10].innerText = 'Molluscs,'
                     }
                     if(StarterNameEl === arr.title){
-                    Starter[8].hidden = false
-                    Starter[8].innerText = 'Fish,'
+                        Starter[10].hidden = false
+                        Starter[10].innerText = 'Molluscs,'
                     }
                     if(MainNameEl === arr.title){
-                    Main[8].hidden = false
-                    Main[8].innerText = 'Fish,'
+                        Mian[10].hidden = false
+                        Main[10].innerText = 'Molluscs,'
                     }
-                }
-            })
+                    }
+                })
 
-            lupin.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
+                mustard.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                        des[11].hidden = false
+                        des[11].innerText = 'Mustard,'
+                        }
+                        if(StarterNameEl === arr.title){
+                        Starter[11].hidden = false
+                        Starter[11].innerText = 'Mustard,'
+                        }
+                        if(MainNameEl === arr.title){
+                        Main[11].hidden = false
+                        Main[11].innerText = 'Mustard,'
+                        }
+                    }
+                })
+
+                sesame.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
+                        if(DessertNameEl === arr.title){
+                        des[12].hidden = false
+                        des[12].innerText = 'Sesame,'
+                        }
+                        if(StarterNameEl === arr.title){
+                        Starter[12].hidden = false
+                        Starter[12].innerText = 'Sesame,'
+                        }
+                        if(MainNameEl === arr.title){
+                        Main[12].hidden = false
+                        Main[12].innerText = 'Sesame,'
+                        }
+                    }
+                })
+
+                soya.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())               
+                    if ( found == all || found == all.toLowerCase()){        
+                    if (DessertNameEl === arr.title){
+                        des[13].hidden = false
+                        des[13].innerHTML = 'Soya,'
+                    }
+                    if (StarterNameEl === arr.title){
+                        Starter[13].hidden = false
+                        Starter[13].innerHTML = 'Soya,'
+                    }
+                    if (MainNameEl === arr.title){
+                        Mian[13].hidden = false
+                        Main[13].innerHTML = 'Soya,'
+                    }
+
+                    }
+                })
+
+                sulphites.forEach(all => {
+                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+                    if ( found == all || found == all.toLowerCase()){
                     if(DessertNameEl === arr.title){
-                    des[9].hidden = false
-                    des[9].innerText = 'Lupin,'
+                        des[14].hidden = false
+                        des[14].innerText = 'Sulphites,'
                     }
                     if(StarterNameEl === arr.title){
-                    Starter[9].hidden = false
-                    Starter[9].innerText = 'Lupin,'
+                        Starter[14].hidden = false
+                        Starter[14].innerText = 'Sulphites,'
                     }
                     if(MainNameEl === arr.title){
-                    Main[9].hidden = false
-                    Main[9].innerText = 'Lupin,'
+                        Main[14].hidden = false
+                        Main[14].innerText = 'Sulphites,'
                     }
-                }
+
+                    }
+                })
+
             })
-
-            molluscs.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                   if(DessertNameEl === arr.title){
-                    des[10].hidden = false
-                    des[10].innerText = 'Molluscs,'
-                   }
-                   if(StarterNameEl === arr.title){
-                    Starter[10].hidden = false
-                    Starter[10].innerText = 'Molluscs,'
-                   }
-                   if(MainNameEl === arr.title){
-                    Mian[10].hidden = false
-                    Main[10].innerText = 'Molluscs,'
-                   }
-                }
-            })
-
-            mustard.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                    des[11].hidden = false
-                    des[11].innerText = 'Mustard,'
-                    }
-                    if(StarterNameEl === arr.title){
-                    Starter[11].hidden = false
-                    Starter[11].innerText = 'Mustard,'
-                    }
-                    if(MainNameEl === arr.title){
-                    Main[11].hidden = false
-                    Main[11].innerText = 'Mustard,'
-                    }
-                }
-            })
-
-            sesame.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                    des[12].hidden = false
-                    des[12].innerText = 'Sesame,'
-                    }
-                    if(StarterNameEl === arr.title){
-                    Starter[12].hidden = false
-                    Starter[12].innerText = 'Sesame,'
-                    }
-                    if(MainNameEl === arr.title){
-                    Main[12].hidden = false
-                    Main[12].innerText = 'Sesame,'
-                    }
-                }
-            })
-
-            soya.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())               
-                if ( found == all || found == all.toLowerCase()){        
-                   if (DessertNameEl === arr.title){
-                    des[13].hidden = false
-                    des[13].innerHTML = 'Soya,'
-                   }
-                   if (StarterNameEl === arr.title){
-                    Starter[13].hidden = false
-                    Starter[13].innerHTML = 'Soya,'
-                   }
-                   if (MainNameEl === arr.title){
-                    Mian[13].hidden = false
-                    Main[13].innerHTML = 'Soya,'
-                   }
-
-                }
-            })
-
-            sulphites.forEach(all => {
-                const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                if ( found == all || found == all.toLowerCase()){
-                   if(DessertNameEl === arr.title){
-                    des[14].hidden = false
-                    des[14].innerText = 'Sulphites,'
-                   }
-                   if(StarterNameEl === arr.title){
-                    Starter[14].hidden = false
-                    Starter[14].innerText = 'Sulphites,'
-                   }
-                   if(MainNameEl === arr.title){
-                    Main[14].hidden = false
-                    Main[14].innerText = 'Sulphites,'
-                   }
-
-                }
-            })
-
         })
-    })
 }
 
 
@@ -457,16 +429,7 @@ function ContainAllergents() {
         const data = await res.json()
         data.forEach(arr => {
            // console.log(arr.description, '->', arr.title)
-        
-       // console.log(data)
-        
-            
-        
 
-        
-        Array.from(document.getElementsByClassName("drink")).forEach(function(item) {
-        
-            //console.log(item.id);
             let inputEls = []
             let inputEl =document.getElementsByTagName('input')
             //console.log(inputEl.length)
@@ -480,10 +443,11 @@ function ContainAllergents() {
             }
             inputEls.forEach((element) => {
                 var el = element
-                el.addEventListener('click', () => {
-                   // console.log(el)
-                        var containsContainer = document.getElementById('drink-contain')
-                        
+                
+                el.addEventListener('mousedown', () => {
+                   
+                        //var containsContainer = document.getElementById('drink-contain')
+                       // console.log(containsContainer)
                         slidDiv.scrollIntoView()
                         slidDiv.style.transform = 'translateX(30vw)' 
                         
@@ -545,14 +509,14 @@ function ContainAllergents() {
                           
                         }
                    
-                   //console.log(el.id)
+                 
                     var Info = document.getElementById('info')
-                   // Info.innerHTML = el.id
+                 
                     for( let i = 0; i < arr.title.length; i++){
                        
                         if(arr.title.includes(el.id)){
                                 Info.innerHTML = arr.description
-                                //console.log(item.id)
+                               
                             }
                     }       
                         
@@ -563,7 +527,8 @@ function ContainAllergents() {
             })
 
            
-    })
+
+    
 
 /*
             getXYPosition()
@@ -589,8 +554,8 @@ function ContainAllergents() {
            } */
 
 
-});
-    }
+    })
+}
 
 
    
