@@ -1,6 +1,9 @@
 {% extends 'menus/base.html' %}
 {% load static %} 
 <style>
+    body{
+        margin-bottom: 50px;
+    }
     .recipe {
         background-color: salmon;
         box-shadow: 0 2px 3px rgba(0, 0, 1, 0.5);
@@ -15,17 +18,29 @@
         display: flex;
         flex-direction: row;
     }
+
+    #for-dish {
+        font-size: 24px;
+        font-weight: bold;
+    }
 </style>
 
 
-{% block body %}
- <h1 id="id"> My prject</h1>    
-
-  <div class="container-details">    
-    <a href="/media/{{img.image}}">
-        <img id="pic" src="/media/{{img.image}}" alt=""></img>
-        <p id="title"> {{img}}</p>
-    </a>
+{% block body %}  
+  <div class="container-details">
+        {% if img %}
+            {% for i in img %}    
+            <a href="/media/{{i.image}}">
+                <img id="pic" src="/media/{{i.image}}" alt=""></img>
+                <p id="title"> {{i}}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+            {% for t in data %} 
+                <p id="title">{{t.title}} </p>
+                <p id="for-dish">For the: <span >{{t.for_dish}}</span></p>
+            {% endfor %}
+        {% endif %}
         <h4>Recipe</h4>
         <div class="recipe" id="recipes" style="box-shadow:0 2px 3px rgba(0, 0, 1, 0.5) ;">
             <ul>

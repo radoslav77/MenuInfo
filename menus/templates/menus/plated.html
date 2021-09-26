@@ -35,8 +35,13 @@
             <h3>Starters</h3>
             <ul class="list starters">
                 {% if starters %}
+                    {% if pairs_starters %}
+                        {% for starter  in pairs_starters %}
+                            <a id="link" href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
+                        {% endfor %}
+                    {% endif %}
                     {% for starter  in starters %}
-                    <a id="link" href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
+                        <a id="link" href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
                     {% endfor %}
                 {% endif %}
             </ul>
