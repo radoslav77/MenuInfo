@@ -209,13 +209,16 @@ def plated(request):
             mains.append(i)
         elif i.selector == 'starter':
             starters.append(i)
-
-    for pair in starters:
-        dish = recipedata.objects.filter(for_dish=pair.for_dish)
-        for t in dish:
-            if pair.for_dish == t.title:
-                pairs_starters.append(pair)
-
+            for name in starters:
+                if name.for_dish == i.title:
+                    pairs_starters.append(name)
+    for starter in starters:
+        for title in pairs_starters:
+            if starter.title == title:
+                print(f'{starter} "->" {title}')
+                pairs_starters.append(starter)
+                starters.remove(starter)
+    print(f'{pairs_starters}::{starters}')
     return render(request, 'menus/plated.html', {
         'results': results,
         'starters': starters,
@@ -229,14 +232,13 @@ def detail(request, data):
 
     data1 = recipedata.objects.filter(title=data)
     drink = pairdata.objects.filter(dish=data)
+    recipe = recipedata.objects.all()
 
     for dish in data1:
         img = dishdata.objects.filter(title=dish)
         image = []
         for pic in img:
             image.append(pic)
-
-        print(dish.for_dish)
 
     sug_drink = []
     for t in drink:
@@ -255,15 +257,18 @@ def detail(request, data):
         for j in ing:
             i = j[0][0]
             ingr.append(i[0:-1])
-
-    global GLOBAL_TITLE
-    GLOBAL_TITLE = data1[0]
+    subrecipe = []
+    for sub in recipe:
+        if sub.for_dish == data:
+            if sub.title != data:
+                subrecipe.append(sub)
 
     return render(request, 'menus/detail.html', {
         'data': data1,
         'ing': ingr,
         'img': image,
-        'drink': title_drink
+        'drink': title_drink,
+        'subrecipe': subrecipe
     })
 
 

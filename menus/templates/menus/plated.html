@@ -1,7 +1,7 @@
 {% extends 'menus/base.html' %}
 {% block style %}
 
-    {% endblock %}
+{% endblock %}
 {% block body %}
 <div class="body-container">
     <div class="starter container">
@@ -14,11 +14,11 @@
         </div>
     </div>
     <div class="main container">
-        <div class="mains">       
+        <div class="mains">
             <h2>Mains</h2>
             <div class="img main">
                 <img src="static/pictures/main.jpg" alt="static/pictures/main.jpg" width="400" height="300">
-            </div>           
+            </div>
 
         </div>
     </div>
@@ -26,23 +26,31 @@
         <div class="desserts">
             <h2>Desserts</h2>
             <div class="img dessert">
-                 <img src="static/pictures/dessert.jpg" alt="static/pictures/dessert.jpg" width="400" height="300">
-            </div>        
+                <img src="static/pictures/dessert.jpg" alt="static/pictures/dessert.jpg" width="400" height="300">
+            </div>
         </div>
     </div>
     <div class="recipe-container">
         <div class="recipe-starter" hidden>
             <h3>Starters</h3>
             <ul class="list starters">
-                {% if starters %}
-                    {% if pairs_starters %}
-                        {% for starter  in pairs_starters %}
-                            <a id="link" href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
-                        {% endfor %}
-                    {% endif %}
-                    {% for starter  in starters %}
-                        <a id="link" href="{% url 'detail' starter %}"><li>{{starter}}</li></a>
-                    {% endfor %}
+                <!--{% if starters %}
+                {% for starter in starters %}
+                {% for sub in pairs_starters %}
+                {% if starter == sub %}
+                <a id="link" href="{% url 'detail' starter %}">
+                    <li>{{starter}}</li>
+                </a>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}-->
+                {% if pairs_starters %}
+                {% for starter in pairs_starters %}
+                <a id="link" href="{% url 'detail' starter %}">
+                    <li>{{starter}}</li>
+                </a>
+                {% endfor %}
+                {% endif %}
                 {% endif %}
             </ul>
             <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
@@ -51,9 +59,11 @@
             <h3>Mains</h3>
             <ul class="list mains">
                 {% if mains %}
-                    {% for main  in mains %}
-                    <a id="link" href="{% url 'detail' main %}"><li>{{main}}</li></a>
-                    {% endfor %}
+                {% for main in mains %}
+                <a id="link" href="{% url 'detail' main %}">
+                    <li>{{main}}</li>
+                </a>
+                {% endfor %}
                 {% endif %}
             </ul>
             <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
@@ -62,9 +72,11 @@
             <h3>Desserts</h3>
             <ul class="list desserts">
                 {% if desserts %}
-                    {% for dessert  in desserts %}
-                    <a id="link" href="{% url 'detail' dessert %}"><li>{{dessert}}</li></a>
-                    {% endfor %}
+                {% for dessert in desserts %}
+                <a id="link" href="{% url 'detail' dessert %}">
+                    <li>{{dessert}}</li>
+                </a>
+                {% endfor %}
                 {% endif %}
             </ul>
             <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
