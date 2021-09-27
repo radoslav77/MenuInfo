@@ -146,11 +146,11 @@ def your_menu(request):
     bev.append(bev_drink)
 
     return render(request, 'menus/recipes.html', {
-        'data': title[0],
+        'data': title[1],
         'dish': dish[0],
         'dish1': dish[1],
         'dish2': dish[2],
-        'drinks': drinks[0],
+        'drinks': drinks[1],
 
     })
 

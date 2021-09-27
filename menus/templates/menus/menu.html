@@ -1,0 +1,26 @@
+{% extends 'menus/base.html' %}
+{% block style %}
+<style>
+
+</style>
+{% endblock %}
+{% block body %}
+
+<div class="input">
+    <ul>
+        {% for menu in data %}
+        <a href="{% url 'your_menu'  %}">
+            <li>{{menu}}</li>
+        </a>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    const title = document.getElementById('title')
+    const inputTitle = document.getElementById('id_dish')
+    console.log(inputTitle)
+
+    inputTitle.placeholder = title.innerText
+    inputTitle.value = title.innerText
+</script>
+{% endblock %}
