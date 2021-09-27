@@ -34,16 +34,6 @@
         <div class="recipe-starter" hidden>
             <h3>Starters</h3>
             <ul class="list starters">
-                <!--{% if starters %}
-                {% for starter in starters %}
-                {% for sub in pairs_starters %}
-                {% if starter == sub %}
-                <a id="link" href="{% url 'detail' starter %}">
-                    <li>{{starter}}</li>
-                </a>
-                {% endif %}
-                {% endfor %}
-                {% endfor %}-->
                 {% if pairs_starters %}
                 {% for starter in pairs_starters %}
                 <a id="link" href="{% url 'detail' starter %}">
@@ -51,7 +41,7 @@
                 </a>
                 {% endfor %}
                 {% endif %}
-                {% endif %}
+
             </ul>
             <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
         </div>

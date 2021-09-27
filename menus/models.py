@@ -14,16 +14,16 @@ class Dish(models.Model):
         ('Buffets', 'Buffets'),
         ('Bespoke', 'Bespoke')
     )
-    title = models.CharField(max_length=200)
+    title_dish = models.CharField(max_length=200)
     type = models.CharField(max_length=100, choices=TYPE)
     description = models.TextField(max_length=2000)
     image = models.FileField(upload_to='media')
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.title_dish}'
 
     class Meta:
-        ordering = ['title']
+        ordering = ['title_dish']
 
 
 class Beverage(models.Model):

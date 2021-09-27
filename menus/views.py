@@ -112,7 +112,7 @@ def your_menu(request):
                 })
         for pic in image1:
             dish.append(pic)
-            des = dishdata.objects.filter(title=i.starter.title)
+            des = dishdata.objects.filter(title_dish=i.starter.title)
             for d in des:
                 descriptions.append({
                     'title': d.title,
@@ -120,7 +120,7 @@ def your_menu(request):
                 })
         for pic in image2:
             dish.append(pic)
-            des = dishdata.objects.filter(title=i.dessert.title)
+            des = dishdata.objects.filter(title_dish=i.dessert.title)
             for d in des:
                 descriptions.append({
                     'title': d.title,
@@ -204,6 +204,7 @@ def menu_input(request):
 
 def plated(request):
     res = recipedata.objects.all()
+    res_dish = dishdata.objects.all()
 
     pairs_starters = []
     results = []
@@ -211,6 +212,7 @@ def plated(request):
     desserts = []
     mains = []
     for i in res:
+        #print(f'{i} - {i.selector}')
         if i.for_dish not in results:
             results.append(i.for_dish)
         if i.selector == 'dessert':
@@ -222,19 +224,30 @@ def plated(request):
             for name in starters:
                 if name.for_dish == i.title:
                     pairs_starters.append(name)
-    for starter in starters:
-        for title in pairs_starters:
-            if starter.title == title:
-                print(f'{starter} "->" {title}')
-                pairs_starters.append(starter)
-                starters.remove(starter)
-    print(f'{pairs_starters}::{starters}')
+
+    # for i in starters:
+       # print(f'{i} -- {i.for_dish}')
+        # if i.for_dish in pairs_starters:
+          #  pairs_starters.append(i)
+        # for dish in res_dish:
+        # if dish == i.for_dish:
+        # if dish == i.for_dish:
+
+        #  pairs_starters.append(dish)
+
+        #print(f'{dish} - {dish.type}')
+        for starter in starters:
+            for title in res_dish:
+                if starter.for_dish == title.title_dish:
+                    pairs_starters.append(starter)
+        pairstarters = list(dict.fromkeys(pairs_starters))
+
     return render(request, 'menus/plated.html', {
         'results': results,
         'starters': starters,
         'mains': mains,
         'desserts': desserts,
-        'pairs_starters': pairs_starters
+        'pairs_starters': pairstarters
     })
 
 
@@ -245,7 +258,7 @@ def detail(request, data):
     recipe = recipedata.objects.all()
 
     for dish in data1:
-        img = dishdata.objects.filter(title=dish)
+        img = dishdata.objects.filter(title_dish=dish)
         image = []
         for pic in img:
             image.append(pic)

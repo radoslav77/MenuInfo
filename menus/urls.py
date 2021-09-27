@@ -23,5 +23,5 @@ urlpatterns = [
     path('drink_sammary', views.drink_sammary, name='drink_sammary'),
     path('description_api', views.description_api, name='description_api'),
     path('beverage_ing', views.beverage_ing, name='beverage_ing'),
-    path('js_form', views.js_form, name='js_form')
+
 ]
