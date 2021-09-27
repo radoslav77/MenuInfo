@@ -1,0 +1,77 @@
+{% extends 'menus/base.html' %}
+{% block style %}
+
+{% endblock %}
+{% block body %}
+<div class="body-container">
+    <div class="starter container">
+        <div class="starters">
+            <h2>Starters</h2>
+            <div class="img starter">
+                <img src="static/pictures/starter.jpg" alt="static/pictures/starter.jpg" width="400" height="300">
+            </div>
+
+        </div>
+    </div>
+    <div class="main container">
+        <div class="mains">
+            <h2>Mains</h2>
+            <div class="img main">
+                <img src="static/pictures/main.jpg" alt="static/pictures/main.jpg" width="400" height="300">
+            </div>
+
+        </div>
+    </div>
+    <div class="dessert container">
+        <div class="desserts">
+            <h2>Desserts</h2>
+            <div class="img dessert">
+                <img src="static/pictures/dessert.jpg" alt="static/pictures/dessert.jpg" width="400" height="300">
+            </div>
+        </div>
+    </div>
+    <div class="recipe-container">
+        <div class="recipe-starter" hidden>
+            <h3>Starters</h3>
+            <ul class="list starters">
+                {% if pairs_starters %}
+                {% for starter in pairs_starters %}
+                <a id="link" href="{% url 'detail' starter %}">
+                    <li>{{starter}}</li>
+                </a>
+                {% endfor %}
+                {% endif %}
+
+            </ul>
+            <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
+        </div>
+        <div class="recipe-main" hidden>
+            <h3>Mains</h3>
+            <ul class="list mains">
+                {% if mains %}
+                {% for main in mains %}
+                <a id="link" href="{% url 'detail' main %}">
+                    <li>{{main}}</li>
+                </a>
+                {% endfor %}
+                {% endif %}
+            </ul>
+            <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
+        </div>
+        <div class="recipe-dessert" hidden>
+            <h3>Desserts</h3>
+            <ul class="list desserts">
+                {% if desserts %}
+                {% for dessert in desserts %}
+                <a id="link" href="{% url 'detail' dessert %}">
+                    <li>{{dessert}}</li>
+                </a>
+                {% endfor %}
+                {% endif %}
+            </ul>
+            <a id="link" href="{% url 'plated' %}">Back to recipe list</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

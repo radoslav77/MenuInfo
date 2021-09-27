@@ -104,26 +104,26 @@ def your_menu(request):
 
         for pic in image:
             dish.append(pic)
-            des = dishdata.objects.filter(title=i.main.title)
+            des = dishdata.objects.all()
             for d in des:
                 descriptions.append({
-                    'title': d.title,
+                    'title': d.title_dish,
                     'description': d.description
                 })
         for pic in image1:
             dish.append(pic)
-            des = dishdata.objects.filter(title_dish=i.starter.title)
+            des = dishdata.objects.all()
             for d in des:
                 descriptions.append({
-                    'title': d.title,
+                    'title': d.title_dish,
                     'description': d.description
                 })
         for pic in image2:
             dish.append(pic)
-            des = dishdata.objects.filter(title_dish=i.dessert.title)
+            des = dishdata.objects.all()
             for d in des:
                 descriptions.append({
-                    'title': d.title,
+                    'title': d.title_dish,
                     'description': d.description
                 })
 
@@ -200,6 +200,11 @@ def menu_input(request):
     return render(request, 'menus/menu-input.html', {
         'form': Menu()
     })
+
+
+def dishes(request):
+    all_data = dishdata.objects.all()
+    return redirect('plated')
 
 
 def plated(request):

@@ -2,20 +2,24 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'stylebase.css' %}">
     <link rel="stylesheet" href="{% static 'menu.css' %}">
     <link rel="stylesheet" href="{% static 'plated.css' %}">
     <link rel="stylesheet" href="{% static 'recipe_input.css' %}">
-    
+
     {% block style %}
     {% endblock %}
     <title>BQT Menu Selector</title>
 </head>
+
 <body>
     <nav class="nav">
         <div class="navcon">
@@ -23,12 +27,12 @@
             <ul>
                 <li><a href="">Breakfast</a></li>
                 <li><a href="">DDR Breaks</a></li>
-                <li><a href="{% url 'plated' %}">Plated Menus</a></li>
+                <li><a href="{% url 'dishes' %}">Plated Menus</a></li>
                 {% if user.is_staff %}
                 <!--<li><a href="">Madera</a></li>-->
                 {% endif %}
                 <li><a href="{% url 'your_menu' %}">Your Menu </a></li>
-                <li><a href="">Recipes</a></li>
+                <li><a href="{% url 'plated' %}">Recipes</a></li>
                 <li><a href="">Handover</a></li>
                 <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
@@ -37,15 +41,15 @@
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'login_user' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
-                {% else  %}
+                {% else %}
                 <li><a href="{% url 'logout_user' %}">Logout</a></li>
                 {% endif %}
                 <li><a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                  </a></li>
+                        <i class="fa fa-bars"></i>
+                    </a></li>
             </ul>
         </div>
-    </nav> 
+    </nav>
     <div class="hero">
         <div class="container">
             <h1>Welcom to InterContinental BQT Menu info</h1>
@@ -59,7 +63,7 @@
     {% block body %}
 
     {% endblock %}
-    
+
     <script src="{% static 'script.js' %}"></script>
     <script src="{% static 'menu.js' %}"></script>
     <script src="{% static 'detail.js' %}"></script>
@@ -68,11 +72,12 @@
         function myFunction() {
             var x = document.querySelector(".nav");
             if (x.className === "nav") {
-            x.className += " responsive";
+                x.className += " responsive";
             } else {
-            x.className = "nav";
+                x.className = "nav";
             }
         }
     </script>
 </body>
+
 </html>
