@@ -31,17 +31,27 @@
         <input type="submit" style="margin-top: 10px;">
 
     </form>
-    To Add more recipes to this dish click <a href="#" id="new-form">here</a>
+    To Add more recipes to this dish click <a href="{% url 'recipe_input' %}" id="new-form">here</a>
     <script>
         const title = document.getElementById('id_title_dish')
         const ForDish = document.getElementById('id_for_dish')
         const DescEl = document.getElementById('id_description')
-        console.log(DescEl)
+        const TitleEl = document.getElementById('id_title')
+        const labelTitleEl = document.querySelector('[for=id_title]')
+        const labelForDishEl = document.querySelector('[for=id_for_dish]')
+       
+
 
         DescEl.addEventListener('keydown', () => {
+
             ForDish.placeholdes = title.value
             ForDish.value = title.value
             ForDish.hidden = true
+            TitleEl.placeholdes = title.value
+            TitleEl.value = title.value
+            TitleEl.hidden = true
+            labelForDishEl.hidden = true
+            labelTitleEl.hidden = true
         })
         var NewForm = document.createElement('form')
         const NewFormLink = document.getElementById('new-form')

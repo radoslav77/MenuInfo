@@ -1,12 +1,13 @@
 {% extends 'menus/base.html' %}
 {% load static %}
+{% block style %}
 <style>
     body {
-        margin-bottom: 50px;
+        margin-bottom: -250px;
     }
 
     .recipe {
-        background-color: salmon;
+
         box-shadow: 0 2px 3px rgba(0, 0, 1, 0.5);
     }
 
@@ -20,7 +21,8 @@
 
     .container-details {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        width: 80vw;
     }
 
     #for-dish {
@@ -30,8 +32,9 @@
 
     .link-container {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+
+        justify-content: space-evenly;
+
         box-shadow: 0 0 3px rgba(0, 0, 1, 0.5);
         margin-bottom: 150px;
     }
@@ -41,7 +44,7 @@
     }
 </style>
 
-
+{% endblock %}
 {% block body %}
 <div class="container-details">
     {% if img %}
@@ -67,6 +70,11 @@
         </ul>
 
     </div>
+    {% for title in data %}
+    <p> Sub recipe to the Dish
+        <span style="font-size: 20px;"> {{title.title}}</span>
+    </p>
+    {% endfor %}
     <div class="subrecipe" style="box-shadow:0 2px 3px rgba(0, 0, 1, 0.5) ;">
 
         {% for recipe in subrecipe %}
@@ -107,7 +115,7 @@
         {% endif %}
     </div>
     <div class="link-container">
-        <a href="{% url 'beverage'  %}">Add Beverage suggestion to this dish</a> <br>
+
         {% for t in data %}
         <a href="{% url 'pairing' t %}">Pair this dish with Bevarige</a>
         {% endfor %}
