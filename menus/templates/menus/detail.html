@@ -42,6 +42,11 @@
     ul li {
         list-style-type: none;
     }
+
+    .method {
+        box-shadow: 0 0 3px rgba(0, 0, 1, 0.5);
+        padding: 10px;
+    }
 </style>
 
 {% endblock %}
@@ -86,9 +91,10 @@
         {% endfor %}
 
     </div>
-    <h4>method</h4>
+
     <div class="method">
-        {{data.method}}
+        <h4>Method</h4>
+        {{method}}
     </div>
 
     <div class="contain">

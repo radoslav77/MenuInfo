@@ -204,7 +204,26 @@ def menu_input(request):
 
 def dishes(request):
     all_data = dishdata.objects.all()
-    return redirect('plated')
+    starters = []
+    mains = []
+    desserts = []
+    for i in all_data:
+
+        if i.type == 'Starters':
+            starters.append(i)
+        elif i.type == 'Mains':
+            mains.append(i)
+        elif i.type == 'Desserts':
+            desserts.append(i)
+    starters = list(dict.fromkeys(starters))
+    mains = list(dict.fromkeys(mains))
+    desserts = list(dict.fromkeys(desserts))
+    return render(request, 'menus/dish.html', {
+        # 'results': results,
+        'mains': mains,
+        'desserts': desserts,
+        'pairs_starters': starters
+    })
 
 
 def plated(request):
@@ -272,12 +291,17 @@ def plated(request):
 def detail(request, data):
 
     data1 = recipedata.objects.filter(title=data)
+
     drink = pairdata.objects.filter(dish=data)
     recipe = recipedata.objects.all()
+    image = []
+    methods = []
+    for method in data1:
+        methods.append(method.method)
 
     for dish in data1:
         img = dishdata.objects.filter(title_dish=dish)
-        image = []
+
         for pic in img:
             image.append(pic)
 
@@ -305,6 +329,7 @@ def detail(request, data):
                 subrecipe.append(sub)
 
     return render(request, 'menus/detail.html', {
+        'method': methods[0],
         'data': data1,
         'ing': ingr,
         'img': image,
