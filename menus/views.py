@@ -207,6 +207,8 @@ def plated(request):
     res_dish = dishdata.objects.all()
 
     pairs_starters = []
+    pair_main = []
+    pair_desserts = []
     results = []
     starters = []
     desserts = []
@@ -242,11 +244,22 @@ def plated(request):
                     pairs_starters.append(starter)
         pairstarters = list(dict.fromkeys(pairs_starters))
 
+        for main in mains:
+            for title in res_dish:
+                if main.for_dish == title.title_dish:
+                    pair_main.append(main)
+        pairmain = list(dict.fromkeys(pair_main))
+
+        for dessert in desserts:
+            for title in res_dish:
+                if dessert.for_dish == title.title_dish:
+                    pair_desserts.append(dessert)
+        pairdesserts = list(dict.fromkeys(pair_desserts))
+
     return render(request, 'menus/plated.html', {
         'results': results,
-        'starters': starters,
-        'mains': mains,
-        'desserts': desserts,
+        'mains': pairmain,
+        'desserts': pairdesserts,
         'pairs_starters': pairstarters
     })
 
