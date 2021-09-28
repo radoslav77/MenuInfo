@@ -49,6 +49,43 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
+    .editform {
+        box-shadow: 0 0 3px rgba(0, 0, 1, 0.5);
+        align-items: center;
+    }
+
+    #editform {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 70vw;
+        margin: 20px;
+    }
+
+    input {
+        background-color: #fff;
+        margin: 10px;
+        width: 80%;
+    }
+
+    textarea {
+        margin: 10px;
+        width: 80%;
+    }
+
+    select {
+        margin-left: 10px;
+        width: 80%;
+    }
+
+    #form_title {
+        transform: scale(100%);
+    }
+
+    #form_for_dish {
+        transform: scale(100%);
+    }
 </style>
 
 {% endblock %}
@@ -128,12 +165,58 @@
         <a href="{% url 'pairing' t %}">Pair this dish with Bevarige</a>
         <a href="{% url 'delete_dish' t %}">Delete Dish</a>
         <a href="{% url 'delete_recipe' t %}">Delete Recipe</a>
+        <a href="#" id="edit">Edit Recipe</a>
         {% endfor %}
         <a href="{% url 'plated' %}"> Back to recipes</a>
     </div>
 </div>
+<div class="editform">
+    <form action="" id="editform">
+        <label for="Title">Title</label>
+        <input id="form_title" type="text">
+        <label for="Selector">Selector</label>
+        <select name="selector" id="selector">
+            <option id="selector" value="" selected></option>
+        </select>
+        <label for="For Dish">For Dish</label>
+        <input id="form_for_dish" type="text">
+        <label for="Recipe">"Recipe</label>
+        <textarea name="recipe" id="recipe" cols="30" rows="10"></textarea>
+        <label for="Method">Method</label>
+        <textarea name="method" id="method" cols="30" rows="10"></textarea>
+        <input id="btn" class="btn" type="submit">
+    </form>
+</div>
+
+<script>
+    const URL_EDIT_FORM = ('/edit-recipe')
+    getDataForm(URL_EDIT_FORM)
+    const title = document.getElementById('title').innerText
+    const EditRecipe = document.getElementById('edit')
+    const inputTitle = document.getElementById('form_title')
+    const inputSelector = document.getElementById('selector')
+    const input_For_Dish = document.getElementById('form_for_dish')
+    const inputRecipe = document.getElementById('recipe')
+    const inputMethod = document.getElementById('method')
+
+    async function getDataForm(url) {
+        const res = await fetch(url)
+        const data = await res.json()
+        data.forEach(recipe => {
+            if (recipe.title == title) {
+                inputTitle.value = recipe.title
+                inputSelector.value = recipe.type
+                input_For_Dish.value = recipe.dish
+                inputRecipe.value = recipe.recipe
+                inputMethod.value = recipe.method
+                console.log(recipe)
+            }
+        });
 
 
+
+    }
+</script>
 
 
 {% endblock %}

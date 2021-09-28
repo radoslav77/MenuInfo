@@ -77,13 +77,18 @@ def beverage_ing(request):
 
 
 def js_form(requets):
-    form = Recipe()
-    elements = []
-    for el in form:
-        elements.append(el)
-    print(elements)
-    return redirect('index')
-    # return HttpResponse(json.dumps(elements), content_type="application/json")
+    recipe = recipedata.objects.all()
+    recipe_data = []
+    for i in recipe:
+        recipe_data.append({
+            'type': i.selector,
+            'title': i.title,
+            'dish': i.for_dish,
+            'recipe': i.recipe,
+            'method': i.method,
+
+        })
+    return HttpResponse(json.dumps(recipe_data), content_type="application/json")
 
 
 def your_menu(request):
