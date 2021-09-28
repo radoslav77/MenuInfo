@@ -16,6 +16,8 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('login', views.login_user, name='login_user'),
     path('logout', views.logout_user, name='logout_user'),
+    path('delete/<str:title>', views.delete_dish, name='delete_dish'),
+    path('delete-recipe/<str:title>', views.delete_recipe, name='delete_recipe'),
 
     # API
     path('drinks', views.drinks, name='drinks'),

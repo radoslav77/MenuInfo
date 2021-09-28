@@ -126,6 +126,8 @@
 
         {% for t in data %}
         <a href="{% url 'pairing' t %}">Pair this dish with Bevarige</a>
+        <a href="{% url 'delete_dish' t %}">Delete Dish</a>
+        <a href="{% url 'delete_recipe' t %}">Delete Recipe</a>
         {% endfor %}
         <a href="{% url 'plated' %}"> Back to recipes</a>
     </div>

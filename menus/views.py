@@ -377,6 +377,20 @@ def pairing(request, title):
     })
 
 
+def delete_dish(request, title):
+    dish = dishdata.objects.filter(title_dish=title)
+    recipe = recipedata.objects.filter(title=title)
+    dish.delete()
+    recipe.delete()
+    return redirect('dishes')
+
+
+def delete_recipe(request, title):
+    recipe = recipedata.objects.filter(title=title)
+    recipe.delete()
+    return redirect('plated')
+
+
 def register(request):
     if request.user.is_authenticated:
         return redirect('index')
