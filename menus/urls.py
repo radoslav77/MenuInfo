@@ -18,6 +18,7 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout_user'),
     path('delete/<str:title>', views.delete_dish, name='delete_dish'),
     path('delete-recipe/<str:title>', views.delete_recipe, name='delete_recipe'),
+    path('edit', views.edit_recipe, name='edit_recipe'),
 
     # API
     path('drinks', views.drinks, name='drinks'),

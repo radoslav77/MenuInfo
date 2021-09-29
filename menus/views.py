@@ -382,6 +382,26 @@ def pairing(request, title):
     })
 
 
+def edit_recipe(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        entry = recipedata.objects.filter(title=title)
+        entry.delete()
+        type_recipe = request.POST['type']
+
+        for_dish = request.POST['for_dish']
+
+        recipe = request.POST['recipe']
+
+        method = request.POST['method']
+
+        form = recipedata(selector=type_recipe, title=title,
+                          for_dish=for_dish, recipe=recipe, method=method)
+        form.save()
+
+    return redirect('plated')
+
+
 def delete_dish(request, title):
     dish = dishdata.objects.filter(title_dish=title)
     recipe = recipedata.objects.filter(title=title)

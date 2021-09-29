@@ -170,22 +170,24 @@
         <a href="{% url 'plated' %}"> Back to recipes</a>
     </div>
 </div>
-<div class="editform">
-    <form action="" id="editform">
+<div class="editform" hidden>
+    <form action="{% url 'edit_recipe'  %}" method="POST" id="editform">
+        {% csrf_token %}
         <label for="Title">Title</label>
-        <input id="form_title" type="text">
+        <input id="form_title" type="text" name="title">
         <label for="Selector">Selector</label>
-        <select name="selector" id="selector">
-            <option id="selector" value="" selected></option>
-        </select>
+
+        <input type="text" id="selector" name="type">
+
         <label for="For Dish">For Dish</label>
-        <input id="form_for_dish" type="text">
+        <input id="form_for_dish" type="text" name="for_dish">
         <label for="Recipe">"Recipe</label>
         <textarea name="recipe" id="recipe" cols="30" rows="10"></textarea>
         <label for="Method">Method</label>
         <textarea name="method" id="method" cols="30" rows="10"></textarea>
         <input id="btn" class="btn" type="submit">
     </form>
+    <a href="#" id="return">Return back to the recipe!</a>
 </div>
 
 <script>
@@ -198,6 +200,10 @@
     const input_For_Dish = document.getElementById('form_for_dish')
     const inputRecipe = document.getElementById('recipe')
     const inputMethod = document.getElementById('method')
+    const EditBtn = document.getElementById('edit')
+    const DivForm = document.querySelector('.editform')
+    const DivDetails = document.querySelector('.container-details')
+    const ReturnEl = document.getElementById('return')
 
     async function getDataForm(url) {
         const res = await fetch(url)
@@ -209,6 +215,9 @@
                 input_For_Dish.value = recipe.dish
                 inputRecipe.value = recipe.recipe
                 inputMethod.value = recipe.method
+
+
+
                 console.log(recipe)
             }
         });
@@ -216,6 +225,14 @@
 
 
     }
+    EditBtn.addEventListener('click', () => {
+        DivDetails.style.display = 'none'
+        DivForm.hidden = false
+
+    })
+    ReturnEl.addEventListener('click', () => {
+        location.reload()
+    })
 </script>
 
 
