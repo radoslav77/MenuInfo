@@ -167,7 +167,7 @@ def your_menu(request):
 def dish_input(request):
     if request.user.is_authenticated:
         if request.user.groups.filter(name='chef'):
-            print(request.user)
+
             if request.method == 'POST':
                 form = Dish(request.POST, request.FILES)
                 form1 = Recipe(request.POST, request.FILES)
@@ -178,7 +178,14 @@ def dish_input(request):
                     data1.save()
 
                     return redirect('index')
-
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
     return render(request, 'menus/dish-input.html', {
         'form': Dish(),
         'form1': Recipe()
@@ -186,29 +193,47 @@ def dish_input(request):
 
 
 def recipe_input(request):
-    if request.method == 'POST':
-        form = Recipe(request.POST, request.FILES)
-        if form.is_valid:
-            data = form.save(commit=False)
-            data.save()
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chef'):
+            if request.method == 'POST':
+                form = Recipe(request.POST, request.FILES)
+                if form.is_valid:
+                    data = form.save(commit=False)
+                    data.save()
 
-            return redirect('index')
-
+                    return redirect('index')
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
     return render(request, 'menus/recipe-input.html', {
         'form': Recipe()
     })
 
 
 def menu_input(request):
-    if request.method == 'POST':
-        form = Menu(request.POST)
-        if form.is_valid:
-            data = form.save(commit=False)
-            data.save()
-            # print(data)
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='bqt'):
+            if request.method == 'POST':
+                form = Menu(request.POST)
+                if form.is_valid:
+                    data = form.save(commit=False)
+                    data.save()
+                    # print(data)
 
-            return redirect('index')
-
+                    return redirect('index')
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
     return render(request, 'menus/menu-input.html', {
         'form': Menu()
     })

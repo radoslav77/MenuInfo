@@ -18,6 +18,9 @@
 </style>
 {% endblock %}
 {% block body %}
+{% if msg %}
+<h1>{{msg}}</h1>
+{% else %}
 <div class="input">
     <form action="{% url 'dish_input' %}" method="POST" enctype="multipart/form-data"
         style="display: flex;flex-direction: column;" id="dish-form">
@@ -112,5 +115,6 @@
 */
 
     </script>
+    {% endif %}
 </div>
 {% endblock %}
