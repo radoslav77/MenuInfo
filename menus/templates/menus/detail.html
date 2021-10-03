@@ -163,7 +163,10 @@
 
         {% for t in data %}
         <a href="{% url 'pairing' t %}">Pair this dish with Bevarige</a>
+
+        {% if t == t.for_dish %}
         <a href="{% url 'delete_dish' t %}">Delete Dish</a>
+        {% endif %}
         <a href="{% url 'delete_recipe' t %}">Delete Recipe</a>
         <a href="#" id="edit">Edit Recipe</a>
         {% endfor %}

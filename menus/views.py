@@ -332,7 +332,7 @@ def detail(request, data):
         if sub.for_dish == data:
             if sub.title != data:
                 subrecipe.append(sub)
-    print(subrecipe)
+
     return render(request, 'menus/detail.html', {
         'method': methods[0],
         'data': data1,
@@ -432,6 +432,26 @@ def ddrbreaks(request):
     print(subrecipe)
     return render(request, 'menus/ddr.html', {
         'items': ddrbreaks,
+        'subrecipe': subrecipe
+    })
+
+
+def breakfast(request):
+    dishs = recipedata.objects.all()
+    breakfast = []
+    subrecipe = []
+    for dish in dishs:
+        if dish.selector == 'breakfast':
+            breakfast.append(dish)
+            for sub in breakfast:
+
+                if sub.title != sub.for_dish:
+                    subrecipe.append(sub)
+    breakfast = list(dict.fromkeys(breakfast))
+
+    print(subrecipe)
+    return render(request, 'menus/breakfast.html', {
+        'items': breakfast,
         'subrecipe': subrecipe
     })
 

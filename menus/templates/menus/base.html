@@ -25,7 +25,7 @@
         <div class="navcon">
             <h1 class="logo"><a href="{% url 'index' %}">InterContinental BQT Menus</a></h1>
             <ul>
-                <li><a href="">Breakfast</a></li>
+                <li><a href="{% url 'breakfast' %}">Breakfast</a></li>
                 <li><a href="{% url 'ddrbreaks' %}">DDR Breaks</a></li>
                 <li><a href="{% url 'dishes' %}">Plated Menus</a></li>
                 {% if user.is_staff %}

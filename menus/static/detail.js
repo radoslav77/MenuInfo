@@ -19,7 +19,7 @@
         const recipeData = document.getElementById('recipes')
         let dataText = []
         const i = recipeData.innerText.split('\n')
-        console.log(i)
+       // console.log(i)
 
         ContainAllergents()
 
@@ -43,7 +43,7 @@ function ContainAllergents() {
         var sulphites = ingredient.sulphites
 
         peanuts.forEach(all => {
-            const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
+            const found = num.find(element => element.toLowerCase() === all.toLowerCase())   
             if (found == all || found == all.toLowerCase()){                  
                 const PeanutData = document.querySelector('.peanuts')             
                 PeanutData.hidden = false
@@ -75,8 +75,9 @@ function ContainAllergents() {
         })
 
         dairies.forEach(all => {
+            console.log(all)
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-            if ( found == all || found == all.toLowerCase()){
+            if (  found == all.toLowerCase()||found == all){
                 const DairyData = document.querySelector('.dairies')
                 DairyData.hidden = false
                 DairyData.innerText = 'Dairy,'
