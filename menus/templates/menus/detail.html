@@ -86,6 +86,11 @@
     #form_for_dish {
         transform: scale(100%);
     }
+
+    .p {
+        color: #000;
+        font-size: 14px;
+    }
 </style>
 
 {% endblock %}
@@ -164,10 +169,10 @@
         {% for t in data %}
         <a href="{% url 'pairing' t %}">Pair this dish with Bevarige</a>
 
-        {% if t == t.for_dish %}
-        <a href="{% url 'delete_dish' t %}">Delete Dish</a>
+        {% if t.for_dish %}
+        <a href="{% url 'delete_dish' t.for_dish %}">Delete Dish: <p class="p">{{t.for_dish}}</p></a>
         {% endif %}
-        <a href="{% url 'delete_recipe' t %}">Delete Recipe</a>
+        <a href="{% url 'delete_recipe' t %}">Delete Recipe: <p class="p">{{t}}</p></a>
         <a href="#" id="edit">Edit Recipe</a>
         {% endfor %}
         <a href="{% url 'plated' %}"> Back to recipes</a>

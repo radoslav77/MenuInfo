@@ -24,7 +24,10 @@ descriptions = []
 
 
 def index(request):
-   # print(bev)
+    users = User.objects.all()
+    for user in users:
+        if user.groups.filter(name='chef'):
+            print(user)
 
     return render(request, 'menus/index.html', {
 
