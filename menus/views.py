@@ -1,6 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse
 from django.http import JsonResponse
@@ -164,16 +165,19 @@ def your_menu(request):
 
 
 def dish_input(request):
-    if request.method == 'POST':
-        form = Dish(request.POST, request.FILES)
-        form1 = Recipe(request.POST, request.FILES)
-        if form.is_valid and form1.is_valid:
-            data = form.save(commit=False)
-            data.save()
-            data1 = form1.save(commit=False)
-            data1.save()
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chef'):
+            print(request.user)
+            if request.method == 'POST':
+                form = Dish(request.POST, request.FILES)
+                form1 = Recipe(request.POST, request.FILES)
+                if form.is_valid and form1.is_valid:
+                    data = form.save(commit=False)
+                    data.save()
+                    data1 = form1.save(commit=False)
+                    data1.save()
 
-            return redirect('index')
+                    return redirect('index')
 
     return render(request, 'menus/dish-input.html', {
         'form': Dish(),
