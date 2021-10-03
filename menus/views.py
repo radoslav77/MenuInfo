@@ -332,7 +332,7 @@ def detail(request, data):
         if sub.for_dish == data:
             if sub.title != data:
                 subrecipe.append(sub)
-
+    print(subrecipe)
     return render(request, 'menus/detail.html', {
         'method': methods[0],
         'data': data1,
@@ -414,6 +414,26 @@ def delete_recipe(request, title):
     recipe = recipedata.objects.filter(title=title)
     recipe.delete()
     return redirect('plated')
+
+
+def ddrbreaks(request):
+    dishs = recipedata.objects.all()
+    ddrbreaks = []
+    subrecipe = []
+    for dish in dishs:
+        if dish.selector == 'ddrbreaks':
+            ddrbreaks.append(dish)
+            for sub in ddrbreaks:
+
+                if sub.title != sub.for_dish:
+                    subrecipe.append(sub)
+    ddrbreaks = list(dict.fromkeys(ddrbreaks))
+
+    print(subrecipe)
+    return render(request, 'menus/ddr.html', {
+        'items': ddrbreaks,
+        'subrecipe': subrecipe
+    })
 
 
 def register(request):

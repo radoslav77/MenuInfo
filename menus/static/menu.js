@@ -94,7 +94,7 @@ StarterDrinkContainer.removeChild(StarterDrinkContainer.firstChild)
 
 
     const allergents = {
-            dairy : ['Milk','Butter', 'Cream','Yogurt','Cheese'],
+            dairy : ['Milk','Butter', 'Cream','Yoghurt','Cheese'],
             gluten : ['Flour', 'Oats', 'Barley','Waffle'],
             nuts : ['Almonds','Almond','Walnuts','Walnut', 'Pecans','Pecan','Cashews','Cashew','Pistachios','Pistachio','Hazelnuts','Hazelnut',
                     'Brazil','Brazils','Macadamia','Macadamias','Chestnut','Chestnuts','Filbert','Filberts','Hickory','Hickories','Pinenuts','Pinenut','Pine','Coconut','Coconuts'],

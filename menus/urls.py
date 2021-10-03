@@ -19,6 +19,7 @@ urlpatterns = [
     path('delete/<str:title>', views.delete_dish, name='delete_dish'),
     path('delete-recipe/<str:title>', views.delete_recipe, name='delete_recipe'),
     path('edit', views.edit_recipe, name='edit_recipe'),
+    path('ddrbreaks', views.ddrbreaks, name='ddrbreaks'),
 
     # API
     path('drinks', views.drinks, name='drinks'),
