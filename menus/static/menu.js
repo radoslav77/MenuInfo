@@ -124,10 +124,22 @@ const URL_DATA =('/alergy')
     data.forEach(arr => {
         var recipeData = arr.recipe 
         const i = recipeData.split(',')
+        var DataDessrtRecipr = []
         if(DessertNameEl === arr.title){
+            data.forEach(dish => {
+                if(DessertNameEl === dish.dish){
+                    var infoDessert = dish.recipe
+                    DataDessrtRecipr.push(infoDessert)
+                }
+            })
+            let dst = ''
+            for(let i = 0; i < DataDessrtRecipr.length; i++){
+                dst = dst.concat(DataDessrtRecipr[i])
+            }
+            var dstRes = dst.split(',')
+            Allergents(dstRes, arr.title)
+          
 
-            console.log(arr.title)
-            ContainAllergents()
         }
         // need to look in to this function
         var DataRecipes = []
@@ -144,307 +156,35 @@ const URL_DATA =('/alergy')
                  
              }
              var res = str.split(',')
-             console.log(res)
-             Allergents(res)
+             //console.log(res)
+             Allergents(res, arr.title)
             
 
             
         }
+        var DataMainRecipe = []
         if(MainNameEl === arr.title){
-            console.log(arr.title)
-            ContainAllergents()
+            data.forEach(dish => {
+                if(MainNameEl === dish.dish){
+                    var infoMain = dish.recipe
+                    DataMainRecipe.push(infoMain)
+                }
+            })
+            let main = ''
+            for(let i  = 0; i < DataMainRecipe.length; i++){
+                main = main.concat( DataMainRecipe[i])
+              
+         }
+         var mianRes = main.split(',')
+         //console.log(res)
+         Allergents(mianRes, arr.title)
+           
         }
 
     })
      
-
-    function ContainAllergents() {
-        data.forEach(arr => {
-            
-            var recipeData = arr.recipe 
-            const i = recipeData.split(',')
-        
-            i.forEach(e => {
-                var num = e.split(/\s+/)
-                var dairies = allergents.dairy
-                var glutens = allergents.gluten
-                var nuts = allergents.nuts
-                var eggs = allergents.eggs
-                var peanuts = allergents.peanut
-                var celery = allergents.celery
-                var crustaceans = allergents.crustaceans
-                var fish =  allergents.fish
-                var lupin = allergents.lupin
-                var molluscs = allergents.molluscs
-                var mustard = allergents.mustard
-                var sesame = allergents.sesame
-                var soya = allergents.soy
-                var sulphites = allergents.sulphites
-
-                peanuts.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if (found == all || found == all.toLowerCase()){ 
-                        if(DessertNameEl === arr.title){            
-                            des[1].hidden = false
-                            des[1].innerText = 'Peanuts,'
-                        }
-                        if(StarterNameEl === arr.title){            
-                            Starter[1].hidden = false
-                            Starter[1].innerText = 'Peanuts,'
-                        }
-                        if(MainNameEl === arr.title){            
-                            Main[1].hidden = false
-                            Main[1].innerText = 'Peanuts,'
-                        }  
-                    }
-                })
-
-                eggs.forEach((all, idx) => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){                
-                    if(DessertNameEl === arr.title){
-                            des[2].hidden = false
-                            des[2].innerHTML = 'Eggs,'
-                    }
-                    if(StarterNameEl === arr.title){
-                            Starter[2].hidden = false
-                            Starter[2].innerHTML = 'Eggs,'
-                    }
-                    if(MainNameEl === arr.title){
-                            Main[2].hidden = false
-                            Main[2].innerHTML = 'Eggs,'
-                    }
-
-                    }  
-
-                    
-                })
-
-                glutens.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                        des[3].hidden = false
-                        des[3].innerText = 'Gluten,'
-                    }
-                    if(StarterNameEl === arr.title){
-                        Starter[3].hidden = false
-                        Starter[3].innerText = 'Gluten,'
-                    }
-                    if(MainNameEl === arr.title){
-                        Main[3].hidden = false
-                        Main[3].innerText = 'Gluten,'
-                    }
-                    }
-                })
-
-                dairies.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                            des[5].hidden = false
-                            des[5].innerText = 'Dairy,'
-                        }
-                        if(MainNameEl === arr.title){
-                            Main[5].hidden = false
-                            Main[5].innerText = 'Dairy,'
-                        }
-                        if(StarterNameEl === arr.title){
-                            Starter[5].hidden = false
-                            Starter[5].innerText = 'Diary,'
-                        }
-                    }
-                })
-
-                nuts.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                        des[4].hidden = false
-                        des[4].innerText = 'Nuts,'
-                        }
-                        if(StarterNameEl === arr.title){
-                        Starter[4].hidden = false
-                        Starter[4].innerText = 'Nuts,'
-                        }
-                        if(MainNameEl === arr.title){
-                        Main[4].hidden = false
-                        Main[4].innerText = 'Nuts,'
-                        }
-                    }
-                })
-
-                celery.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                        des[6].hidden = false
-                        des[6].innerText = 'Celery,'
-                        }
-                        if(StarterNameEl === arr.title){
-                        Starter[6].hidden = false
-                        Starter[6].innerText = 'Celery,'
-                        }
-                        if(MainNameEl === arr.title){
-                        Main[6].hidden = false
-                        Main[6].innerText = 'Celery,'
-                        }
-                    }
-                })
-
-                crustaceans.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                        des[7].hidden = false
-                        des[7].innerText = 'Crustaceans,'
-                    }
-                    if(StarterNameEl === arr.title){
-                        Starter[7].hidden = false
-                        Starter[7].innerText = 'Crustaceans,'
-                    }
-                    if(MainNameEl === arr.title){
-                        Main[7].hidden = false
-                        Main[7].innerText = 'Crustaceans,'
-                    }
-                    }
-                })
-
-                fish.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                        des[8].hidden = false
-                        des[8].innerText = 'Fish,'
-                        }
-                        if(StarterNameEl === arr.title){
-                        Starter[8].hidden = false
-                        Starter[8].innerText = 'Fish,'
-                        }
-                        if(MainNameEl === arr.title){
-                        Main[8].hidden = false
-                        Main[8].innerText = 'Fish,'
-                        }
-                    }
-                })
-
-                lupin.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                        des[9].hidden = false
-                        des[9].innerText = 'Lupin,'
-                        }
-                        if(StarterNameEl === arr.title){
-                        Starter[9].hidden = false
-                        Starter[9].innerText = 'Lupin,'
-                        }
-                        if(MainNameEl === arr.title){
-                        Main[9].hidden = false
-                        Main[9].innerText = 'Lupin,'
-                        }
-                    }
-                })
-
-                molluscs.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                        des[10].hidden = false
-                        des[10].innerText = 'Molluscs,'
-                    }
-                    if(StarterNameEl === arr.title){
-                        Starter[10].hidden = false
-                        Starter[10].innerText = 'Molluscs,'
-                    }
-                    if(MainNameEl === arr.title){
-                        Mian[10].hidden = false
-                        Main[10].innerText = 'Molluscs,'
-                    }
-                    }
-                })
-
-                mustard.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                        des[11].hidden = false
-                        des[11].innerText = 'Mustard,'
-                        }
-                        if(StarterNameEl === arr.title){
-                        Starter[11].hidden = false
-                        Starter[11].innerText = 'Mustard,'
-                        }
-                        if(MainNameEl === arr.title){
-                        Main[11].hidden = false
-                        Main[11].innerText = 'Mustard,'
-                        }
-                    }
-                })
-
-                sesame.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                        if(DessertNameEl === arr.title){
-                        des[12].hidden = false
-                        des[12].innerText = 'Sesame,'
-                        }
-                        if(StarterNameEl === arr.title){
-                        Starter[12].hidden = false
-                        Starter[12].innerText = 'Sesame,'
-                        }
-                        if(MainNameEl === arr.title){
-                        Main[12].hidden = false
-                        Main[12].innerText = 'Sesame,'
-                        }
-                    }
-                })
-
-                soya.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())               
-                    if ( found == all || found == all.toLowerCase()){        
-                    if (DessertNameEl === arr.title){
-                        des[13].hidden = false
-                        des[13].innerHTML = 'Soya,'
-                    }
-                    if (StarterNameEl === arr.title){
-                        Starter[13].hidden = false
-                        Starter[13].innerHTML = 'Soya,'
-                    }
-                    if (MainNameEl === arr.title){
-                        Mian[13].hidden = false
-                        Main[13].innerHTML = 'Soya,'
-                    }
-
-                    }
-                })
-
-                sulphites.forEach(all => {
-                    const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
-                    if ( found == all || found == all.toLowerCase()){
-                    if(DessertNameEl === arr.title){
-                        des[14].hidden = false
-                        des[14].innerText = 'Sulphites,'
-                    }
-                    if(StarterNameEl === arr.title){
-                        Starter[14].hidden = false
-                        Starter[14].innerText = 'Sulphites,'
-                    }
-                    if(MainNameEl === arr.title){
-                        Main[14].hidden = false
-                        Main[14].innerText = 'Sulphites,'
-                    }
-
-                    }
-                })
-
-            })
-        })
+    
 }
-
-
-
-    }
 
 
     const URL_DRINK_DATA = ('/drink_sammary')
@@ -633,11 +373,11 @@ const URL_DATA =('/alergy')
 
 
     
-function Allergents(res) {
+function Allergents(input, title) {
 
-    res.forEach(e => {
+    input.forEach(e => {
         var num = e.split(/\s+/)
-        console.log(num)
+        //console.log(num)
         var dairies = ingredient.dairy
         var glutens = ingredient.gluten
         var nuts = ingredient.nuts
@@ -656,9 +396,18 @@ function Allergents(res) {
         peanuts.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if (found == all || found == all.toLowerCase()){                  
-                const PeanutData = document.querySelector('.peanuts')             
-                PeanutData.hidden = false
-                PeanutData.innerText = 'Peanuts,'
+                if(DessertNameEl === title){            
+                    des[1].hidden = false
+                    des[1].innerText = 'Peanuts,'
+                }
+                if(StarterNameEl === title){            
+                    Starter[1].hidden = false
+                    Starter[1].innerText = 'Peanuts,'
+                }
+                if(MainNameEl === title){            
+                    Main[1].hidden = false
+                    Main[1].innerText = 'Peanuts,'
+                } 
               
             }
         })
@@ -666,10 +415,18 @@ function Allergents(res) {
         eggs.forEach((all, idx) => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){                
-                const viewData = document.querySelector('.allergy')
-                viewData.hidden = false
-                viewData.innerHTML = 'Eggs,'
-                //console.log(found)
+                if(DessertNameEl === title){
+                    des[2].hidden = false
+                    des[2].innerHTML = 'Eggs,'
+                }
+                if(StarterNameEl === title){
+                        Starter[2].hidden = false
+                        Starter[2].innerHTML = 'Eggs,'
+                }
+                if(MainNameEl === title){
+                        Main[2].hidden = false
+                        Main[2].innerHTML = 'Eggs,'
+                }
             }  
 
             
@@ -678,9 +435,18 @@ function Allergents(res) {
         glutens.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const GlutenData = document.querySelector('.glutens')
-                GlutenData.hidden = false
-                GlutenData.innerText = 'Gluten,'
+                if(DessertNameEl === title){
+                    des[3].hidden = false
+                    des[3].innerText = 'Gluten,'
+                }
+                if(StarterNameEl === title){
+                    Starter[3].hidden = false
+                    Starter[3].innerText = 'Gluten,'
+                }
+                if(MainNameEl === title){
+                    Main[3].hidden = false
+                    Main[3].innerText = 'Gluten,'
+                }
                 
             }
         })
@@ -688,9 +454,18 @@ function Allergents(res) {
         dairies.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const DairyData = document.querySelector('.dairies')
-                DairyData.hidden = false
-                DairyData.innerText = 'Dairy,'
+                if(DessertNameEl === title){
+                    des[5].hidden = false
+                    des[5].innerText = 'Dairy,'
+                }
+                if(MainNameEl === title){
+                    Main[5].hidden = false
+                    Main[5].innerText = 'Dairy,'
+                }
+                if(StarterNameEl === title){
+                    Starter[5].hidden = false
+                    Starter[5].innerText = 'Diary,'
+                }
                 
             }
         })
@@ -698,9 +473,18 @@ function Allergents(res) {
         nuts.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const NutsData = document.querySelector('.nuts')
-                NutsData.hidden = false
-                NutsData.innerText = 'Nuts,'
+                if(DessertNameEl === title){
+                    des[4].hidden = false
+                    des[4].innerText = 'Nuts,'
+                    }
+                    if(StarterNameEl === title){
+                    Starter[4].hidden = false
+                    Starter[4].innerText = 'Nuts,'
+                    }
+                    if(MainNameEl === title){
+                    Main[4].hidden = false
+                    Main[4].innerText = 'Nuts,'
+                    }
                 
             }
         })
@@ -708,9 +492,18 @@ function Allergents(res) {
         celery.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const CeleryData = document.querySelector('.celery')
-                CeleryData.hidden = false
-                CeleryData.innerText = 'Celery,'
+                if(DessertNameEl === title){
+                    des[6].hidden = false
+                    des[6].innerText = 'Celery,'
+                    }
+                    if(StarterNameEl === title){
+                    Starter[6].hidden = false
+                    Starter[6].innerText = 'Celery,'
+                    }
+                    if(MainNameEl === title){
+                    Main[6].hidden = false
+                    Main[6].innerText = 'Celery,'
+                    }
                 
             }
         })
@@ -718,9 +511,18 @@ function Allergents(res) {
         crustaceans.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const CrustaceansData = document.querySelector('.crustaceans')
-                CrustaceansData.hidden = false
-                CrustaceansData.innerText = 'Crustaceans,'
+                if(DessertNameEl === title){
+                    des[7].hidden = false
+                    des[7].innerText = 'Crustaceans,'
+                }
+                if(StarterNameEl === title){
+                    Starter[7].hidden = false
+                    Starter[7].innerText = 'Crustaceans,'
+                }
+                if(MainNameEl === title){
+                    Main[7].hidden = false
+                    Main[7].innerText = 'Crustaceans,'
+                }
                 
             }
         })
@@ -728,9 +530,18 @@ function Allergents(res) {
         fish.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const FishData = document.querySelector('.fish')
-                FishData.hidden = false
-                FishData.innerText = 'Fish,'
+                if(DessertNameEl === title){
+                    des[8].hidden = false
+                    des[8].innerText = 'Fish,'
+                    }
+                    if(StarterNameEl === title){
+                    Starter[8].hidden = false
+                    Starter[8].innerText = 'Fish,'
+                    }
+                    if(MainNameEl === title){
+                    Main[8].hidden = false
+                    Main[8].innerText = 'Fish,'
+                    }
                 
             }
         })
@@ -738,9 +549,18 @@ function Allergents(res) {
         lupin.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const LupinData = document.querySelector('.lupin')
-                LupinData.hidden = false
-                LupinData.innerText = 'Lupin,'
+                if(DessertNameEl === title){
+                    des[9].hidden = false
+                    des[9].innerText = 'Lupin,'
+                    }
+                    if(StarterNameEl === title){
+                    Starter[9].hidden = false
+                    Starter[9].innerText = 'Lupin,'
+                    }
+                    if(MainNameEl === title){
+                    Main[9].hidden = false
+                    Main[9].innerText = 'Lupin,'
+                    }
                 
             }
         })
@@ -748,9 +568,18 @@ function Allergents(res) {
         molluscs.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const MolluscsData = document.querySelector('.molluscs')
-                MolluscsData.hidden = false
-                MolluscsData.innerText = 'Molluscs,'
+                if(DessertNameEl === title){
+                    des[10].hidden = false
+                    des[10].innerText = 'Molluscs,'
+                }
+                if(StarterNameEl === title){
+                    Starter[10].hidden = false
+                    Starter[10].innerText = 'Molluscs,'
+                }
+                if(MainNameEl === title){
+                    Mian[10].hidden = false
+                    Main[10].innerText = 'Molluscs,'
+                }
                 
             }
         })
@@ -758,9 +587,18 @@ function Allergents(res) {
         mustard.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const MustardData = document.querySelector('.mustard')
-                MustardData.hidden = false
-                MustardData.innerText = 'Mustard,'
+                if(DessertNameEl === title){
+                    des[11].hidden = false
+                    des[11].innerText = 'Mustard,'
+                    }
+                    if(StarterNameEl === title){
+                    Starter[11].hidden = false
+                    Starter[11].innerText = 'Mustard,'
+                    }
+                    if(MainNameEl === title){
+                    Main[11].hidden = false
+                    Main[11].innerText = 'Mustard,'
+                    }
                 
             }
         })
@@ -768,9 +606,18 @@ function Allergents(res) {
         sesame.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const SesameData = document.querySelector('.sesame')
-                SesameData.hidden = false
-                SesameData.innerText = 'Sesame,'
+                if(DessertNameEl === title){
+                    des[12].hidden = false
+                    des[12].innerText = 'Sesame,'
+                    }
+                    if(StarterNameEl === title){
+                    Starter[12].hidden = false
+                    Starter[12].innerText = 'Sesame,'
+                    }
+                    if(MainNameEl === title){
+                    Main[12].hidden = false
+                    Main[12].innerText = 'Sesame,'
+                    }
                 
             }
         })
@@ -778,9 +625,18 @@ function Allergents(res) {
         soya.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())               
             if ( found == all || found == all.toLowerCase()){        
-                const soyaData = document.querySelector('.soya')
-                soyaData.hidden = false
-                soyaData.innerHTML = 'Soya,'
+                if (DessertNameEl === title){
+                    des[13].hidden = false
+                    des[13].innerHTML = 'Soya,'
+                }
+                if (StarterNameEl === title){
+                    Starter[13].hidden = false
+                    Starter[13].innerHTML = 'Soya,'
+                }
+                if (MainNameEl === title){
+                    Mian[13].hidden = false
+                    Main[13].innerHTML = 'Soya,'
+                }
                 
             }
         })
@@ -788,9 +644,18 @@ function Allergents(res) {
         sulphites.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if ( found == all || found == all.toLowerCase()){
-                const SulphitesData = document.querySelector('.sulphites')
-                SulphitesData.hidden = false
-                SulphitesData.innerText = 'Sulphites,'
+                if(DessertNameEl === title){
+                    des[14].hidden = false
+                    des[14].innerText = 'Sulphites,'
+                }
+                if(StarterNameEl === title){
+                    Starter[14].hidden = false
+                    Starter[14].innerText = 'Sulphites,'
+                }
+                if(MainNameEl === title){
+                    Main[14].hidden = false
+                    Main[14].innerText = 'Sulphites,'
+                }
                 
             }
         })
