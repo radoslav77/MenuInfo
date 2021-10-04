@@ -1,29 +1,39 @@
 {% extends 'menus/base.html' %}
 {% block style %}
 <style>
-.card-register {
-  border: black solid 1px;
-  padding-left: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-.btn{
-	margin-bottom: 10px;
-}
+	.card-register {
+		border: black solid 1px;
+		padding-left: 10px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+	}
+
+	.btn {
+		margin-bottom: 10px;
+	}
 </style>
 {% endblock %}
 {% block body %}
 <div class="containerForm">
 	<div class="card-register">
 		<div class="card-body">
-			<h3 class="text-center" >Register Account!</h3>
+			<h3 class="text-center">Register Account!</h3>
 			<form action="" method="POST">
-			{% csrf_token %}
-			{{ form }}
-			<input type="submit" value="Register" class="btn">
-			
-			
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" value="Register" class="btn">
+
+
 			</form>
-		</dl>
+			</dl>
+		</div>
 	</div>
-</div>
-{% endblock %}   
+	<script>
+		const select = document.getElementById('id_groups').children
+		//console.log(select[0])
+		for (let i = 0; i < select.length; i++) {
+
+			select[i].value = select[i].innerText
+			console.log(select[i].value)
+		}
+	</script>
+	{% endblock %}

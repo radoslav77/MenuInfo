@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import Group
 from django.urls import reverse
 from django.http import JsonResponse
 import json
@@ -415,37 +416,67 @@ def pairing(request, title):
 
 
 def edit_recipe(request):
-    if request.method == 'POST':
-        title = request.POST['title']
-        entry = recipedata.objects.filter(title=title)
-        entry.delete()
-        type_recipe = request.POST['type']
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chef'):
+            if request.method == 'POST':
+                title = request.POST['title']
+                entry = recipedata.objects.filter(title=title)
+                entry.delete()
+                type_recipe = request.POST['type']
 
-        for_dish = request.POST['for_dish']
+                for_dish = request.POST['for_dish']
 
-        recipe = request.POST['recipe']
+                recipe = request.POST['recipe']
 
-        method = request.POST['method']
+                method = request.POST['method']
 
-        form = recipedata(selector=type_recipe, title=title,
-                          for_dish=for_dish, recipe=recipe, method=method)
-        form.save()
+                form = recipedata(selector=type_recipe, title=title,
+                                  for_dish=for_dish, recipe=recipe, method=method)
+                form.save()
 
-    return redirect('plated')
+            return redirect('plated')
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
 
 
 def delete_dish(request, title):
-    dish = dishdata.objects.filter(title_dish=title)
-    recipe = recipedata.objects.filter(title=title)
-    dish.delete()
-    recipe.delete()
-    return redirect('dishes')
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chef'):
+            dish = dishdata.objects.filter(title_dish=title)
+            recipe = recipedata.objects.filter(title=title)
+            dish.delete()
+            recipe.delete()
+            return redirect('dishes')
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
 
 
 def delete_recipe(request, title):
-    recipe = recipedata.objects.filter(title=title)
-    recipe.delete()
-    return redirect('plated')
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chef'):
+            recipe = recipedata.objects.filter(title=title)
+            recipe.delete()
+            return redirect('plated')
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
 
 
 def ddrbreaks(request):
@@ -487,6 +518,8 @@ def breakfast(request):
         'subrecipe': subrecipe
     })
 
+# need to work on
+
 
 def register(request):
     if request.user.is_authenticated:
@@ -494,6 +527,14 @@ def register(request):
 
     elif request.method == 'POST':
         form = registrationForm(request.POST or None)
+        group_name = request.POST['groups']
+        groups = Group.objects.all()
+        print(groups)
+        print(group_name)
+        name = []
+        for i in groups:
+
+            print(i)
         if form.is_valid():
             user = form.save()
 
@@ -501,6 +542,8 @@ def register(request):
 
             user = authenticate(username=user.username,
                                 password=raw_password)
+            group = Group.objects.get(name=group_name)
+            user.groups.add(group)
             # login user
             login(request, user)
             return redirect('index')
