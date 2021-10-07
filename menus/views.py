@@ -1,3 +1,4 @@
+from functools import cached_property
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
@@ -554,13 +555,16 @@ def register(request):
 
 def login_user(request):
     if request.user.is_authenticated:
+
         return redirect('index')
         # if not logged in then log in
     else:
         if request.method == "POST":
             username = request.POST['username']
             password = request.POST['password']
-
+            user_last_login = User.objects.get(username=username).last_login
+            if user_last_login is None:
+                return redirect('change_password')
             # Check credential
             user = authenticate(username=username, password=password)
 
@@ -575,6 +579,25 @@ def login_user(request):
                 return render(request, 'menus/login.html', {'error': 'Invalid username or password. Try Again.'})
 
         return render(request, 'menus/login.html')
+
+
+def change_password(request):
+    if request.user.is_authenticated:
+        user = request.user.username
+        print(user)
+        if request.method == 'POST':
+            u = User.objects.get(username=user)
+            new_password = request.POST['password1']
+            re_password = request.POST['password2']
+            if new_password != re_password:
+                return render(request, 'menus/change-password.html', {
+                    'msg': 'Your password DO NOT mutch! Please try again! '
+                })
+            else:
+                u.set_password(new_password)
+                u.save()
+                return redirect('index')
+    return render(request, 'menus/change-password.html')
 
 
 def logout_user(request):

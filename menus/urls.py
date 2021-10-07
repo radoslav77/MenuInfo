@@ -1,4 +1,5 @@
 
+from typing import ChainMap
 from django.urls import path
 from . import views
 
@@ -15,6 +16,8 @@ urlpatterns = [
     path('pair/<str:title>', views.pairing, name='pairing'),
     path('register', views.register, name='register'),
     path('login', views.login_user, name='login_user'),
+    path('change-password',
+         views.change_password, name='change_password'),
     path('logout', views.logout_user, name='logout_user'),
     path('delete/<str:title>', views.delete_dish, name='delete_dish'),
     path('delete-recipe/<str:title>', views.delete_recipe, name='delete_recipe'),
