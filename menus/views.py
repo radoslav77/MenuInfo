@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import Group
+from django.contrib.auth.models import update_last_login
 from django.urls import reverse
 from django.http import JsonResponse
 import json
@@ -563,10 +564,16 @@ def login_user(request):
             username = request.POST['username']
             password = request.POST['password']
             user_last_login = User.objects.get(username=username).last_login
-            if user_last_login is None:
-                return redirect('change_password')
+
             # Check credential
             user = authenticate(username=username, password=password)
+
+            if user:
+                if not user_last_login:
+                    update_last_login(None, user=user)
+                    return render(request, 'menus/change-password.html', {
+                        'user': user
+                    })
 
             if user is not None:
                 if user.is_active:
@@ -581,22 +588,21 @@ def login_user(request):
         return render(request, 'menus/login.html')
 
 
-def change_password(request):
-    if request.user.is_authenticated:
-        user = request.user.username
-        print(user)
-        if request.method == 'POST':
-            u = User.objects.get(username=user)
-            new_password = request.POST['password1']
-            re_password = request.POST['password2']
-            if new_password != re_password:
-                return render(request, 'menus/change-password.html', {
-                    'msg': 'Your password DO NOT mutch! Please try again! '
-                })
-            else:
-                u.set_password(new_password)
-                u.save()
-                return redirect('index')
+def change_password(request, user):
+
+    print(user)
+    if request.method == 'POST':
+        u = User.objects.get(username=user)
+        new_password = request.POST['password1']
+        re_password = request.POST['password2']
+        if new_password != re_password:
+            return render(request, 'menus/change-password.html', {
+                'msg': 'Your password DO NOT mutch! Please try again! '
+            })
+        else:
+            u.set_password(new_password)
+            u.save()
+            return redirect('index')
     return render(request, 'menus/change-password.html')
 
 
