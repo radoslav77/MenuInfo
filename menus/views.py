@@ -502,22 +502,27 @@ def ddrbreaks(request):
 
 
 def breakfast(request):
-    dishs = recipedata.objects.all()
-    breakfast = []
-    subrecipe = []
-    for dish in dishs:
-        if dish.selector == 'breakfast':
-            breakfast.append(dish)
-            for sub in breakfast:
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chefs') or request.user.groups.filter(name='chef'):
+            dishs = recipedata.objects.all()
+            breakfast = []
+            subrecipe = []
+            for dish in dishs:
+                if dish.selector == 'breakfast':
+                    breakfast.append(dish)
+                    for sub in breakfast:
 
-                if sub.title != sub.for_dish:
-                    subrecipe.append(sub)
-    breakfast = list(dict.fromkeys(breakfast))
+                        if sub.title != sub.for_dish:
+                            subrecipe.append(sub)
+            breakfast = list(dict.fromkeys(breakfast))
 
-    print(subrecipe)
-    return render(request, 'menus/breakfast.html', {
-        'items': breakfast,
-        'subrecipe': subrecipe
+        # print(subrecipe)
+            return render(request, 'menus/breakfast.html', {
+                'items': breakfast,
+                'subrecipe': subrecipe
+            })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'You are not allowd to acses this page! Contact your administrater!'
     })
 
 # need to work on
@@ -602,7 +607,7 @@ def change_password(request, user):
         else:
             u.set_password(new_password)
             u.save()
-            return redirect('index')
+            return redirect('login_user')
     return render(request, 'menus/change-password.html')
 
 

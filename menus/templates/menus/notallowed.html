@@ -1,0 +1,47 @@
+{% extends 'menus/base.html' %}
+{% block style %}
+<style>
+    #ddr-container {
+        width: 60vw;
+        box-shadow: 0 2px 4px rgba(0, 1, 1, 0.7);
+        align-items: center;
+        background-color: #e9e9e9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .password {
+        box-shadow: 0 2px 4px rgba(0, 1, 1, 0.7);
+        width: 100%;
+        margin: 20px;
+        background: #fff;
+        transform: scale(80%);
+        line-height: 30px;
+        font-size: 18px;
+    }
+
+    .lable {
+        width: 80%;
+        margin: 20px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .helptext {
+        width: 50%;
+    }
+</style>
+{% endblock %}
+{% block body %}
+{% if msg %}
+<h2>{{msg}}</h2>
+{% else %}
+
+{% endif %}
+
+
+<script>
+
+</script>
+{% endblock %}
