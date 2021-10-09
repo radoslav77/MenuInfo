@@ -1,4 +1,5 @@
 from functools import cached_property
+from django.forms.widgets import CheckboxInput
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
@@ -105,9 +106,14 @@ def js_form(requets):
 
 
 def menus(request):
-    data = menudata.objects.all()
-    return render(request, 'menus/dinnermenus.html', {
-        'menus': data
+    if request.user.is_authenticated:
+
+        data = menudata.objects.all()
+        return render(request, 'menus/dinnermenus.html', {
+            'menus': data
+        })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'Please Log In !'
     })
 
 
@@ -194,6 +200,16 @@ def dish_input(request):
                     data1 = form1.save(commit=False)
                     data1.save()
 
+                    checked = request.POST.get('addrecipe', False)
+
+                    if checked == 'on':
+                        for_dish = request.POST['title_dish']
+                        form = Recipe()
+                        return render(request, 'menus/recipe-input.html', {
+                            'title': for_dish,
+                            'form': form
+                        })
+
                     return redirect('index')
         else:
             return render(request, 'menus/dish-input.html', {
@@ -207,6 +223,18 @@ def dish_input(request):
         'form': Dish(),
         'form1': Recipe()
     })
+
+
+def add_recipe(request):
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chef'):
+
+            form = Recipe(request.POST, request.FILES)
+            if form.is_valid:
+                data = form.save(commit=False)
+                data.save()
+                return redirect('index')
+        return render(request, 'menus/recipe-input.html', {})
 
 
 def recipe_input(request):
@@ -257,88 +285,96 @@ def menu_input(request):
 
 
 def dishes(request):
-    all_data = dishdata.objects.all()
-    starters = []
-    mains = []
-    desserts = []
-    for i in all_data:
+    if request.user.is_authenticated:
+        all_data = dishdata.objects.all()
+        starters = []
+        mains = []
+        desserts = []
+        for i in all_data:
 
-        if i.type == 'Starters':
-            starters.append(i)
-        elif i.type == 'Mains':
-            mains.append(i)
-        elif i.type == 'Desserts':
-            desserts.append(i)
-    starters = list(dict.fromkeys(starters))
-    mains = list(dict.fromkeys(mains))
-    desserts = list(dict.fromkeys(desserts))
-    return render(request, 'menus/dish.html', {
-        # 'results': results,
-        'mains': mains,
-        'desserts': desserts,
-        'pairs_starters': starters
+            if i.type == 'Starters':
+                starters.append(i)
+            elif i.type == 'Mains':
+                mains.append(i)
+            elif i.type == 'Desserts':
+                desserts.append(i)
+        starters = list(dict.fromkeys(starters))
+        mains = list(dict.fromkeys(mains))
+        desserts = list(dict.fromkeys(desserts))
+        return render(request, 'menus/dish.html', {
+            # 'results': results,
+            'mains': mains,
+            'desserts': desserts,
+            'pairs_starters': starters
+        })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'Please Log In !'
     })
 
 
 def plated(request):
-    res = recipedata.objects.all()
-    res_dish = dishdata.objects.all()
+    if request.user.is_authenticated:
+        res = recipedata.objects.all()
+        res_dish = dishdata.objects.all()
 
-    pairs_starters = []
-    pair_main = []
-    pair_desserts = []
-    results = []
-    starters = []
-    desserts = []
-    mains = []
-    for i in res:
-        # print(f'{i} - {i.selector}')
-        if i.for_dish not in results:
-            results.append(i.for_dish)
-        if i.selector == 'dessert':
-            desserts.append(i)
-        elif i.selector == 'main':
-            mains.append(i)
-        elif i.selector == 'starter':
-            starters.append(i)
-            for name in starters:
-                if name.for_dish == i.title:
-                    pairs_starters.append(name)
+        pairs_starters = []
+        pair_main = []
+        pair_desserts = []
+        results = []
+        starters = []
+        desserts = []
+        mains = []
+        for i in res:
+            # print(f'{i} - {i.selector}')
+            if i.for_dish not in results:
+                results.append(i.for_dish)
+            if i.selector == 'dessert':
+                desserts.append(i)
+            elif i.selector == 'main':
+                mains.append(i)
+            elif i.selector == 'starter':
+                starters.append(i)
+                for name in starters:
+                    if name.for_dish == i.title:
+                        pairs_starters.append(name)
 
-    # for i in starters:
-       # print(f'{i} -- {i.for_dish}')
-        # if i.for_dish in pairs_starters:
-          #  pairs_starters.append(i)
-        # for dish in res_dish:
-        # if dish == i.for_dish:
-        # if dish == i.for_dish:
+        # for i in starters:
+        # print(f'{i} -- {i.for_dish}')
+            # if i.for_dish in pairs_starters:
+            #  pairs_starters.append(i)
+            # for dish in res_dish:
+            # if dish == i.for_dish:
+            # if dish == i.for_dish:
 
-        #  pairs_starters.append(dish)
+            #  pairs_starters.append(dish)
 
-        # print(f'{dish} - {dish.type}')
-        for starter in starters:
-            for title in res_dish:
-                if starter.for_dish == title.title_dish:
-                    pairs_starters.append(starter)
-        pairstarters = list(dict.fromkeys(pairs_starters))
+            # print(f'{dish} - {dish.type}')
+            for starter in starters:
+                for title in res_dish:
+                    if starter.for_dish == title.title_dish:
+                        pairs_starters.append(starter)
+            pairstarters = list(dict.fromkeys(pairs_starters))
 
-        for main in mains:
-            for title in res_dish:
-                if main.for_dish == title.title_dish:
-                    pair_main.append(main)
-        pairmain = list(dict.fromkeys(pair_main))
+            for main in mains:
+                for title in res_dish:
+                    if main.for_dish == title.title_dish:
+                        pair_main.append(main)
+            pairmain = list(dict.fromkeys(pair_main))
 
-        for dessert in desserts:
-            for title in res_dish:
-                if dessert.for_dish == title.title_dish:
-                    pair_desserts.append(dessert)
-        pairdesserts = list(dict.fromkeys(pair_desserts))
+            for dessert in desserts:
+                for title in res_dish:
+                    if dessert.for_dish == title.title_dish:
+                        pair_desserts.append(dessert)
+            pairdesserts = list(dict.fromkeys(pair_desserts))
 
-    return render(request, 'menus/plated.html', {
-        'results': results,
-        'mains': pairmain,
-        'desserts': pairdesserts,
-        'pairs_starters': pairstarters
+        return render(request, 'menus/plated.html', {
+            'results': results,
+            'mains': pairmain,
+            'desserts': pairdesserts,
+            'pairs_starters': pairstarters
+        })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'Please Log In !'
     })
 
 

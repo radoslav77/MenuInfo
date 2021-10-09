@@ -15,6 +15,10 @@
     #id_image{
         transform: scale(100%);
     }
+    #addrecipe{
+        width: 2%;
+        height: 16px;
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -29,12 +33,11 @@
         <p>Recipe for the dish</p>
         {{form1}}
 
-
-
         <input type="submit" style="margin-top: 10px;">
-
+        To Add more recipes to this dish click please click the checkbox. <input type="checkbox" name="addrecipe" id="addrecipe">
+   
     </form>
-    To Add more recipes to this dish click <a href="{% url 'recipe_input' %}" id="new-form">here</a>
+    
     <script>
         const title = document.getElementById('id_title_dish')
         const ForDish = document.getElementById('id_for_dish')
@@ -55,7 +58,11 @@
             TitleEl.hidden = true
             labelForDishEl.hidden = true
             labelTitleEl.hidden = true
+            document.getElementById('new-form').href = `/add_recipe/${title.value}`
         })
+
+
+
         var NewForm = document.createElement('form')
         const NewFormLink = document.getElementById('new-form')
 

@@ -9,6 +9,7 @@ urlpatterns = [
     path('<str:title>/your-menu', views.your_menu, name='your_menu'),
     path('recipe-input', views.recipe_input, name='recipe_input'),
     path('dish-input', views.dish_input, name='dish_input'),
+    path('add-recipe', views.add_recipe, name='add_recipe'),
     path('menu-input', views.menu_input, name='menu_input'),
     path('menus', views.menus, name='menus'),
     path('plated', views.plated, name='plated'),

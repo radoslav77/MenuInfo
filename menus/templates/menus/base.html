@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load auth_extras %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,10 +35,14 @@
                 <li><a href="{% url 'menus' %}">Menus </a></li>
                 <li><a href="{% url 'plated' %}">Recipes</a></li>
                 <li><a href="">Handover</a></li>
+                {% if request.user|has_group:"chef" %}
                 <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
                 <li><a href="{% url 'menu_input' %}">Input menu</a></li>
+                {% enif %}
+                {% if request.user|has_group:"sommelier" %}
                 <li><a href="{% url 'beverage' %}">Input Beverage</a></li>
+                {% endif %}
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'login_user' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
