@@ -29,10 +29,16 @@ descriptions = []
 
 def index(request):
     users = User.objects.all()
+
     for user in users:
         if user.groups.filter(name='chef'):
-            print(user)
-
+            return render(request, 'menus/index.html', {
+                'user_title': 'Chef'
+            })
+        elif user.groups.filter(name='sommelier'):
+            return render(request, 'menus/index.html', {
+                'user_title': 'Sommelier'
+            })
     return render(request, 'menus/index.html', {
 
     })
@@ -278,7 +284,7 @@ def plated(request):
     desserts = []
     mains = []
     for i in res:
-        #print(f'{i} - {i.selector}')
+        # print(f'{i} - {i.selector}')
         if i.for_dish not in results:
             results.append(i.for_dish)
         if i.selector == 'dessert':
@@ -301,7 +307,7 @@ def plated(request):
 
         #  pairs_starters.append(dish)
 
-        #print(f'{dish} - {dish.type}')
+        # print(f'{dish} - {dish.type}')
         for starter in starters:
             for title in res_dish:
                 if starter.for_dish == title.title_dish:
@@ -379,41 +385,50 @@ def detail(request, data):
 
 
 def beverage(request):
-    if request.method == 'POST':
-        form = Beverage(request.POST)
-        title = request.POST['title']
-        ingr = request.POST['ing']
-        if form.is_valid:
-            data = form.save(commit=False)
-            data.save()
-            data1 = beverage_allergets(name=title, ing=ingr)
-            print(data1)
-            data1.save()
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='sommelier'):
+            if request.method == 'POST':
+                form = Beverage(request.POST)
+                title = request.POST['title']
+                ingr = request.POST['ing']
+                if form.is_valid:
+                    data = form.save(commit=False)
+                    data.save()
+                    data1 = beverage_allergets(name=title, ing=ingr)
+                    print(data1)
+                    data1.save()
 
-            return redirect('index')
-    global GLOBAL_TITLE
+                    return redirect('index')
+            global GLOBAL_TITLE
 
-    return render(request, 'menus/beverage.html', {
-        'form': Beverage(),
-        'form1': Beverage_allergets(),
-        'title': GLOBAL_TITLE
+            return render(request, 'menus/beverage.html', {
+                'form': Beverage(),
+                'form1': Beverage_allergets(),
+                'title': GLOBAL_TITLE
 
+            })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'You are not allowd to acses this page! Contact your administrater!'
     })
 
 
 def pairing(request, title):
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='sommelier'):
+            if request.method == 'POST':
+                form = Pairing(request.POST)
+                if form.is_valid:
+                    data = form.save(commit=False)
+                    data.save()
 
-    if request.method == 'POST':
-        form = Pairing(request.POST)
-        if form.is_valid:
-            data = form.save(commit=False)
-            data.save()
+                    return redirect('plated')
 
-            return redirect('plated')
-
-    return render(request, 'menus/pairing.html', {
-        'form': Pairing(),
-        'title': title
+            return render(request, 'menus/pairing.html', {
+                'form': Pairing(),
+                'title': title
+            })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'You are not allowd to acses this page! Contact your administrater!'
     })
 
 
@@ -482,22 +497,27 @@ def delete_recipe(request, title):
 
 
 def ddrbreaks(request):
-    dishs = recipedata.objects.all()
-    ddrbreaks = []
-    subrecipe = []
-    for dish in dishs:
-        if dish.selector == 'ddrbreaks':
-            ddrbreaks.append(dish)
-            for sub in ddrbreaks:
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='chefs') or request.user.groups.filter(name='chef'):
+            dishs = recipedata.objects.all()
+            ddrbreaks = []
+            subrecipe = []
+            for dish in dishs:
+                if dish.selector == 'ddrbreaks':
+                    ddrbreaks.append(dish)
+                    for sub in ddrbreaks:
 
-                if sub.title != sub.for_dish:
-                    subrecipe.append(sub)
-    ddrbreaks = list(dict.fromkeys(ddrbreaks))
+                        if sub.title != sub.for_dish:
+                            subrecipe.append(sub)
+            ddrbreaks = list(dict.fromkeys(ddrbreaks))
 
-    print(subrecipe)
-    return render(request, 'menus/ddr.html', {
-        'items': ddrbreaks,
-        'subrecipe': subrecipe
+            print(subrecipe)
+            return render(request, 'menus/ddr.html', {
+                'items': ddrbreaks,
+                'subrecipe': subrecipe
+            })
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'You are not allowd to acses this page! Contact your administrater!'
     })
 
 
