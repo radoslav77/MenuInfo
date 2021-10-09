@@ -16,6 +16,8 @@ urlpatterns = [
     path('detail/<str:data>', views.detail, name='detail'),
     path('beverage', views.beverage, name='beverage'),
     path('pair/<str:title>', views.pairing, name='pairing'),
+    path('bev', views.drinks_data, name='drinks_data'),
+    path('delete-beverage', views.delete_beverage, name='delete_beverage'),
     path('register', views.register, name='register'),
     path('', views.login_user, name='login_user'),
     path('change-password/<str:user>',

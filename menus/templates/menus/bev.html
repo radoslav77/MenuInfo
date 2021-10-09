@@ -1,0 +1,41 @@
+{% extends 'menus/base.html' %}
+{% block style %}
+<style>
+    #ddr-container {
+        width: 60vw;
+        box-shadow: 0 2px 4px rgba(0, 1, 1, 0.7);
+        text-align: center;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    a {
+        list-style-type: none;
+        text-decoration-line: none;
+    }
+
+    #ddr li {
+        font-size: 20px;
+        line-height: 22px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+<div class="input" id="ddr-container">
+    <ul id="ddr">
+        {% for item in data %}
+        <a href="{% url 'detail' item  %}">
+
+            <li>{{item}}</li>
+
+        </a>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+
+</script>
+{% endblock %}

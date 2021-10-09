@@ -476,6 +476,28 @@ def pairing(request, title):
     })
 
 
+def drinks_data(request):
+    data = beveragedata.objects.all()
+    drink_data = []
+    for d in data:
+        drink_data.append(d)
+    print(drink_data)
+    return render(request, 'menus/bev.html', {
+        'data': drink_data
+    })
+
+
+def delete_beverage(request, title):
+    if request.user.is_uthenticated:
+        if request.user.groups.filter(name='sommelier'):
+            beverage_data = beveragedata.objects.filter(title=title)
+            beverage_data.delete()
+            return redirect('index')
+    return render(request, 'menus/notallowed.html', {
+        'msg': 'You are not allowd to acses this page! Contact your administrater!'
+    })
+
+
 def edit_recipe(request):
     if request.user.is_authenticated:
         if request.user.groups.filter(name='chef'):
