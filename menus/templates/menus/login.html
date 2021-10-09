@@ -1,77 +1,115 @@
-{% extends 'menus/base.html' %}
+{% extends 'menus/newbase.html' %}
 
 {% block style %}
 <style>
-	label {
-  margin-top: 10px;
-  color: #000;
-  display: flex;
-  font-size: 20px;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-input {
-  width: 70%;
-  border-radius: 5px;
-  height: 25px;
-  padding: 2px 2px;
-  font-size: 16px;
-  background-color: #fff;
-  margin-top: 20px;
-}
-input:focus {
-  outline: none;
-}
+  label {
+    margin-top: 10px;
+    color: #000;
+    display: flex;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
 
-.containerForm {
-  position: relative;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-.card-body {
-  text-align: center;
-}
-.btn {
-  background-color: #ffba53;
-  color: #000;
-  letter-spacing: 2px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.card-login {
-  border: black solid 1px;
-  padding-left: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
+  input {
+    width: 70%;
+    border-radius: 5px;
+    height: 25px;
+    padding: 2px 2px;
+    font-size: 16px;
+    background-color: #fff;
+    margin-top: 20px;
+    text-decoration: none;
+    opacity: 1;
+  }
+
+  input:focus {
+    outline: none;
+  }
 
 
+  .card-body {
+    text-align: center;
+
+  }
+
+  form {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #login-username {
+    opacity: 1;
+    transform: scale(100%);
+  }
+
+  #login-username:hover {
+    background: #999;
+  }
+
+  #login-password {
+    opacity: 1;
+    transform: scale(100%);
+  }
+
+  #login-password:hover {
+    background: #999;
+  }
+
+  #login-btn {
+
+    color: #000;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  #login-btn:hover {
+    background: #999;
+  }
+
+  .card-login {
+    background: rgb(233, 228, 212);
+    opacity: 0.5;
+    width: 60vw;
+    border: black solid 1px;
+    padding-left: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .text-center {
+    width: 60%;
+    text-align: center;
+    margin-left: 12%;
+  }
 </style>
 
 {% endblock %}
 
 {% block body %}
 
-	<div class="card-login">
-		<div class="card-body">
-		<h3 class=" text-center">Login to Your Account!</h3>
-		<form action="" method="POST">
-			{% csrf_token %}
-			<label>Username</label>
-			<input type="text" placeholder="Enter Your Username" name="username">
-			<label>Password</label>
-			<input type="password" placeholder="Enter Your Password"  name="password">
-			<br>
-			<input  type="submit" value="Login" class="btn"><br>
-			{% if error %}
-			<i style="color:red;">{{ error }}</i>
-			{% endif %}
-		
-		</form>
-		
-		</div>
-	</div >
+<div class="card-login">
+  <div class="card-body">
+    <h3 class="text-center">Login to Your Account</h3>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <label>Username</label>
+      <input id="login-username" type="text" placeholder="Enter Your Username" name="username">
+      <label>Password</label>
+      <input id="login-password" type="password" placeholder="Enter Your Password" name="password">
+      <br>
+      <input type="submit" value="Login" id="login-btn"><br>
+      {% if error %}
+      <i style="color:red;">{{ error }}</i>
+      {% endif %}
+
+    </form>
+
+  </div>
+</div>
 
 
-{% endblock %}   
+{% endblock %}

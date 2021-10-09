@@ -10,7 +10,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'stylebase.css' %}">
+    <link rel="stylesheet" href="{% static 'menu.css' %}">
+    <link rel="stylesheet" href="{% static 'plated.css' %}">
+    <link rel="stylesheet" href="{% static 'recipe_input.css' %}">
+    <style>
+        body {
+            background-image: url('/static/pictures/bqtroom.jpg');
+            background-repeat: repeat;
+            background-size: cover;
+
+        }
+
+        .bodycontainer {
+            margin-top: 13%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            color: #fff;
+        }
+    </style>
+    {% block style %}
+    {% endblock %}
     <title>BQT Menu Selector</title>
 </head>
 
@@ -28,14 +52,10 @@
                 <li><a href="{% url 'your_menu' %}">Your Menu </a></li>
                 <li><a href="{% url 'plated' %}">Recipes</a></li>
                 <li><a href="">Handover</a></li>
-                {% if user.is_authenticated%}
                 <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
-
                 <li><a href="{% url 'menu_input' %}">Input menu</a></li>
-
                 <li><a href="{% url 'beverage' %}">Input Beverage</a></li>
-                {% endif %}
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'login_user' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
@@ -48,21 +68,18 @@
             </ul>
         </div>
     </nav>
-    <div class="hero">
-        <div class="container">
-            <h1>Welcom to InterContinental BQT Menus info</h1>
-            {% if not user.is_authenticated %}
-            <p>Recipes,Handovers and Lots of FUN</p>
-            {% else %}
-            <h3>Hello {{user_title}} {% filter upper %} {{user}} {% endfilter %} </h3>
-            {% endif %}
-        </div>
+    <div class="bodycontainer">
+        <h1>Welcom to InterContinental BQT Menu info</h1>
     </div>
 
+    {% block body %}
 
+    {% endblock %}
 
-    <img src="media/media/cute fox.png" alt="">
     <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'menu.js' %}"></script>
+    <script src="{% static 'detail.js' %}"></script>
+    <script src="{% static 'plated.js' %}"></script>
     <script>
         function myFunction() {
             var x = document.querySelector(".nav");

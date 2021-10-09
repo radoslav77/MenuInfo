@@ -11,7 +11,7 @@ from .models import *
 class registrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'email', 'groups', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class Recipe(forms.ModelForm):

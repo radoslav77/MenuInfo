@@ -79,7 +79,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom center;
-  opacity: 0.9;
+
   height: 50vh;
   width: 100vw;
   color: #fff;
@@ -138,6 +138,8 @@ body {
     flex-direction: column;
     font-size: 14px;
     justify-content: left;
+    width: 100vw;
+    opacity: 1;
   }
   .nav.responsive .icon {
     position: absolute;
