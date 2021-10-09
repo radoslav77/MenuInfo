@@ -1,4 +1,4 @@
-{% extends 'menus/base.html' %}
+{% extends 'menus/newbase.html' %}
 
 {% block style %}
 
@@ -9,9 +9,9 @@
 {% for d in data %}
 <h1>{{d}}</h1>
 {% endfor %}
-<p>Your drinks for Tonight's Party!</p>
+<p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>
 {% for d in drinks %}
-<h1>{{d}}</h1>
+<h1 id="drinktitle">{{d}}</h1>
 {% endfor %}
 <div class="menu-container">
     <div class="dish-container">
