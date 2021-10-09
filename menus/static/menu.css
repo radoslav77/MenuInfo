@@ -52,7 +52,7 @@ h2 {
   border: 1px solid red;
   padding: 5px;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   align-items: baseline;
   margin: 10px;
 }

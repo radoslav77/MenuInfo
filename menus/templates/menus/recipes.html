@@ -6,9 +6,13 @@
 {% endblock %}
 
 {% block body %}
-<h1>{{data}}</h1>
+{% for d in data %}
+<h1>{{d}}</h1>
+{% endfor %}
 <p>Your drinks for Tonight's Party!</p>
-<h1>{{drinks}}</h1>
+{% for d in drinks %}
+<h1>{{d}}</h1>
+{% endfor %}
 <div class="menu-container">
     <div class="dish-container">
         <p>Your Starter course today:</p>
@@ -16,8 +20,8 @@
         <div class="name-starter" id="salad">
             <h2 id="name">{{dish1}}</h2>
         </div>
-        <a href="media\{{dish1.image}}">
-            <img id="pic" src="media/{{dish1.image}}" alt="" width="400" height="300"></img>
+        <a href="/media/{{dish1.image}}">
+            <img id="pic" src="/media/{{dish1.image}}" alt="" width="400" height="300"></img>
         </a>
 
         <div class="description" id="starter-description">
@@ -53,8 +57,8 @@
         <div class="name-main" id="mainmain">
             <h2 id="name">{{dish}}</h2>
         </div>
-        <a href="media\{{dish.image}}">
-            <img id="pic" src="media/{{dish.image}}" alt="" width="400" height="300"></img>
+        <a href="/media/{{dish.image}}">
+            <img id="pic" src="/media/{{dish.image}}" alt="" width="400" height="300"></img>
         </a>
         <div class="description" id="main-description">
 
@@ -89,8 +93,8 @@
         <div class="name-dessert" id="des">
             <h2 id="name">{{dish2}}</h2>
         </div>
-        <a href="media\{{dish2.image}}">
-            <img id="pic" src="media/{{dish2.image}}" alt="" width="400" height="300"></img>
+        <a href="/media/{{dish2.image}}">
+            <img id="pic" src="/media/{{dish2.image}}" alt="" width="400" height="300"></img>
         </a>
         <div class="description" id="dessert-description">
 

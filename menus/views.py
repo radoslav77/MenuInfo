@@ -104,8 +104,15 @@ def js_form(requets):
     return HttpResponse(json.dumps(recipe_data), content_type="application/json")
 
 
-def your_menu(request):
+def menus(request):
     data = menudata.objects.all()
+    return render(request, 'menus/dinnermenus.html', {
+        'menus': data
+    })
+
+
+def your_menu(request, title):
+    data = menudata.objects.filter(title=title)
     beverage = pairdata.objects.all()
     dish_recipe = recipedata.objects.all()
 
@@ -122,6 +129,7 @@ def your_menu(request):
 
         for pic in image:
             dish.append(pic)
+
             des = dishdata.objects.all()
             for d in des:
                 descriptions.append({
@@ -146,7 +154,7 @@ def your_menu(request):
                 })
 
         drinks.append(i.drinks)
-
+    print(dish[0].image)
     for t in dish_recipe:
         dishs.append(t.title)
     bev_drink = []
@@ -164,11 +172,11 @@ def your_menu(request):
     bev.append(bev_drink)
 
     return render(request, 'menus/recipes.html', {
-        'data': title[1],
+        'data': title,
         'dish': dish[0],
         'dish1': dish[1],
         'dish2': dish[2],
-        'drinks': drinks[1],
+        'drinks': drinks,
 
     })
 
