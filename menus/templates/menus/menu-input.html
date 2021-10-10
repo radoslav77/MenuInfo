@@ -1,58 +1,41 @@
-{% extends 'menus/base.html' %}
+{% extends 'menus/newbase.html' %}
 {% block style %}
+
 <style>
-    .form {
-        background: #fff;
+    .input {
+        width: 60vw;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        box-shadow: 0 2px 8px rgba(4, 230, 255, 0.89);
 
     }
 
-    .form:active {
-        transform: scale(100%);
+    input {
+        margin-top: 20px;
+    }
+
+    select {
+        margin-top: 20px;
+    }
+
+    label {
+        margin-top: 10px;
+        color: rgb(255, 166, 0);
+        text-align: right;
     }
 </style>
+
 {% endblock %}
 {% block body %}
 <div class="input">
     <form action="{% url 'menu_input' %}" method="POST" enctype="multipart/form-data"
         style="display: flex;flex-direction: column;">
         {% csrf_token %}
-        <label for="title">Title</label>
-        <input type="text" name="title" required id="title" class="form">
+        {{form}}
 
-        <label for="starter">Starter</label>
-
-        <select class="form" name="strater" id="starter" required>
-            <option value="" selected>----</option>
-            {% for starter in starters %}
-            <option value="{{starter}}">{{starter}}</option>
-            {% endfor %}
-        </select>
-
-        <label for="main">Main</label>
-        <select class="form" name="main" id="main" required>
-            <option value="" selected>----</option>
-            {% for main in mains %}
-            <option value="{{main}}">{{main}}</option>
-            {% endfor %}
-        </select>
-
-        <label for="dessert">Dessert</label>
-        <select class="form" name="dessert" id="dessert" required>
-            <option value="" selected>----</option>
-            {% for dessert in desserts %}
-            <option value="{{dessert}}">{{dessert}}</option>
-            {% endfor %}
-        </select>
-
-        <label for="drink">Drink</label>
-        <select class="form" name="drink" id="drink" required>
-            <option value="" selected>----</option>
-            {% for drink in drinks %}
-            <option value="{{drink}}">{{drink}}</option>
-            {% endfor %}
-        </select>
-
-        <input type="submit" style="margin-top: 10px;">
+        <input type="submit" style="margin-top: 10px;color: rgb(255, 166, 0);">
 
     </form>
 
@@ -62,33 +45,16 @@
     const StarterInputElement = document.getElementById('id_starter')
     const MainInputElement = document.getElementById('id_main')
     const DessertInputElement = document.getElementById('id_dessert')
-    const LabelFormStarter = document.querySelector('[for=id_starter]')
-    const LabelFormMain = document.querySelector('[for=id_main]')
-    const LabelFormDessert = document.querySelector('[for=id_dessert]')
-    StarterInputElement.hidden = true
-    StarterInputElement.required = false
-    MainInputElement.hidden = true
-    MainInputElement.required = false
-    DessertInputElement.hidden = true
-    DessertInputElement.required = false
-    LabelFormDessert.hidden = true
-    LabelFormMain.hidden = true
-    LabelFormStarter.hidden = true
-
-
-
-
-
     const FORM_DATA_URL = ('/menu_input')
     getDataForm(FORM_DATA_URL)
 
     // console.log(StarterInputElement, '->', MainInputElement, '->', DessertInputElement)
-
-
+    SelectValueToNone(StarterInputElement)
+    SelectValueToNone(MainInputElement)
+    SelectValueToNone(DessertInputElement)
     var Starter_dish = []
     var Main_dish = []
     var Dessrt_dish = []
-
 
     async function getDataForm(url) {
         const res = await fetch(url)
@@ -96,29 +62,30 @@
         data.forEach(dish => {
             if (dish.type === 'Starters') {
                 Starter_dish.push(dish)
+                var SelectOption = document.createElement('option')
                 var x = document.createElement("OPTION");
                 x.setAttribute("value", dish.title);
                 var t = document.createTextNode(dish.title);
                 x.appendChild(t);
-                document.getElementById("starter").appendChild(x);
+                document.getElementById("id_starter").appendChild(x);
             }
             if (dish.type === 'Mains') {
                 Main_dish.push(dish)
-                Starter_dish.push(dish)
+                var SelectOption = document.createElement('option')
                 var x = document.createElement("OPTION");
                 x.setAttribute("value", dish.title);
                 var t = document.createTextNode(dish.title);
                 x.appendChild(t);
-                document.getElementById("main").appendChild(x);
+                document.getElementById("id_main").appendChild(x);
             }
             if (dish.type === 'Desserts') {
                 Dessrt_dish.push(dish)
-                Starter_dish.push(dish)
+                var SelectOption = document.createElement('option')
                 var x = document.createElement("OPTION");
                 x.setAttribute("value", dish.title);
                 var t = document.createTextNode(dish.title);
                 x.appendChild(t);
-                document.getElementById("dessert").appendChild(x);
+                document.getElementById("id_dessert").appendChild(x);
             }
             // console.log(dish.type)
         })
@@ -132,10 +99,18 @@
         arreyElements.forEach(e => {
             e.value = ''
             e.innerText = ''
+            elements.removeChild(e)
         })
     }
 
-*/
+    function SelectValuePush(elements, arr) {
+        var SelectOption = document.createElement('option')
 
+        arreyElements.forEach(e => {
+            console.log(e.value, e.innerText)
+        })
+
+    }
+*/
 </script>
 {% endblock %}

@@ -19,7 +19,7 @@ getDrinks(API_DATA_DRINKS)
 async function getDrinks(url) {
     const res = await fetch(url)
     const data = await res.json()
-    
+    console.log(data)
     var EntryDrinks = data[0]
 
     EntryDrinks.forEach(drink => {
@@ -44,7 +44,7 @@ async function getDrinks(url) {
                     
                     if(!drinks_starter.includes(drink.drink)){
                         drinks_starter.push(drink.drink)
-                   
+                    
                         
                         
                     }

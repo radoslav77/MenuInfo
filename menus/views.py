@@ -277,20 +277,6 @@ def menu_input(request):
     if request.user.is_authenticated:
         if request.user.groups.filter(name='bqt'):
 
-            data = dishdata.objects.all()
-            drink = beveragedata.objects.all()
-            starter = []
-            main = []
-            dessert = []
-            for dish in data:
-                if dish.type == 'Starters':
-                    starter.append(dish)
-                elif dish.type == 'Mains':
-                    main.append(dish)
-                elif dish.type == 'Desserts':
-                    dessert.append(dish)
-            print(starter, main, dessert)
-
             if request.method == 'POST':
                 form = Menu(request.POST)
                 if form.is_valid:
@@ -308,12 +294,7 @@ def menu_input(request):
             'msg': 'Please log in to use this function!'
         })
     return render(request, 'menus/menu-input.html', {
-        'form': Menu(),
-        'starters':starter,
-        'mains':main,
-        'desserts':dessert,
-        'drinks': drink
-
+        'form': Menu()
     })
 
 
