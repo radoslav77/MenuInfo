@@ -1,16 +1,31 @@
 {% extends 'menus/base.html' %}
 {% block style %}
 
-    {% endblock %}
-    {% block body %}
-    <div class="input">
-        <form action="{% url 'menu_input' %}" method="POST"  enctype="multipart/form-data" style="display: flex;flex-direction: column;">
-            {% csrf_token %}
-            {{form}}
-          
-            <input type="submit" style="margin-top: 10px;">
-           
-        </form>
-        
-    </div>
-    {% endblock %}
+{% endblock %}
+{% block body %}
+<div class="input">
+    <form action="{% url 'menu_input' %}" method="POST" enctype="multipart/form-data"
+        style="display: flex;flex-direction: column;">
+        {% csrf_token %}
+        {{form}}
+
+        <input type="submit" style="margin-top: 10px;">
+
+    </form>
+
+</div>
+<script>
+    const FORM_DATA_URL = ('/menu_input')
+    getDataForm(FORM_DATA_URL)
+
+
+
+    async function getDataForm(url) {
+        const res = await fetch(url)
+        const data = await res.json()
+        console.log(data)
+
+    }
+
+</script>
+{% endblock %}

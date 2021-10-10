@@ -105,6 +105,19 @@ def js_form(requets):
     return HttpResponse(json.dumps(recipe_data), content_type="application/json")
 
 
+def js_memu_input(request):
+    data = recipedata.objects.all()
+
+    data_form = []
+    for dish in data:
+        data_form.append({
+            'title': dish.title,
+            'type': dish.selector
+        })
+
+    return HttpResponse(json.dumps(data_form), content_type="application/json")
+
+
 def menus(request):
     if request.user.is_authenticated:
 
@@ -263,6 +276,7 @@ def recipe_input(request):
 def menu_input(request):
     if request.user.is_authenticated:
         if request.user.groups.filter(name='bqt'):
+
             if request.method == 'POST':
                 form = Menu(request.POST)
                 if form.is_valid:
