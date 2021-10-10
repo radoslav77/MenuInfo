@@ -106,13 +106,13 @@ def js_form(requets):
 
 
 def js_memu_input(request):
-    data = recipedata.objects.all()
+    data = dishdata.objects.all()
 
     data_form = []
     for dish in data:
         data_form.append({
-            'title': dish.title,
-            'type': dish.selector
+            'title': dish.title_dish,
+            'type': dish.type
         })
 
     return HttpResponse(json.dumps(data_form), content_type="application/json")
@@ -277,6 +277,20 @@ def menu_input(request):
     if request.user.is_authenticated:
         if request.user.groups.filter(name='bqt'):
 
+            data = dishdata.objects.all()
+            drink = beveragedata.objects.all()
+            starter = []
+            main = []
+            dessert = []
+            for dish in data:
+                if dish.type == 'Starters':
+                    starter.append(dish)
+                elif dish.type == 'Mains':
+                    main.append(dish)
+                elif dish.type == 'Desserts':
+                    dessert.append(dish)
+            print(starter, main, dessert)
+
             if request.method == 'POST':
                 form = Menu(request.POST)
                 if form.is_valid:
@@ -294,7 +308,12 @@ def menu_input(request):
             'msg': 'Please log in to use this function!'
         })
     return render(request, 'menus/menu-input.html', {
-        'form': Menu()
+        'form': Menu(),
+        'starters':starter,
+        'mains':main,
+        'desserts':dessert,
+        'drinks': drink
+
     })
 
 
