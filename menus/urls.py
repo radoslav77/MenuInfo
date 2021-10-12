@@ -32,6 +32,7 @@ urlpatterns = [
     path('edit', views.edit_recipe, name='edit_recipe'),
     path('ddrbreaks', views.ddrbreaks, name='ddrbreaks'),
     path('breakfast', views.breakfast, name='breakfast'),
+    path('suggested', views.suggested, name='suggested'),
 
     # API
     path('drinks', views.drinks, name='drinks'),

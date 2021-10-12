@@ -660,7 +660,9 @@ def breakfast(request):
         'msg': 'You are not allowd to acses this page! Contact your administrater!'
     })
 
-# need to work on
+
+def suggested(request):
+    return render(request, 'menus/suggested.html')
 
 
 def register(request):
