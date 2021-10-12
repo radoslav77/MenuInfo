@@ -7,6 +7,10 @@
 
 {% block body %}
 {% for d in data %}
+<div class="delete">
+    <a href="{% url 'your_menu_delete' d %}">Delete Menu</a>
+</div>
+
 <h1>{{d}}</h1>
 {% endfor %}
 <p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>

@@ -12,6 +12,8 @@ urlpatterns = [
     path('add-recipe', views.add_recipe, name='add_recipe'),
     path('menu-input', views.menu_input, name='menu_input'),
     path('menus', views.menus, name='menus'),
+    path('delete-menu/<str:title>',
+         views.your_menu_delete, name='your_menu_delete'),
     path('plated', views.plated, name='plated'),
     path('detail/<str:data>', views.detail, name='detail'),
     path('beverage', views.beverage, name='beverage'),

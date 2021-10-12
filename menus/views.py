@@ -200,6 +200,23 @@ def your_menu(request, title):
     })
 
 
+def your_menu_delete(request, title):
+    if request.user.is_authenticated:
+        if request.user.groups.filter(name='bqt'):
+            data = menudata.objects.filter(title=title)
+            data.delete()
+
+            return redirect('menus')
+        else:
+            return render(request, 'menus/dish-input.html', {
+                'msg': 'You are not autorised to perform this action'
+            })
+    else:
+        return render(request, 'menus/dish-input.html', {
+            'msg': 'Please log in to use this function!'
+        })
+
+
 def dish_input(request):
     if request.user.is_authenticated:
         if request.user.groups.filter(name='chef'):
