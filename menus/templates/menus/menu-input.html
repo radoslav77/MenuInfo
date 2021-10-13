@@ -41,11 +41,38 @@
 
 </div>
 <script>
-    /*
-    const StarterInputElement = document.getElementById('id_starter')
+
+    const StarterInputElement = document.getElementById('id_starter').children
     const MainInputElement = document.getElementById('id_main')
     const DessertInputElement = document.getElementById('id_dessert')
     const FORM_DATA_URL = ('/menu_input')
+
+    console.log(StarterInputElement)
+    getDataRecipe(FORM_DATA_URL)
+
+    async function getDataRecipe(url) {
+        const res = await fetch(url)
+        const data = await res.json()
+
+        for (let item of StarterInputElement) {
+            let name = item.innerHTML
+
+            data.forEach(e => {
+                if (e.title) {
+                    if (e.title === name) {
+                        console.log(e)
+                    }
+                }
+                //console.log(e.title)
+                //console.log(name)
+            });
+
+
+        }
+
+    }
+
+    /*
     getDataForm(FORM_DATA_URL)
 
     // console.log(StarterInputElement, '->', MainInputElement, '->', DessertInputElement)
