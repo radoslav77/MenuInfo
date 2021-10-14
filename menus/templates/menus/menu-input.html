@@ -50,6 +50,8 @@
     console.log(StarterInputElement)
     getDataRecipe(FORM_DATA_URL)
 
+    let ArrItem = Array.from(StarterInputElement)
+    console.log(ArrItem)
     async function getDataRecipe(url) {
         const res = await fetch(url)
         const data = await res.json()
@@ -60,7 +62,24 @@
             data.forEach(e => {
                 if (e.title) {
                     if (e.title === name) {
-                        console.log(e)
+                        if (e.type != 'Starters') {
+
+
+                            ArrItem.forEach(el => {
+                                if (e.title) {
+                                    if (e.title === el.innerHTML) {
+                                        if (e.type != 'Starters') {
+                                            const StarterEl = document.getElementById('id_starter')
+                                            StarterEl.removeChild(el)
+                                        }
+                                    }
+                                }
+                            })
+
+                            //console.log(e)
+
+                        }
+
                     }
                 }
                 //console.log(e.title)
