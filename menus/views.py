@@ -111,6 +111,7 @@ def js_memu_input(request):
     data_form = []
     for dish in data:
         data_form.append({
+            'id': dish.id,
             'title': dish.title_dish,
             'type': dish.type
         })
