@@ -20,9 +20,9 @@
         <div class="name-starter" id="salad">
             <h2 id="name"></h2>
         </div>
-        <a href="/media/{{dish1.image}}">
+        <!--<a href="/media/{{dish1.image}}">
             <img id="pic" src="/media/{{dish1.image}}" alt="" width="400" height="300"></img>
-        </a>
+        </a>-->
 
         <div class="description" id="starter-description">
 
@@ -57,9 +57,9 @@
         <div class="name-main" id="mainmain">
             <h2 id="name"></h2>
         </div>
-        <a href="/media/{{dish.image}}">
+        <!--<a href="/media/{{dish.image}}">
             <img id="pic" src="/media/{{dish.image}}" alt="" width="400" height="300"></img>
-        </a>
+        </a>-->
         <div class="description" id="main-description">
 
         </div>
@@ -93,9 +93,9 @@
         <div class="name-dessert" id="des">
             <h2 id="name"></h2>
         </div>
-        <a href="/media/{{dish2.image}}">
+        <!--<a href="/media/{{dish2.image}}">
             <img id="pic" src="/media/{{dish2.image}}" alt="" width="400" height="300"></img>
-        </a>
+        </a>-->
         <div class="description" id="dessert-description">
 
         </div>
@@ -128,7 +128,74 @@
     </div>
 
 </div>
+<div class="ul">
+    <ul id="js_input">
+
+    </ul>
+</div>
 <script>
+    const JS_DISH_DATA = ('/js-dish')
+    getDataDish(JS_DISH_DATA)
+    const URL_DATA_ALERGY = ('/alergy')
+    getAlergyOption(URL_DATA_ALERGY)
+
+
+    var DataDish = []
+    var DataRecipe = []
+    var Dish = []
+
+    async function getDataDish(url) {
+        const res = await fetch(url)
+        const data = await res.json()
+
+        data.forEach(element => {
+            DataDish.push(element)
+            CreateEl(element)
+        });
+
+    }
+
+    async function getAlergyOption(url) {
+        const res = await fetch(url)
+        const data = await res.json()
+
+        data.forEach(element => {
+            DataRecipe.push(element)
+            //console.log(element.dish)
+            DataRecipe.forEach(rec => {
+                if (element.dish === rec.dish) {
+                    Dish.push(element)
+                }
+            })
+
+        })
+    }
+    /*
+    var v = []
+    Dish.forEach(i => {
+        if (Dish.includes(i.dish)) {
+            v.push(i)
+            let j = marge(i, v)
+
+        }
+        console.log(i)
+    })*/
+
+    console.log(DataRecipe, '->', DataDish, '->', Dish)
+
+
+    var v = Array.from(DataDish)
+    console.log(DataDish)
+    v.forEach(item => {
+        console.log(item)
+    })
+
+    function CreateEl(arr) {
+        var createUl = document.createElement('li')
+        createUl.innerHTML = arr.title
+        document.getElementById('js_input').appendChild(createUl)
+    }
+
 
 </script>
 {% endblock %}

@@ -42,6 +42,7 @@ urlpatterns = [
     path('beverage_ing', views.beverage_ing, name='beverage_ing'),
     path('dishes', views.dishes, name='dishes'),
     path('edit-recipe', views.js_form, name='js_form'),
-    path('menu_input', views.js_memu_input, name='js_memu_input')
+    path('menu_input', views.js_memu_input, name='js_memu_input'),
+    path('js-dish', views.js_dish, name='js_dish')
 
 ]

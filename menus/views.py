@@ -50,6 +50,19 @@ def drinks(request):
     return HttpResponse(json.dumps(bev), content_type="application/json")
 
 
+def js_dish(request):
+    data = dishdata.objects.all()
+    dish_data = []
+    for item in data:
+        dish_data.append({
+            'title': item.title_dish,
+            'type': item.type,
+            'description': item.description,
+            # 'image': item.image
+        })
+    return HttpResponse(json.dumps(dish_data), content_type="application/json")
+
+
 def alergy(request):
     data = recipedata.objects.all()
     recipe_data = []
