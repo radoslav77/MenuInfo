@@ -191,8 +191,10 @@
     })
 
     function CreateEl(arr) {
-        var createUl = document.createElement('li')
+        var createUl = document.createElement('a')
         createUl.innerHTML = arr.title
+        let Nametitle = arr.title
+        createUl.href = `/detail/${Nametitle}`
         document.getElementById('js_input').appendChild(createUl)
     }
 
