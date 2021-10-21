@@ -1,5 +1,15 @@
 {% extends 'menus/base.html' %}
 {% block style %}
+<style>
+    a {
+        margin: 10px;
+    }
+
+    ul {
+        display: flexbox;
+        flex-wrap: wrap;
+    }
+</style>
 
 {% endblock %}
 {% block body %}
@@ -196,6 +206,24 @@
         let Nametitle = arr.title
         createUl.href = `/detail/${Nametitle}`
         document.getElementById('js_input').appendChild(createUl)
+    }
+
+    const allergents = {
+        dairy: ['Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese'],
+        gluten: ['Flour', 'Oats', 'Barley', 'Waffle'],
+        nuts: ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
+            'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut', 'Coconuts'],
+        eggs: ['Egg', 'Eggs', 'Yolks', 'Yolk', 'Whites', /*'White'*/],
+        peanut: ['Peanut', 'Peanuts', 'Peanutbutter', 'Peanut butter'],
+        celery: ['Celery', 'Celery salt'],
+        crustaceans: ['Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster', 'Lobsters'],
+        fish: ['Fish'],
+        lupin: ['Lupin'],
+        molluscs: ['Mussels', 'Mussel', 'Oysters', 'Oyster'],
+        mustard: ['Mustard', 'Mustards'],
+        sesame: ['Sesame', 'Sesames'],
+        soy: ['Soybean', 'Soybeans', 'Soyabean', 'Soyabeans', 'Soy', 'Soya', 'Chocolate', 'Chocolates', 'White chocolate', 'Cocoa butter'],
+        sulphites: ['Cheese', 'Glucose', 'Glaze', 'Gel', 'Wine', 'Rum', 'Vodka', 'Gin']
     }
 
 
