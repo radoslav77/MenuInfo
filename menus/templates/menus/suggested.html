@@ -183,8 +183,8 @@
             DataRecipe.forEach(recipe => {
                 if (e.dish === recipe.dish)
                     //console.log(recipe.recipe)
-                    var InputRecipe = recipe.recipe.split(',')
-                Contain(InputRecipe, e.title)
+
+                    Contain(recipe.recipe, e.title)
             })
 
         })
@@ -230,9 +230,11 @@
         sulphites: ['Cheese', 'Glucose', 'Glaze', 'Gel', 'Wine', 'Rum', 'Vodka', 'Gin']
     }
 
+
     function Contain(input, title) {
-        //console.log(input, title)
-        input.forEach(e => {
+        var containText = input.split(',')
+        //console.log(containText, title)
+        containText.forEach(e => {
             //console.log(e)
             var num = e.split(/\s+/)
             //console.log(num)
@@ -255,7 +257,7 @@
             dairies.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
-                    //console.log(title)
+                    console.log(title)
 
                 }
             })
