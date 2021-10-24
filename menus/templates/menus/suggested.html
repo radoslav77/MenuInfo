@@ -179,6 +179,14 @@
             })
 
         })
+        Dish.forEach(e => {
+            DataRecipe.forEach(recipe => {
+                if (e.dish === recipe.dish)
+                    console.log(recipe.recipe)
+            })
+
+        })
+
     }
     /*
     var v = []
@@ -191,14 +199,8 @@
         console.log(i)
     })*/
 
-    console.log(DataRecipe, '->', DataDish, '->', Dish)
+    // console.log(DataRecipe, '->', DataDish, '->', Dish)
 
-
-    var v = Array.from(DataDish)
-    console.log(DataDish)
-    v.forEach(item => {
-        console.log(item)
-    })
 
     function CreateEl(arr) {
         var createUl = document.createElement('a')
@@ -208,12 +210,12 @@
         document.getElementById('js_input').appendChild(createUl)
     }
 
-    const allergents = {
+    /*const allergen = {
         dairy: ['Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese'],
         gluten: ['Flour', 'Oats', 'Barley', 'Waffle'],
         nuts: ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
             'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut', 'Coconuts'],
-        eggs: ['Egg', 'Eggs', 'Yolks', 'Yolk', 'Whites', /*'White'*/],
+        eggs: ['Egg', 'Eggs', 'Yolks', 'Yolk', 'Whites', ],
         peanut: ['Peanut', 'Peanuts', 'Peanutbutter', 'Peanut butter'],
         celery: ['Celery', 'Celery salt'],
         crustaceans: ['Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster', 'Lobsters'],
@@ -224,7 +226,7 @@
         sesame: ['Sesame', 'Sesames'],
         soy: ['Soybean', 'Soybeans', 'Soyabean', 'Soyabeans', 'Soy', 'Soya', 'Chocolate', 'Chocolates', 'White chocolate', 'Cocoa butter'],
         sulphites: ['Cheese', 'Glucose', 'Glaze', 'Gel', 'Wine', 'Rum', 'Vodka', 'Gin']
-    }
+    } */
 
 
 </script>
