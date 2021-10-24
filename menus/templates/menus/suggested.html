@@ -182,7 +182,9 @@
         Dish.forEach(e => {
             DataRecipe.forEach(recipe => {
                 if (e.dish === recipe.dish)
-                    console.log(recipe.recipe)
+                    //console.log(recipe.recipe)
+                    var InputRecipe = recipe.recipe.split(',')
+                Contain(InputRecipe, e.title)
             })
 
         })
@@ -210,12 +212,12 @@
         document.getElementById('js_input').appendChild(createUl)
     }
 
-    /*const allergen = {
+    const allergen = {
         dairy: ['Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese'],
         gluten: ['Flour', 'Oats', 'Barley', 'Waffle'],
         nuts: ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
             'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut', 'Coconuts'],
-        eggs: ['Egg', 'Eggs', 'Yolks', 'Yolk', 'Whites', ],
+        eggs: ['Egg', 'Eggs', 'Yolks', 'Yolk', 'Whites',],
         peanut: ['Peanut', 'Peanuts', 'Peanutbutter', 'Peanut butter'],
         celery: ['Celery', 'Celery salt'],
         crustaceans: ['Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster', 'Lobsters'],
@@ -226,8 +228,133 @@
         sesame: ['Sesame', 'Sesames'],
         soy: ['Soybean', 'Soybeans', 'Soyabean', 'Soyabeans', 'Soy', 'Soya', 'Chocolate', 'Chocolates', 'White chocolate', 'Cocoa butter'],
         sulphites: ['Cheese', 'Glucose', 'Glaze', 'Gel', 'Wine', 'Rum', 'Vodka', 'Gin']
-    } */
+    }
 
+    function Contain(input, title) {
+        //console.log(input, title)
+        input.forEach(e => {
+            //console.log(e)
+            var num = e.split(/\s+/)
+            //console.log(num)
+            var dairies = ingredient.dairy
+            var glutens = ingredient.gluten
+            var nuts = ingredient.nuts
+            var eggs = ingredient.eggs
+            var peanuts = ingredient.peanut
+            var celery = ingredient.celery
+            var crustaceans = ingredient.crustaceans
+            var fish = ingredient.fish
+            var lupin = ingredient.lupin
+            var molluscs = ingredient.molluscs
+            var mustard = ingredient.mustard
+            var sesame = ingredient.sesame
+            var soya = ingredient.soy
+            var sulphites = ingredient.sulphites
+
+
+            dairies.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            glutens.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            nuts.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            eggs.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            peanuts.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            celery.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+
+            crustaceans.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            fish.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            lupin.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            molluscs.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            mustard.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            sesame.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            soya.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+            sulphites.forEach(all => {
+                const found = num.find(element => element.toLowerCase() == all.toLowerCase())
+                if (found === all || found === all.toLowerCase()) {
+                    //console.log(title)
+
+                }
+            })
+
+
+        })
+    }
 
 </script>
 {% endblock %}
