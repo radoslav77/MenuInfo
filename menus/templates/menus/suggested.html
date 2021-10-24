@@ -230,7 +230,25 @@
         sulphites: ['Cheese', 'Glucose', 'Glaze', 'Gel', 'Wine', 'Rum', 'Vodka', 'Gin']
     }
 
+    var ConDairy = []
+    var ConGluten = []
+    var ConNut = []
+    var ConEgg = []
+    var ConPeanut = []
+    var ConCelery = []
+    var ConCrustacean = []
+    var ConFish = []
+    var ConLupin = []
+    var ConMolluscs = []
+    var ConMustard = []
+    var ConSesame = []
+    var ConSoya = []
+    var ConSulphites = []
+    // for vegan and vegeterian a need another function
+    var Vegan = []
+    var Vegeterian = []
 
+    console.log(ConMustard)
     function Contain(input, title) {
         var containText = input.split(',')
         //console.log(containText, title)
@@ -257,14 +275,17 @@
             dairies.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
-                    console.log(title)
+                    //console.log(title)
+                    ConDairy.push(title)
 
                 }
+
             })
             glutens.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConGluten.push(title)
 
                 }
             })
@@ -272,28 +293,28 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
-
+                    ConNut.push(title)
                 }
             })
             eggs.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
-
+                    ConEgg.push(title)
                 }
             })
             peanuts.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
-
+                    ConPeanut.push(title)
                 }
             })
             celery.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
-
+                    ConCelery.push(title)
                 }
             })
 
@@ -301,6 +322,7 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConCrustacean.push(title)
 
                 }
             })
@@ -308,6 +330,7 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConFish.push(title)
 
                 }
             })
@@ -315,13 +338,14 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
-
+                    ConLupin.push(title)
                 }
             })
             molluscs.forEach(all => {
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConMolluscs.push(title)
 
                 }
             })
@@ -329,6 +353,7 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConMustard.push(title)
 
                 }
             })
@@ -336,6 +361,7 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConSesame.push(title)
 
                 }
             })
@@ -343,6 +369,7 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConSoya.push(title)
 
                 }
             })
@@ -350,6 +377,7 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
+                    ConSulphites.push(title)
 
                 }
             })
