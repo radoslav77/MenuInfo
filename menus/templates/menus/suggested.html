@@ -154,6 +154,24 @@
     var DataRecipe = []
     var Dish = []
 
+    var ConDairy = []
+    var ConGluten = []
+    var ConNut = []
+    var ConEgg = []
+    var ConPeanut = []
+    var ConCelery = []
+    var ConCrustacean = []
+    var ConFish = []
+    var ConLupin = []
+    var ConMolluscs = []
+    var ConMustard = []
+    var ConSesame = []
+    var ConSoya = []
+    var ConSulphites = []
+    // for vegan and vegeterian a need another function
+    var Vegan = []
+    var Vegeterian = []
+
     async function getDataDish(url) {
         const res = await fetch(url)
         const data = await res.json()
@@ -186,8 +204,11 @@
 
                     Contain(recipe.recipe, e.title)
             })
+            //VEVVI function
+            VegeterianOption(ConLupin)
 
         })
+
 
     }
     /*
@@ -231,27 +252,8 @@
 
     }
 
-    var meat = ['beef', 'Beef', 'Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken']
 
-    var ConDairy = []
-    var ConGluten = []
-    var ConNut = []
-    var ConEgg = []
-    var ConPeanut = []
-    var ConCelery = []
-    var ConCrustacean = []
-    var ConFish = []
-    var ConLupin = []
-    var ConMolluscs = []
-    var ConMustard = []
-    var ConSesame = []
-    var ConSoya = []
-    var ConSulphites = []
-    // for vegan and vegeterian a need another function
-    var Vegan = []
-    var Vegeterian = []
 
-    //console.log(Vegan)
     function Contain(input, title) {
         var containText = input.split(',')
         //console.log(containText, title)
@@ -280,18 +282,8 @@
                 const found = num.find(element => element.toLowerCase() == all.toLowerCase())
 
                 if (found != undefined) {
-                    //console.log(found)
                     if (found === all || found === all.toLowerCase()) {
-                        //console.log(title)
                         ConDairy.push(title)
-                        // NEED to look into this
-                        meat.forEach(m => {
-                            //console.log(m)
-                            if (found !== m) {
-                                console.log(title)
-                            }
-                        })
-
                     }
                 }
 
@@ -401,6 +393,26 @@
 
 
         })
+    }
+
+    function VegeterianOption(arrey) {
+        var meat = ['beef', 'Beef', 'Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken']
+
+        meat.forEach(m => {
+            arrey.forEach(title => {
+                var titleArr = title.split(/\s+/)
+                titleArr.forEach(e => {
+                    if (e.toLowerCase() === m.toLowerCase()) {
+                        console.log(title)
+                    }
+                })
+
+
+            })
+
+        })
+
+
     }
 
 </script>
