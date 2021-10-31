@@ -169,10 +169,17 @@
     var ConSoya = []
     var ConSulphites = []
     // for vegan and vegeterian a need another function
-    var Vegan = []
+    var tempVegan = new Set()
+    //console.log(tempVegan)
+
+
+    var NewVegan = new Set()
+    var Vegan = new Set()
     var Vegeterian = new Set()
-    console.log(Vegeterian)
+
+    console.log(Vegan)
     var meatDishes = new Set()
+
 
 
     async function getDataDish(url) {
@@ -202,12 +209,14 @@
         })
         Dish.forEach(e => {
             Vegeterian.add(e)
+            Vegan.add(e)
             DataRecipe.forEach(recipe => {
                 if (e.dish === recipe.dish)
                     //console.log(recipe.recipe, '->', e.title)
 
                     Contain(recipe.recipe, e.title)
                 MeatOption(ConDairy)
+                VeganOption(tempVegan)
             })
         })
 
@@ -220,6 +229,13 @@
                 }
             })
 
+        })
+        Vegan.forEach(item => {
+            NewVegan.forEach(e => {
+                if (item.title === e) {
+                    Vegan.delete(item)
+                }
+            })
         })
     }
     /*
@@ -306,6 +322,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConGluten.push(title)
+                    tempVegan.add(title)
 
                 }
             })
@@ -314,6 +331,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConNut.push(title)
+                    tempVegan.add(title)
                 }
             })
             eggs.forEach(all => {
@@ -328,6 +346,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConPeanut.push(title)
+                    tempVegan.add(title)
                 }
             })
             celery.forEach(all => {
@@ -335,6 +354,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConCelery.push(title)
+                    tempVegan.add(title)
                 }
             })
 
@@ -359,6 +379,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConLupin.push(title)
+                    tempVegan.add(title)
                 }
             })
             molluscs.forEach(all => {
@@ -374,6 +395,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConMustard.push(title)
+                    tempVegan.add(title)
 
                 }
             })
@@ -382,6 +404,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConSesame.push(title)
+                    tempVegan.add(title)
 
                 }
             })
@@ -390,6 +413,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConSoya.push(title)
+                    tempVegan.add(title)
 
                 }
             })
@@ -398,6 +422,7 @@
                 if (found === all || found === all.toLowerCase()) {
                     //console.log(title)
                     ConSulphites.push(title)
+                    tempVegan.add(title)
 
                 }
             })
@@ -424,6 +449,25 @@
         })
     }
 
+    function VeganOption(input) {
+        var noVegan = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Eggs', 'Egg', 'Yolks',
+            'Yolk', 'Butter', 'Fish', 'Mussels', 'Mussel', 'Oysters', 'Oyster', 'Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster',
+            'Lobsters', 'Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese']
+
+        input.forEach(title => {
+            //console.log(title)
+            var titleArrey = title.split(/\s+/)
+            noVegan.forEach(item => {
+                //console.log(titleArrey)
+                titleArrey.forEach(t => {
+                    if (t.toLowerCase().includes(item.toLowerCase())) {
+                        NewVegan.add(title)
+                    }
+                })
+
+            })
+        })
+    }
 
 </script>
 {% endblock %}
