@@ -170,7 +170,10 @@
     var ConSulphites = []
     // for vegan and vegeterian a need another function
     var Vegan = []
-    var Vegeterian = []
+    var Vegeterian = new Set()
+    console.log(Vegeterian)
+    var meatDishes = new Set()
+
 
     async function getDataDish(url) {
         const res = await fetch(url)
@@ -198,18 +201,26 @@
 
         })
         Dish.forEach(e => {
+            Vegeterian.add(e)
             DataRecipe.forEach(recipe => {
                 if (e.dish === recipe.dish)
-                    //console.log(recipe.recipe)
+                    //console.log(recipe.recipe, '->', e.title)
 
                     Contain(recipe.recipe, e.title)
+                MeatOption(ConDairy)
             })
-            //VEVVI function
-            VegeterianOption(ConLupin)
-
         })
 
+        Vegeterian.forEach(item => {
 
+            meatDishes.forEach(e => {
+                if (item.title === e) {
+                    //console.log(item.title, '->', e)
+                    Vegeterian.delete(item)
+                }
+            })
+
+        })
     }
     /*
     var v = []
@@ -395,25 +406,24 @@
         })
     }
 
-    function VegeterianOption(arrey) {
-        var meat = ['beef', 'Beef', 'Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken']
 
-        meat.forEach(m => {
-            arrey.forEach(title => {
-                var titleArr = title.split(/\s+/)
-                titleArr.forEach(e => {
-                    if (e.toLowerCase() === m.toLowerCase()) {
-                        console.log(title)
-                    }
-                })
+    /**
+    for (const item of VegeterianVQ) {
+        console.log(item)
+    }*/
+    function MeatOption(input) {
+        var meat = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef',]
+        input.forEach(title => {
+            var titleArr = title.split(/\s+/)
+            meat.forEach(m => {
+                if (title.toLowerCase().includes(m.toLowerCase())) {
+                    meatDishes.add(title)
 
-
+                }
             })
-
         })
-
-
     }
+
 
 </script>
 {% endblock %}
