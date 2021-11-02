@@ -31,8 +31,9 @@
     var NewVegan = new Set()
     var Vegan = new Set()
     var Vegeterian = new Set()
+    var Glutefree = new Set()
 
-    console.log(Vegan)
+    console.log(Glutefree)
     var meatDishes = new Set()
 
 
@@ -72,7 +73,18 @@
                     Contain(recipe.recipe, e.title)
                 MeatOption(ConDairy)
                 VeganOption(tempVegan)
+                //Gluten Free option 
+                if(e.dish) {
+                    ConGluten.forEach(title => {
+                        if(!title.includes(e.dish)){
+                            Glutefree.add(e)
+                        }
+                        
+                    })
+                    
+                }
             })
+           
         })
 
         // saving vegetarian options
@@ -108,6 +120,8 @@
             })
 
         })
+        //Glutefree option
+
     }
     /*
     var v = []
@@ -338,5 +352,9 @@
 
             })
         })
+    }
+
+    function GlutenFree(input) {
+
     }
 
