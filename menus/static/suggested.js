@@ -26,14 +26,15 @@
     // for vegan and vegeterian a need another function
     var tempVegan = new Set()
     //console.log(tempVegan)
-
-
+    
     var NewVegan = new Set()
     var Vegan = new Set()
     var Vegeterian = new Set()
     var Glutefree = new Set()
+    var NutFree = new Set()
 
-    console.log(Glutefree)
+    console.log(ConPeanut)
+    console.log(NutFree)
     var meatDishes = new Set()
 
 
@@ -82,6 +83,32 @@
                         
                     })
                     
+                }
+                // Peanutfree option
+                if(e.dish){
+                    
+                    ConPeanut.forEach(title => {
+                      
+                        if(!title.includes(e)){
+                           NutFree.add(e)
+                            const nuts = ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
+                                            'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut',
+                                            'Coconuts', 'Peanut', 'Peanuts', 'Peanutbutter', 'Peanut butter']
+                            var recipeVlaue = e.recipe.split(/\s+/)
+                            recipeVlaue.forEach(r => {
+                               
+                                nuts.forEach(nut => {
+                                    if(r.toLowerCase() === nut.toLowerCase() || r.toLowerCase() === nut.toLowerCase() + ','){
+                                       NutFree.delete(e)
+                                    }
+                                })
+                                
+                            })
+                            
+                            
+                           
+                        }
+                    })
                 }
             })
            
