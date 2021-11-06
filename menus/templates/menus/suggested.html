@@ -10,6 +10,30 @@
         display: flexbox;
         flex-wrap: wrap;
     }
+
+    .buttons {
+        display: flexbox;
+        flex-wrap: wrap;
+
+    }
+
+    button {
+        border: 1px solid #000;
+        border-radius: 3px;
+        height: 30px;
+        width: auto;
+        margin: 10px 20px;
+        font-size: 16px;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    button:active {
+
+        transform: scale(90%);
+    }
 </style>
 
 {% endblock %}
@@ -23,7 +47,7 @@
 <p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>
 
 <h1 id="drinktitle"></h1>
-
+<!--
 <div class="menu-container">
     <div class="dish-container">
         <p>Your Starter course today:</p>
@@ -34,7 +58,9 @@
         <!--<a href="/media/{{dish1.image}}">
             <img id="pic" src="/media/{{dish1.image}}" alt="" width="400" height="300"></img>
         </a>-->
+<!--
 
+       
         <div class="description" id="starter-description">
 
         </div>
@@ -42,10 +68,10 @@
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
             <div class="drink" id="starter">
 
-                <!-- <input type="button" value="" id="starter">-->
+                <!-- <input type="button" value="" id="starter">
             </div>
-        </div>
-        <div class="contain" id="starter_alergy">
+        </div>-->
+<!--<div class="contain" id="starter_alergy">
             <h2>Contains:</h2>
             <div class="allergy" hidden></div>
             <div class="soya" hidden></div>
@@ -71,7 +97,7 @@
         <!--<a href="/media/{{dish.image}}">
             <img id="pic" src="/media/{{dish.image}}" alt="" width="400" height="300"></img>
         </a>-->
-        <div class="description" id="main-description">
+<!--<div class="description" id="main-description">
 
         </div>
         <div class="container-drinks">
@@ -107,7 +133,7 @@
         <!--<a href="/media/{{dish2.image}}">
             <img id="pic" src="/media/{{dish2.image}}" alt="" width="400" height="300"></img>
         </a>-->
-        <div class="description" id="dessert-description">
+<!--<div class="description" id="dessert-description">
 
         </div>
         <div class="container-drinks">
@@ -138,6 +164,14 @@
         </div>
     </div>
 
+</div> -->
+
+<div class="buttons">
+    <button>Gluten Free</button>
+    <button>Peanut Free</button>
+    <button>Nut Free</button>
+    <button>Vegeterian</button>
+    <button>Vegan</button>
 </div>
 <div class="ul">
     <ul id="js_input">
