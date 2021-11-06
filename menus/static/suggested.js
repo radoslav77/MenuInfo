@@ -411,3 +411,5 @@
 
     }
 
+const ButtonEl = document.querySelector('.buttons')
+console.log(ButtonEl)

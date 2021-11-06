@@ -180,6 +180,12 @@
 </div>
 
 <script src="{% static 'suggested.js' %}"></script>
-
+<script>
+    const ButtonsEl = document.querySelector('.buttons').children
+    //console.log(ButtonEl)
+    for (let i = 0; i < ButtonsEl.length; i++) {
+        console.log(ButtonsEl[i])
+    }
+</script>
 
 {% endblock %}
