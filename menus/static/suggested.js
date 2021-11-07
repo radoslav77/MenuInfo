@@ -73,11 +73,12 @@
                     //console.log(recipe.recipe, '->', e.title)
 
                     Contain(recipe.recipe, e.title)
-                MeatOption(ConDairy)
-                VeganOption(tempVegan)
+                //MeatOption(ConDairy)
+                //VeganOption(tempVegan)
                 //Gluten Free option 
                 if(e.dish) {
                     ConGluten.forEach(title => {
+                       
                         if(!title.includes(e.dish)){
                             Glutefree.add(e)
                         }
@@ -142,11 +143,21 @@
         // saving vegetarian options
         Vegeterian.forEach(item => {
             meatDishes.forEach(e => {
+                
                 if (item.title === e) {
+                    //console.log(item.title, '-', e)
                     Vegeterian.delete(item)
                 }
             })
-
+            var meat = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Fish', 'salmon', 'bass']
+            var VeggRecArr = item.recipe.split(/\s+/)
+            VeggRecArr.forEach( e => {
+                meat.forEach(m => {
+                    if (e.toLowerCase() === m.toLowerCase() || e.toLowerCase() === m.toLowerCase() + ',') {
+                        Vegeterian.delete(item)
+                    }
+                })
+            })
         })
         //saving vegan options 
         Vegan.forEach(item => {
@@ -376,14 +387,19 @@
         console.log(item)
     }*/
     function MeatOption(input) {
-        var meat = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef',]
+        var meat = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Fish', 'salmon', 'bass']
         input.forEach(title => {
+            
             var titleArr = title.split(/\s+/)
             meat.forEach(m => {
-                if (title.toLowerCase().includes(m.toLowerCase())) {
+               titleArr.forEach(t => {                   
+                    if (t.toLowerCase().includes(m.toLowerCase())) {
                     meatDishes.add(title)
-
+                   
                 }
+               }) 
+
+
             })
         })
     }
