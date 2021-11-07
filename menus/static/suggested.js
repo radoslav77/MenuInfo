@@ -46,7 +46,7 @@
 
         data.forEach(element => {
             DataDish.push(element)
-            CreateEl(element)
+            //CreateEl(element)
         });
 
     }
@@ -407,9 +407,53 @@
         })
     }
 
-    function GlutenFree(input) {
 
+//Buttons to deffrent type of allergy free dishes
+    const ButtonsEl = document.querySelector('.buttons').children
+    //console.log(ButtonEl)
+    for (let i = 0; i < ButtonsEl.length; i++) {
+        //console.log(ButtonsEl[i])
+        ButtonsEl[i].addEventListener('click', () => {
+            const value = ButtonsEl[i].innerHTML
+            const input = document.getElementById('js_input').children
+            //console.log(input.length)
+            document.getElementById('js_input').innerHTML = ''
+            if (input.length < 1 ) {
+                if (value === 'Gluten Free') {
+                    //console.log('glutenfree')
+                    Glutefree.forEach(element => {
+                        CreateEl(element)
+                    })
+                
+                }
+                if (value === 'Nut Free') {
+                    //console.log('nutfree')
+                    NutFree.forEach(element => {
+                        CreateEl(element)
+                    })
+
+                }
+                if (value === 'Peanut Free') {
+                    //console.log('peanutfree')
+                    PeaNutFree.forEach(element => {
+                        CreateEl(element)
+                    })
+                }
+                if (value === 'Vegan') {
+                    //console.log('vegan')
+                    Vegan.forEach(element => {
+                        CreateEl(element)
+                    })
+                }
+                if (value === 'Vegeterian') {
+                    //console.log('veggy')
+                    Vegeterian.forEach(element => {
+                        CreateEl(element)
+                    })
+                }
+            } 
+
+
+
+        })
     }
-
-const ButtonEl = document.querySelector('.buttons')
-console.log(ButtonEl)

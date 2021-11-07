@@ -71,6 +71,7 @@ def alergy(request):
             'title': i.title,
             'dish': i.for_dish,
             'recipe': i.recipe,
+            'type': i.selector,
         })
     # print(recipe_data)
     return HttpResponse(json.dumps(recipe_data), content_type="application/json")

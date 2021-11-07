@@ -181,32 +181,7 @@
 
 <script src="{% static 'suggested.js' %}"></script>
 <script>
-    const ButtonsEl = document.querySelector('.buttons').children
-    //console.log(ButtonEl)
-    for (let i = 0; i < ButtonsEl.length; i++) {
-        //console.log(ButtonsEl[i])
-        ButtonsEl[i].addEventListener('click', () => {
-            const value = ButtonsEl[i].innerHTML
-            if (value === 'Gluten Free') {
-                console.log('glutenfree')
-            }
-            if (value === 'Nut Free') {
-                console.log('nutfree')
 
-            }
-            if (value === 'Peanut Free') {
-                console.log('peanutfree')
-            }
-            if (value === 'Vegan') {
-                console.log('vegan')
-            }
-            if (value === 'Vegeterian') {
-                console.log('veggy')
-            }
-
-
-        })
-    }
 </script>
 
 {% endblock %}
