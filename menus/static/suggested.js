@@ -81,7 +81,6 @@
                         if(!title.includes(e.dish)){
                             Glutefree.add(e)
                         }
-                        
                     })
                     
                 }
@@ -152,14 +151,16 @@
         //saving vegan options 
         Vegan.forEach(item => {
             NewVegan.forEach(e => {
+               
                 if (item.title === e) {
+                    //console.log(item.title,'-',e)
                     Vegan.delete(item)
                 }
             })
 
             var noVegan = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Eggs', 'Egg', 'Yolks',
                 'Yolk', 'Butter', 'Fish', 'Mussels', 'Mussel', 'Oysters', 'Oyster', 'Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster',
-                'Lobsters', 'Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'salmon', 'bass', 'bass']
+                'Lobsters', 'Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'fraiche', 'salmon', 'bass', 'bass']
             var recArr = item.recipe.split(/\s+/)
             recArr.forEach(e => {
                 noVegan.forEach(type => {
@@ -199,7 +200,7 @@
     }
 
     const allergen = {
-        dairy: ['Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese'],
+        dairy: ['Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'fraiche'],
         gluten: ['Flour', 'Oats', 'Barley', 'Waffle'],
         nuts: ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
             'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut', 'Coconuts'],
