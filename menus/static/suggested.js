@@ -439,33 +439,50 @@
                 if (value === 'Gluten Free') {
                     //console.log('glutenfree')
                     Glutefree.forEach(element => {
-                        CreateEl(element)
+                        if(element.dish === element.title){
+                            //console.log(element.dish, '->', element.title)
+                            CreateEl(element)
+                        }
                     })
                 
                 }
                 if (value === 'Nut Free') {
                     //console.log('nutfree')
                     NutFree.forEach(element => {
-                        CreateEl(element)
+                        if(element.dish === element.title){
+                            //console.log(element.dish, '->', element.title)
+                            CreateEl(element)
+                        }
                     })
 
                 }
                 if (value === 'Peanut Free') {
                     //console.log('peanutfree')
                     PeaNutFree.forEach(element => {
-                        CreateEl(element)
+                        if(element.dish === element.title){
+                            //console.log(element.dish, '->', element.title)
+                            CreateEl(element)
+                        }
+
                     })
                 }
                 if (value === 'Vegan') {
                     //console.log('vegan')
                     Vegan.forEach(element => {
-                        CreateEl(element)
+                        if(element.dish === element.title){
+                            //console.log(element.dish, '->', element.title)
+                            CreateEl(element)
+                        }
                     })
                 }
                 if (value === 'Vegeterian') {
                     //console.log('veggy')
                     Vegeterian.forEach(element => {
-                        CreateEl(element)
+                        //console.log(element.title, '-', element.dish)
+                        if(element.dish === element.title){
+                            //console.log(element.dish, '->', element.title)
+                            CreateEl(element)
+                        }
                     })
                 }
             } 
