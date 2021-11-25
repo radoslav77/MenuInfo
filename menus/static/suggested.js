@@ -435,13 +435,31 @@
             const input = document.getElementById('js_input').children
             //console.log(input.length)
             document.getElementById('js_input').innerHTML = ''
+            
             if (input.length < 1 ) {
                 if (value === 'Gluten Free') {
                     //console.log('glutenfree')
                     Glutefree.forEach(element => {
                         if(element.dish === element.title){
-                            //console.log(element.dish, '->', element.title)
+                            //console.log(element.type, '->', element.title)
+                            const CreateHTag = document.createElement('h5')
+                            if (element.type === 'starter'){
+                               
+                                CreateHTag.innerHTML = 'Starters'
+                                document.getElementById('js_input').appendChild(CreateHTag)
+                                
+                            }
+                            else if (element.type === 'main'){
+                                CreateHTag.innerHTML = 'Mains'
+                                document.getElementById('js_input').appendChild(CreateHTag)
+                            }
+                            else if (element.type === 'dessert'){
+                                CreateHTag.innerHTML = 'Desserts'
+                                document.getElementById('js_input').appendChild(CreateHTag)
+                            }
+                            
                             CreateEl(element)
+                            
                         }
                     })
                 
