@@ -439,68 +439,262 @@
             if (input.length < 1 ) {
                 if (value === 'Gluten Free') {
                     //console.log('glutenfree')
+                    const CreateHTagStarters = document.createElement('h5')
+                    const CreateHTagMains = document.createElement('h5')
+                    const CreateHTagDesserts = document.createElement('h5')
+                    let starterGroup = new Set()
+                    let mainGroup = new Set()
+                    let dessertGroup = new Set()
                     Glutefree.forEach(element => {
-                        if(element.dish === element.title){
-                            //console.log(element.type, '->', element.title)
-                            const CreateHTag = document.createElement('h5')
+                        if(element.dish === element.title){                           
+
                             if (element.type === 'starter'){
-                               
-                                CreateHTag.innerHTML = 'Starters'
-                                document.getElementById('js_input').appendChild(CreateHTag)
                                 
+                                starterGroup.add(element)                             
+                                 
                             }
                             else if (element.type === 'main'){
-                                CreateHTag.innerHTML = 'Mains'
-                                document.getElementById('js_input').appendChild(CreateHTag)
+                                
+                                mainGroup.add(element)
+
                             }
                             else if (element.type === 'dessert'){
-                                CreateHTag.innerHTML = 'Desserts'
-                                document.getElementById('js_input').appendChild(CreateHTag)
+                                
+                                dessertGroup.add(element)
+
                             }
                             
-                            CreateEl(element)
-                            
                         }
+
                     })
-                
+                    CreateHTagStarters.innerHTML = 'Starters'
+                    document.getElementById('js_input').appendChild(CreateHTagStarters)
+                    starterGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
+                    })
+                    CreateHTagMains.innerHTML = 'Mains'
+                    document.getElementById('js_input').appendChild(CreateHTagMains)
+                    mainGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
+                    })
+                    CreateHTagDesserts.innerHTML = 'Desserts'
+                    document.getElementById('js_input').appendChild(CreateHTagDesserts)
+                    dessertGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
+                    })
                 }
                 if (value === 'Nut Free') {
-                    //console.log('nutfree')
+                    const CreateHTagStarters = document.createElement('h5')
+                    const CreateHTagMains = document.createElement('h5')
+                    const CreateHTagDesserts = document.createElement('h5')
+                    let starterGroup = new Set()
+                    let mainGroup = new Set()
+                    let dessertGroup = new Set()
                     NutFree.forEach(element => {
-                        if(element.dish === element.title){
-                            //console.log(element.dish, '->', element.title)
-                            CreateEl(element)
+                        if(element.dish === element.title){                           
+
+                            if (element.type === 'starter'){
+                                
+                                starterGroup.add(element)                             
+                                 
+                            }
+                            else if (element.type === 'main'){
+                                
+                                mainGroup.add(element)
+
+                            }
+                            else if (element.type === 'dessert'){
+                                
+                                dessertGroup.add(element)
+
+                            }
+                            
                         }
+
+                    })
+                    CreateHTagStarters.innerHTML = 'Starters'
+                    document.getElementById('js_input').appendChild(CreateHTagStarters)
+                    starterGroup.forEach(item => {
+                        
+                        CreateEl(item)
+
+                    })
+                    CreateHTagMains.innerHTML = 'Mains'
+                    document.getElementById('js_input').appendChild(CreateHTagMains)
+                    mainGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
+                    })
+                    CreateHTagDesserts.innerHTML = 'Desserts'
+                    document.getElementById('js_input').appendChild(CreateHTagDesserts)
+                    dessertGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
                     })
 
                 }
                 if (value === 'Peanut Free') {
                     //console.log('peanutfree')
+                    const CreateHTagStarters = document.createElement('h5')
+                    const CreateHTagMains = document.createElement('h5')
+                    const CreateHTagDesserts = document.createElement('h5')
+                    let starterGroup = new Set()
+                    let mainGroup = new Set()
+                    let dessertGroup = new Set()
                     PeaNutFree.forEach(element => {
-                        if(element.dish === element.title){
-                            //console.log(element.dish, '->', element.title)
-                            CreateEl(element)
+                        if(element.dish === element.title){                           
+
+                            if (element.type === 'starter'){
+                                
+                                starterGroup.add(element)                             
+                                 
+                            }
+                            else if (element.type === 'main'){
+                                
+                                mainGroup.add(element)
+
+                            }
+                            else if (element.type === 'dessert'){
+                                
+                                dessertGroup.add(element)
+
+                            }
+                            
                         }
+
+                    })
+                    CreateHTagStarters.innerHTML = 'Starters'
+                    document.getElementById('js_input').appendChild(CreateHTagStarters)
+                    starterGroup.forEach(item => {
+                        
+                        CreateEl(item)
+
+                    })
+                    CreateHTagMains.innerHTML = 'Mains'
+                    document.getElementById('js_input').appendChild(CreateHTagMains)
+                    mainGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
+                    })
+                    CreateHTagDesserts.innerHTML = 'Desserts'
+                    document.getElementById('js_input').appendChild(CreateHTagDesserts)
+                    dessertGroup.forEach(item => {
+                       
+                        CreateEl(item)
 
                     })
                 }
                 if (value === 'Vegan') {
                     //console.log('vegan')
+                    const CreateHTagStarters = document.createElement('h4')
+                    const CreateHTagMains = document.createElement('h4')
+                    const CreateHTagDesserts = document.createElement('h4')
+                    let starterGroup = new Set()
+                    let mainGroup = new Set()
+                    let dessertGroup = new Set()
                     Vegan.forEach(element => {
-                        if(element.dish === element.title){
-                            //console.log(element.dish, '->', element.title)
-                            CreateEl(element)
+                        if(element.dish === element.title){                           
+
+                            if (element.type === 'starter'){
+                                
+                                starterGroup.add(element)                             
+                                 
+                            }
+                            else if (element.type === 'main'){
+                                
+                                mainGroup.add(element)
+
+                            }
+                            else if (element.type === 'dessert'){
+                                
+                                dessertGroup.add(element)
+
+                            }
+                            
                         }
+
+                    })
+                    CreateHTagStarters.innerHTML = 'Starters'
+                    document.getElementById('js_input').appendChild(CreateHTagStarters)
+                    starterGroup.forEach(item => {
+                        
+                        CreateEl(item)
+
+                    })
+                    CreateHTagMains.innerHTML = 'Mains'
+                    document.getElementById('js_input').appendChild(CreateHTagMains)
+                    mainGroup.forEach(item => {
+                        
+                        CreateEl(item)
+
+                    })
+                    CreateHTagDesserts.innerHTML = 'Desserts'
+                    document.getElementById('js_input').appendChild(CreateHTagDesserts)
+                    dessertGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
                     })
                 }
                 if (value === 'Vegeterian') {
                     //console.log('veggy')
+                    const CreateHTagStarters = document.createElement('h5')
+                    const CreateHTagMains = document.createElement('h5')
+                    const CreateHTagDesserts = document.createElement('h5')
+                    let starterGroup = new Set()
+                    let mainGroup = new Set()
+                    let dessertGroup = new Set()
                     Vegeterian.forEach(element => {
-                        //console.log(element.title, '-', element.dish)
-                        if(element.dish === element.title){
-                            //console.log(element.dish, '->', element.title)
-                            CreateEl(element)
+                        if(element.dish === element.title){                           
+
+                            if (element.type === 'starter'){
+                                
+                                starterGroup.add(element)                             
+                                 
+                            }
+                            else if (element.type === 'main'){
+                                
+                                mainGroup.add(element)
+
+                            }
+                            else if (element.type === 'dessert'){
+                                
+                                dessertGroup.add(element)
+
+                            }
+                            
                         }
+
+                    })
+                    CreateHTagStarters.innerHTML = 'Starters'
+                    document.getElementById('js_input').appendChild(CreateHTagStarters)
+                    starterGroup.forEach(item => {
+                        
+                        CreateEl(item)
+
+                    })
+                    CreateHTagMains.innerHTML = 'Mains'
+                    document.getElementById('js_input').appendChild(CreateHTagMains)
+                    mainGroup.forEach(item => {
+                       
+                        CreateEl(item)
+
+                    })
+                    CreateHTagDesserts.innerHTML = 'Desserts'
+                    document.getElementById('js_input').appendChild(CreateHTagDesserts)
+                    dessertGroup.forEach(item => {
+                        
+                        CreateEl(item)
+
                     })
                 }
             } 
