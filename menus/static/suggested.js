@@ -34,8 +34,8 @@
     var PeaNutFree = new Set()
     var NutFree = new Set()
 
-    console.log(ConPeanut)
-    console.log(PeaNutFree)
+    //console.log(ConPeanut)
+    //console.log(PeaNutFree)
     var meatDishes = new Set()
 
 
@@ -700,3 +700,22 @@
 
         })
     }
+
+    const ButtonMainChoice = document.getElementById('mainChoice').children
+    
+    for (let i = 0; i < ButtonMainChoice.length; i++) {
+        //console.log(ButtonMainChoice[i])
+        ButtonMainChoice[i].addEventListener('click', ()=>{
+            if(ButtonMainChoice[i].innerHTML === 'Starters'){
+                console.log(123)
+            }
+            else if(ButtonMainChoice[i].innerHTML === 'Mains'){
+                console.log(456)
+            }
+            else if(ButtonMainChoice[i].innerHTML === 'Desserts'){
+                console.log(789)
+            }
+        })
+    }
+
+ 
