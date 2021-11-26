@@ -73,9 +73,6 @@
                     //console.log(recipe.recipe, '->', e.title)
 
                     Contain(recipe.recipe, e.title)
-                //MeatOption(ConDairy)
-                //VeganOption(tempVegan)
-                //Gluten Free option 
                 if(e.dish) {
                     ConGluten.forEach(title => {
                        
@@ -95,6 +92,7 @@
                             const nuts = ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
                                             'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut',
                                             'Coconuts', 'Peanut', 'Peanuts', 'Peanutbutter', 'Peanut butter']
+                            // removing all peanut products
                             var recipeVlaue = e.recipe.split(/\s+/)
                             recipeVlaue.forEach(r => {
                                
@@ -112,7 +110,7 @@
                     })
                 }
                 if(e.dish){
-                    
+                    // function for all nut products
                     ConNut.forEach(title => {
                       
                         if(!title.includes(e)){
@@ -120,6 +118,7 @@
                             const nuts = ['Almonds', 'Almond', 'Walnuts', 'Walnut', 'Pecans', 'Pecan', 'Cashews', 'Cashew', 'Pistachios', 'Pistachio', 'Hazelnuts', 'Hazelnut',
                                             'Brazil', 'Brazils', 'Macadamia', 'Macadamias', 'Chestnut', 'Chestnuts', 'Filbert', 'Filberts', 'Hickory', 'Hickories', 'Pinenuts', 'Pinenut', 'Pine', 'Coconut',
                                             'Coconuts', 'Peanut', 'Peanuts', 'Peanutbutter', 'Peanut butter']
+                            // removing of all nut products
                             var recipeVlaue = e.recipe.split(/\s+/)
                             recipeVlaue.forEach(r => {
                                
@@ -149,7 +148,9 @@
                     Vegeterian.delete(item)
                 }
             })
+            // list of all meat products
             var meat = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Fish', 'salmon', 'bass']
+            // removing all meat products 
             var VeggRecArr = item.recipe.split(/\s+/)
             VeggRecArr.forEach( e => {
                 meat.forEach(m => {
@@ -168,10 +169,11 @@
                     Vegan.delete(item)
                 }
             })
-
+            // list of non vegan products
             var noVegan = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Eggs', 'Egg', 'Yolks',
                 'Yolk', 'Butter', 'Fish', 'Mussels', 'Mussel', 'Oysters', 'Oyster', 'Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster',
                 'Lobsters', 'Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'fraiche', 'salmon', 'bass', 'bass']
+            // removing all non vegan titles from the set
             var recArr = item.recipe.split(/\s+/)
             recArr.forEach(e => {
                 noVegan.forEach(type => {
@@ -185,7 +187,7 @@
             })
 
         })
-        //Glutefree option
+        
 
     }
     /*
@@ -201,7 +203,7 @@
 
     // console.log(DataRecipe, '->', DataDish, '->', Dish)
 
-
+    // Function to create a elements with links
     function CreateEl(arr) {
         var createUl = document.createElement('a')
         createUl.innerHTML = arr.title
@@ -209,7 +211,7 @@
         createUl.href = `/detail/${Nametitle}`
         document.getElementById('js_input').appendChild(createUl)
     }
-
+// dictionary of all allergens 
     const allergen = {
         dairy: ['Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'fraiche'],
         gluten: ['Flour', 'Oats', 'Barley', 'Waffle'],
@@ -230,7 +232,7 @@
     }
 
 
-
+// function to determain all types of allergans 
     function Contain(input, title) {
         var containText = input.split(',')
         //console.log(containText, title)
@@ -386,6 +388,8 @@
     for (const item of VegeterianVQ) {
         console.log(item)
     }*/
+
+    // function to determain which dish is with meat
     function MeatOption(input) {
         var meat = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Fish', 'salmon', 'bass']
         input.forEach(title => {
@@ -404,6 +408,7 @@
         })
     }
 
+// function for vegan input
     function VeganOption(input) {
         var noVegan = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Eggs', 'Egg', 'Yolks',
             'Yolk', 'Butter', 'Fish', 'Mussels', 'Mussel', 'Oysters', 'Oyster', 'Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster',
@@ -435,38 +440,35 @@
             const input = document.getElementById('js_input').children
             //console.log(input.length)
             document.getElementById('js_input').innerHTML = ''
-            
+            // determains if only one button is clicked
             if (input.length < 1 ) {
+                // determains which button is clicked
                 if (value === 'Gluten Free') {
-                    //console.log('glutenfree')
-                    const CreateHTagStarters = document.createElement('h5')
-                    const CreateHTagMains = document.createElement('h5')
-                    const CreateHTagDesserts = document.createElement('h5')
+                   // if gluten free option
+                   // Create tags for the types of dish
+                   // inputs dish names 
+                    const CreateHTagStarters = document.createElement('h4')
+                    const CreateHTagMains = document.createElement('h4')
+                    const CreateHTagDesserts = document.createElement('h4')
+                    //saves dishs into groups
                     let starterGroup = new Set()
                     let mainGroup = new Set()
                     let dessertGroup = new Set()
                     Glutefree.forEach(element => {
                         if(element.dish === element.title){                           
-
-                            if (element.type === 'starter'){
-                                
-                                starterGroup.add(element)                             
-                                 
+                            if (element.type === 'starter'){                               
+                                starterGroup.add(element)                                                              
                             }
                             else if (element.type === 'main'){
-                                
                                 mainGroup.add(element)
-
                             }
                             else if (element.type === 'dessert'){
-                                
                                 dessertGroup.add(element)
-
-                            }
-                            
+                            }                            
                         }
 
                     })
+                    // Creats starter group and tag
                     CreateHTagStarters.innerHTML = 'Starters'
                     document.getElementById('js_input').appendChild(CreateHTagStarters)
                     starterGroup.forEach(item => {
@@ -474,6 +476,7 @@
                         CreateEl(item)
 
                     })
+                    // Creats main group and tag
                     CreateHTagMains.innerHTML = 'Mains'
                     document.getElementById('js_input').appendChild(CreateHTagMains)
                     mainGroup.forEach(item => {
@@ -481,6 +484,7 @@
                         CreateEl(item)
 
                     })
+                    // Create dessert group and tag 
                     CreateHTagDesserts.innerHTML = 'Desserts'
                     document.getElementById('js_input').appendChild(CreateHTagDesserts)
                     dessertGroup.forEach(item => {
@@ -490,34 +494,30 @@
                     })
                 }
                 if (value === 'Nut Free') {
-                    const CreateHTagStarters = document.createElement('h5')
-                    const CreateHTagMains = document.createElement('h5')
-                    const CreateHTagDesserts = document.createElement('h5')
+                    // if nut free option
+                    // Create tags for the types of dish
+                    // inputs dish names
+                    const CreateHTagStarters = document.createElement('h4')
+                    const CreateHTagMains = document.createElement('h4')
+                    const CreateHTagDesserts = document.createElement('h4')
+                    //saves dishs into groups
                     let starterGroup = new Set()
                     let mainGroup = new Set()
                     let dessertGroup = new Set()
                     NutFree.forEach(element => {
                         if(element.dish === element.title){                           
-
-                            if (element.type === 'starter'){
-                                
-                                starterGroup.add(element)                             
-                                 
+                            if (element.type === 'starter'){                                
+                                starterGroup.add(element)                                                              
                             }
-                            else if (element.type === 'main'){
-                                
+                            else if (element.type === 'main'){                                
                                 mainGroup.add(element)
-
                             }
-                            else if (element.type === 'dessert'){
-                                
+                            else if (element.type === 'dessert'){                                
                                 dessertGroup.add(element)
-
-                            }
-                            
+                            }                            
                         }
-
                     })
+                    // Creats starter group and tag
                     CreateHTagStarters.innerHTML = 'Starters'
                     document.getElementById('js_input').appendChild(CreateHTagStarters)
                     starterGroup.forEach(item => {
@@ -525,6 +525,7 @@
                         CreateEl(item)
 
                     })
+                    // Creats main group and tag
                     CreateHTagMains.innerHTML = 'Mains'
                     document.getElementById('js_input').appendChild(CreateHTagMains)
                     mainGroup.forEach(item => {
@@ -532,6 +533,7 @@
                         CreateEl(item)
 
                     })
+                    // Create dessert group and tag 
                     CreateHTagDesserts.innerHTML = 'Desserts'
                     document.getElementById('js_input').appendChild(CreateHTagDesserts)
                     dessertGroup.forEach(item => {
@@ -541,36 +543,32 @@
                     })
 
                 }
+                // determains which button is clicked
                 if (value === 'Peanut Free') {
-                    //console.log('peanutfree')
-                    const CreateHTagStarters = document.createElement('h5')
-                    const CreateHTagMains = document.createElement('h5')
-                    const CreateHTagDesserts = document.createElement('h5')
+                    // if peanut free option
+                    // Create tags for the types of dish
+                    // inputs dish names
+                    const CreateHTagStarters = document.createElement('h4')
+                    const CreateHTagMains = document.createElement('h4')
+                    const CreateHTagDesserts = document.createElement('h4')
+                    //saves dishs into groups
                     let starterGroup = new Set()
                     let mainGroup = new Set()
                     let dessertGroup = new Set()
                     PeaNutFree.forEach(element => {
                         if(element.dish === element.title){                           
-
-                            if (element.type === 'starter'){
-                                
-                                starterGroup.add(element)                             
-                                 
+                            if (element.type === 'starter'){                                
+                                starterGroup.add(element)                                                              
                             }
-                            else if (element.type === 'main'){
-                                
+                            else if (element.type === 'main'){                                
                                 mainGroup.add(element)
-
                             }
-                            else if (element.type === 'dessert'){
-                                
+                            else if (element.type === 'dessert'){                                
                                 dessertGroup.add(element)
-
-                            }
-                            
+                            }                            
                         }
-
                     })
+                    // Creats starter group and tag
                     CreateHTagStarters.innerHTML = 'Starters'
                     document.getElementById('js_input').appendChild(CreateHTagStarters)
                     starterGroup.forEach(item => {
@@ -578,6 +576,7 @@
                         CreateEl(item)
 
                     })
+                    // Creats main group and tag
                     CreateHTagMains.innerHTML = 'Mains'
                     document.getElementById('js_input').appendChild(CreateHTagMains)
                     mainGroup.forEach(item => {
@@ -585,6 +584,7 @@
                         CreateEl(item)
 
                     })
+                    // Create dessert group and tag 
                     CreateHTagDesserts.innerHTML = 'Desserts'
                     document.getElementById('js_input').appendChild(CreateHTagDesserts)
                     dessertGroup.forEach(item => {
@@ -593,36 +593,33 @@
 
                     })
                 }
+                // determains which button is clicked
                 if (value === 'Vegan') {
-                    //console.log('vegan')
+                    // if vegan option
+                    // Create tags for the types of dish
+                    // inputs dish names
                     const CreateHTagStarters = document.createElement('h4')
                     const CreateHTagMains = document.createElement('h4')
                     const CreateHTagDesserts = document.createElement('h4')
+                    //saves dishs into groups
                     let starterGroup = new Set()
                     let mainGroup = new Set()
                     let dessertGroup = new Set()
                     Vegan.forEach(element => {
                         if(element.dish === element.title){                           
-
-                            if (element.type === 'starter'){
-                                
-                                starterGroup.add(element)                             
-                                 
+                            if (element.type === 'starter'){                                
+                                starterGroup.add(element)                                                              
                             }
                             else if (element.type === 'main'){
-                                
                                 mainGroup.add(element)
-
                             }
-                            else if (element.type === 'dessert'){
-                                
+                            else if (element.type === 'dessert'){   
                                 dessertGroup.add(element)
-
                             }
-                            
                         }
 
                     })
+                    // Creats starter group and tag
                     CreateHTagStarters.innerHTML = 'Starters'
                     document.getElementById('js_input').appendChild(CreateHTagStarters)
                     starterGroup.forEach(item => {
@@ -630,6 +627,7 @@
                         CreateEl(item)
 
                     })
+                    // Creats main group and tag
                     CreateHTagMains.innerHTML = 'Mains'
                     document.getElementById('js_input').appendChild(CreateHTagMains)
                     mainGroup.forEach(item => {
@@ -637,6 +635,7 @@
                         CreateEl(item)
 
                     })
+                    // Create dessert group and tag 
                     CreateHTagDesserts.innerHTML = 'Desserts'
                     document.getElementById('js_input').appendChild(CreateHTagDesserts)
                     dessertGroup.forEach(item => {
@@ -645,36 +644,32 @@
 
                     })
                 }
+                // determains which button is clicked
                 if (value === 'Vegeterian') {
-                    //console.log('veggy')
-                    const CreateHTagStarters = document.createElement('h5')
-                    const CreateHTagMains = document.createElement('h5')
-                    const CreateHTagDesserts = document.createElement('h5')
+                    // if vegeterian option
+                    // Create tags for the types of dish
+                    // inputs dish names
+                    const CreateHTagStarters = document.createElement('h4')
+                    const CreateHTagMains = document.createElement('h4')
+                    const CreateHTagDesserts = document.createElement('h4')
+                    //saves dishs into groups
                     let starterGroup = new Set()
                     let mainGroup = new Set()
                     let dessertGroup = new Set()
                     Vegeterian.forEach(element => {
                         if(element.dish === element.title){                           
-
-                            if (element.type === 'starter'){
-                                
-                                starterGroup.add(element)                             
-                                 
+                            if (element.type === 'starter'){                               
+                                starterGroup.add(element)                                                             
                             }
-                            else if (element.type === 'main'){
-                                
+                            else if (element.type === 'main'){                              
                                 mainGroup.add(element)
-
                             }
-                            else if (element.type === 'dessert'){
-                                
+                            else if (element.type === 'dessert'){                               
                                 dessertGroup.add(element)
-
-                            }
-                            
+                            }             
                         }
-
                     })
+                    // Creats starter group and tag
                     CreateHTagStarters.innerHTML = 'Starters'
                     document.getElementById('js_input').appendChild(CreateHTagStarters)
                     starterGroup.forEach(item => {
@@ -682,6 +677,7 @@
                         CreateEl(item)
 
                     })
+                    // Creats main group and tag
                     CreateHTagMains.innerHTML = 'Mains'
                     document.getElementById('js_input').appendChild(CreateHTagMains)
                     mainGroup.forEach(item => {
@@ -689,6 +685,7 @@
                         CreateEl(item)
 
                     })
+                    // Create dessert group and tag 
                     CreateHTagDesserts.innerHTML = 'Desserts'
                     document.getElementById('js_input').appendChild(CreateHTagDesserts)
                     dessertGroup.forEach(item => {
