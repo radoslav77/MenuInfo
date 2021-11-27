@@ -702,18 +702,36 @@
     }
 
     const ButtonMainChoice = document.getElementById('mainChoice').children
-    
+    const StartersAll = new Set()
+    const MainsAll = new Set()
+    const DessertsAll = new Set()
     for (let i = 0; i < ButtonMainChoice.length; i++) {
         //console.log(ButtonMainChoice[i])
         ButtonMainChoice[i].addEventListener('click', ()=>{
             if(ButtonMainChoice[i].innerHTML === 'Starters'){
-                console.log(123)
+               DataDish.forEach(dish => {
+                if (dish.type === 'Starters'){
+                    StartersAll.add(dish)
+                }   
+               
+               }) 
+               //console.log(StartersAll)
             }
             else if(ButtonMainChoice[i].innerHTML === 'Mains'){
-                console.log(456)
+                DataDish.forEach(dish => {
+                    if (dish.type === 'Mains'){
+                        MainsAll.add(dish)
+                    }
+                })
+                //console.log(MainsAll)
             }
             else if(ButtonMainChoice[i].innerHTML === 'Desserts'){
-                console.log(789)
+                DataDish.forEach(dish => {
+                    if (dish.type === 'Desserts'){
+                        DessertsAll.add(dish)
+                    }
+                })
+                //console.log(DessertsAll)
             }
         })
     }
