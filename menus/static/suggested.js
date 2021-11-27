@@ -710,12 +710,15 @@
   
     for (let i = 0; i < ButtonMainChoice.length; i++) {
         //console.log(ButtonMainChoice[i])
+        
         ButtonMainChoice[i].addEventListener('click', ()=>{
+            MainInput.innerHTML = ''
             if(ButtonMainChoice[i].innerHTML === 'Starters'){
                DataDish.forEach(dish => {
                 if (dish.type === 'Starters'){
                     StartersAll.add(dish)
-                }   
+                }
+  
                
                }) 
                //console.log(StartersAll)
