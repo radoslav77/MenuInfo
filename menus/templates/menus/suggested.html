@@ -131,31 +131,6 @@
 <p id="icon"><i class="fas fa-angle-double-up" id="iconIcon"></i></p>
 <script src="{% static 'suggested.js' %}"></script>
 <script>
-    const Wrapper = document.getElementById('btnwrraper')
-    const DiateryBtn = document.getElementById('dietery')
-    DiateryBtn.addEventListener('click', () => {
-        Wrapper.classList.toggle('active')
-    })
-
-
-    window.addEventListener('scroll', fixedIcon)
-    const icon = document.getElementById('icon')
-
-    function fixedIcon() {
-        if (window.scrollY > icon.offsetHeight + 150) {
-            icon.classList.add('active')
-        } else {
-            icon.classList.remove('active')
-        }
-    }
-
-    const ArrowBtn = document.getElementById('iconIcon')
-    ArrowBtn.addEventListener('click', () => {
-        document.getElementById('first').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
-
-        setTimeout(location.reload.bind(location), 1500)
-        //location.reload()
-    })
 
 </script>
 

@@ -764,4 +764,30 @@
         })
     }
 
- 
+    // hidding alergen buttons
+    const Wrapper = document.getElementById('btnwrraper')
+    const DiateryBtn = document.getElementById('dietery')
+    DiateryBtn.addEventListener('click', () => {
+        Wrapper.classList.toggle('active')
+    })
+
+    // when scroll down shows arrow icon
+    window.addEventListener('scroll', fixedIcon)
+    const icon = document.getElementById('icon')
+    // function for the arrow icon
+    function fixedIcon() {
+        if (window.scrollY > icon.offsetHeight + 150) {
+            icon.classList.add('active')
+        } else {
+            icon.classList.remove('active')
+        }
+    }
+
+    // when icon pressed roll up and refresh page 
+    const ArrowBtn = document.getElementById('iconIcon')
+    ArrowBtn.addEventListener('click', () => {
+        document.getElementById('first').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+
+        setTimeout(location.reload.bind(location), 1500)
+        //location.reload()
+    })
