@@ -136,13 +136,7 @@
     DiateryBtn.addEventListener('click', () => {
         Wrapper.classList.toggle('active')
     })
-    const windowH = window.innerHeight
-    if ((windowH > window.innerHeight) * 10) {
-        console.log(window.innerHeight)
-        document.getElementById('icon').hidden = false
-    } else {
 
-    }
 
     window.addEventListener('scroll', fixedIcon)
     const icon = document.getElementById('icon')
@@ -158,6 +152,8 @@
     const ArrowBtn = document.getElementById('iconIcon')
     ArrowBtn.addEventListener('click', () => {
         document.getElementById('first').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+
+        setTimeout(location.reload.bind(location), 1500)
         //location.reload()
     })
 
