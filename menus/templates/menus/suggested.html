@@ -63,14 +63,39 @@
         display: block;
     }
 
+
+
     .mainChoice {
         text-align: center;
+    }
+
+    #helper {
+        font-size: 10px;
+        font-weight: normal;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    i {
+
+        position: absolute;
+        bottom: auto;
+        right: 25px;
+        font-size: 45px;
+    }
+
+    #icon {
+        display: none;
+    }
+
+    #icon.active {
+        display: block;
+
     }
 </style>
 
 {% endblock %}
 {% block body %}
-<h1 id="">Please select from the following!</h1>
+<h1 id="first">Please select from the following!</h1>
 <div class="mainChoice" id="mainChoice">
     <button>Starters</button>
     <button>Mains</button>
@@ -85,8 +110,10 @@
 <!--<p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>-->
 <div class="dieteryChoice">
     <button id="dietery">Dietary Choices</button>
-
-    <div class="btnwrraper">
+    <span id="helper">
+        <p>This includes Vegeterian and Vegan options</p>
+    </span>
+    <div class="btnwrraper" id="btnwrraper">
         <div class="buttons">
             <button>Gluten Free</button>
             <button>Peanut Free</button>
@@ -101,17 +128,37 @@
         </ul>
     </div>
 </div>
+<p id="icon"><i class="fas fa-angle-double-up" id="iconIcon"></i></p>
 <script src="{% static 'suggested.js' %}"></script>
 <script>
-    const Wrapper = document.querySelector('.btnwrraper')
+    const Wrapper = document.getElementById('btnwrraper')
     const DiateryBtn = document.getElementById('dietery')
     DiateryBtn.addEventListener('click', () => {
-        if (Wrapper.classList = 'active') {
-            Wrapper.classList.remove('active')
-        } else {
-            Wrapper.classList.add('active')
-        }
+        Wrapper.classList.toggle('active')
+    })
+    const windowH = window.innerHeight
+    if ((windowH > window.innerHeight) * 10) {
+        console.log(window.innerHeight)
+        document.getElementById('icon').hidden = false
+    } else {
 
+    }
+
+    window.addEventListener('scroll', fixedIcon)
+    const icon = document.getElementById('icon')
+
+    function fixedIcon() {
+        if (window.scrollY > icon.offsetHeight + 150) {
+            icon.classList.add('active')
+        } else {
+            icon.classList.remove('active')
+        }
+    }
+
+    const ArrowBtn = document.getElementById('iconIcon')
+    ArrowBtn.addEventListener('click', () => {
+        document.getElementById('first').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+        //location.reload()
     })
 
 </script>
