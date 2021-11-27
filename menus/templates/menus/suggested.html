@@ -35,37 +35,80 @@
 
         transform: scale(90%);
     }
+
+    .dieteryChoice {
+        margin-top: 40px;
+
+    }
+
+    .dieteryChoice ul {
+        text-align: center;
+    }
+
+    .btnwrraper {
+        display: none;
+    }
+
+    #dietery {
+        border: none;
+        font-weight: bold;
+        border-radius: 3px;
+        height: auto;
+        width: auto;
+        margin: 10px 20px;
+        font-size: 16px;
+    }
+
+    .btnwrraper.active {
+        display: block;
+    }
 </style>
 
 {% endblock %}
 {% block body %}
-
+<h1 id="">Please select from the following!</h1>
 <div class="mainChoice" id="mainChoice">
     <button>Starters</button>
     <button>Mains</button>
     <button>Desserts</button>
+    <div class="ulMainchoice">
+        <ul id="MainInput">
+
+        </ul>
+    </div>
 </div>
 
 <!--<p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>-->
+<div class="dieteryChoice">
+    <button id="dietery">Dietary Choices</button>
 
-<h1 id="">Dietary Choices</h1>
+    <div class="btnwrraper">
+        <div class="buttons">
+            <button>Gluten Free</button>
+            <button>Peanut Free</button>
+            <button>Nut Free</button>
+            <button>Vegeterian</button>
+            <button>Vegan</button>
+        </div>
+    </div>
+    <div class="ul">
+        <ul id="js_input">
 
-
-<div class="buttons">
-    <button>Gluten Free</button>
-    <button>Peanut Free</button>
-    <button>Nut Free</button>
-    <button>Vegeterian</button>
-    <button>Vegan</button>
+        </ul>
+    </div>
 </div>
-<div class="ul">
-    <ul id="js_input">
-
-    </ul>
-</div>
-
 <script src="{% static 'suggested.js' %}"></script>
 <script>
+    const Wrapper = document.querySelector('.btnwrraper')
+    const DiateryBtn = document.getElementById('dietery')
+    DiateryBtn.addEventListener('click', () => {
+        if (Wrapper.classList = 'active') {
+            Wrapper.classList.remove('active')
+        } else {
+            Wrapper.classList.add('active')
+        }
+
+    })
 
 </script>
 

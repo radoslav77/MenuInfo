@@ -705,6 +705,9 @@
     const StartersAll = new Set()
     const MainsAll = new Set()
     const DessertsAll = new Set()
+    const UlMainChoice = document.querySelector('.ulMainchoice')
+    const MainInput = document.getElementById('MainInput')
+  
     for (let i = 0; i < ButtonMainChoice.length; i++) {
         //console.log(ButtonMainChoice[i])
         ButtonMainChoice[i].addEventListener('click', ()=>{
@@ -716,6 +719,14 @@
                
                }) 
                //console.log(StartersAll)
+               StartersAll.forEach(item => {
+                    var createUl = document.createElement('a')
+                    createUl.innerHTML = item.title
+                    let Nametitle = item.title
+                    createUl.href = `/detail/${Nametitle}`
+                    MainInput.appendChild(createUl)
+               })
+
             }
             else if(ButtonMainChoice[i].innerHTML === 'Mains'){
                 DataDish.forEach(dish => {
@@ -724,6 +735,13 @@
                     }
                 })
                 //console.log(MainsAll)
+                MainsAll.forEach(item => {
+                    var createUl = document.createElement('a')
+                    createUl.innerHTML = item.title
+                    let Nametitle = item.title
+                    createUl.href = `/detail/${Nametitle}`
+                    MainInput.appendChild(createUl)
+               })
             }
             else if(ButtonMainChoice[i].innerHTML === 'Desserts'){
                 DataDish.forEach(dish => {
@@ -732,6 +750,13 @@
                     }
                 })
                 //console.log(DessertsAll)
+                DessertsAll.forEach(item => {
+                    var createUl = document.createElement('a')
+                    createUl.innerHTML = item.title
+                    let Nametitle = item.title
+                    createUl.href = `/detail/${Nametitle}`
+                    MainInput.appendChild(createUl)
+               })
             }
         })
     }
