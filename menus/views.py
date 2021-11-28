@@ -145,6 +145,17 @@ def menus(request):
     })
 
 
+def suggested_details(request, title):
+    data = dishdata.objects.filter(title_dish=title)
+    recipe_data = recipedata.objects.filter(for_dish=title)
+    for i in data:
+
+        print(i.image)
+        print(i.description)
+    print(recipe_data)
+    return render(request, 'menus/suggested-detail.html')
+
+
 def your_menu(request, title):
     data = menudata.objects.filter(title=title)
     beverage = pairdata.objects.all()

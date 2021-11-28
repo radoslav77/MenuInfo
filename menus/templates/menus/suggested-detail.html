@@ -1,0 +1,150 @@
+{% extends 'menus/base.html' %}
+
+{% block style %}
+
+
+{% endblock %}
+
+{% block body %}
+{% for d in data %}
+<div class="delete">
+    <a href="{% url 'your_menu_delete' d %}">Delete Menu</a>
+</div>
+
+<h1>{{d}}</h1>
+{% endfor %}
+<p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>
+{% for d in drinks %}
+<h1 id="drinktitle">{{d}}</h1>
+{% endfor %}
+<div class="menu-container">
+    <div class="dish-container">
+        <p>Your Starter course today:</p>
+
+        <div class="name-starter" id="salad">
+            <h2 id="name">{{dish1}}</h2>
+        </div>
+        <a href="/media/{{dish1.image}}">
+            <img id="pic" src="/media/{{dish1.image}}" alt="" width="400" height="300"></img>
+        </a>
+
+        <div class="description" id="starter-description">
+
+        </div>
+        <div class="container-drinks">
+            <p id="drink">For best expirients here are the pairing choices for your meal!</p>
+            <div class="drink" id="starter">
+
+                <!-- <input type="button" value="" id="starter">-->
+            </div>
+        </div>
+        <div class="contain" id="starter_alergy">
+            <h2>Contains:</h2>
+            <div class="allergy" hidden></div>
+            <div class="soya" hidden></div>
+            <div class="peanuts" hidden></div>
+            <div class="glutens" hidden></div>
+            <div class="dairies" hidden></div>
+            <div class="nuts" hidden></div>
+            <div class="celery" hidden></div>
+            <div class="crustaceans" hidden></div>
+            <div class="fish" hidden></div>
+            <div class="lupin" hidden></div>
+            <div class="molluscs" hidden></div>
+            <div class="mustard" hidden></div>
+            <div class="sesame" hidden></div>
+            <div class="sulphites" hidden></div>
+        </div>
+    </div>
+    <div class="dish-container">
+        <p>Your Main course today:</p>
+        <div class="name-main" id="mainmain">
+            <h2 id="name">{{dish}}</h2>
+        </div>
+        <a href="/media/{{dish.image}}">
+            <img id="pic" src="/media/{{dish.image}}" alt="" width="400" height="300"></img>
+        </a>
+        <div class="description" id="main-description">
+
+        </div>
+        <div class="container-drinks">
+            <p id="drink">For best expirients here are the pairing choices for your meal!</p>
+            <div class="drink" id="main">
+
+            </div>
+        </div>
+
+        <div class="contain" id="main_alergy">
+            <h2>Contains:</h2>
+            <div class="allergy" hidden></div>
+            <div class="soya" hidden></div>
+            <div class="peanuts" hidden></div>
+            <div class="glutens" hidden></div>
+            <div class="dairies" hidden></div>
+            <div class="nuts" hidden></div>
+            <div class="celery" hidden></div>
+            <div class="crustaceans" hidden></div>
+            <div class="fish" hidden></div>
+            <div class="lupin" hidden></div>
+            <div class="molluscs" hidden></div>
+            <div class="mustard" hidden></div>
+            <div class="sesame" hidden></div>
+            <div class="sulphites" hidden></div>
+        </div>
+    </div>
+    <div class="dish-container">
+        <p>Your Dessert course today:</p>
+        <div class="name-dessert" id="des">
+            <h2 id="name">{{dish2}}</h2>
+        </div>
+        <a href="/media/{{dish2.image}}">
+            <img id="pic" src="/media/{{dish2.image}}" alt="" width="400" height="300"></img>
+        </a>
+        <div class="description" id="dessert-description">
+
+        </div>
+        <div class="container-drinks">
+            <p id="drink">For best expirients here are the pairing choices for your meal!</p>
+            <div class="drink" id="dessert">
+
+
+            </div>
+        </div>
+
+
+        <div class="contain" id="desserts_alergy">
+            <h2>Contains:</h2>
+            <div class="allergy" hidden></div>
+            <div class="soya" hidden></div>
+            <div class="peanuts" hidden></div>
+            <div class="glutens" hidden></div>
+            <div class="dairies" hidden></div>
+            <div class="nuts" hidden></div>
+            <div class="celery" hidden></div>
+            <div class="crustaceans" hidden></div>
+            <div class="fish" hidden></div>
+            <div class="lupin" hidden></div>
+            <div class="molluscs" hidden></div>
+            <div class="mustard" hidden></div>
+            <div class="sesame" hidden></div>
+            <div class="sulphites" hidden></div>
+        </div>
+    </div>
+    <div class="drink-wrapper">
+        <div class="info">
+            <div id="info"></div>
+            <div class="drink-allergy">
+                <div class="drink-contain" id="drink-contain">
+                    <h3>Contains:</h3>
+                    <p id="sulph" hidden></p>
+                    <p id="glut" hidden></p>
+                </div>
+
+            </div>
+            <button id="close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

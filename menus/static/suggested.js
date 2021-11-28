@@ -208,7 +208,7 @@
         var createUl = document.createElement('a')
         createUl.innerHTML = arr.title
         let Nametitle = arr.title
-        createUl.href = `/detail/${Nametitle}`
+        createUl.href = `/suggested_details/${Nametitle}`
         document.getElementById('js_input').appendChild(createUl)
     }
 // dictionary of all allergens 
@@ -726,7 +726,7 @@
                     var createUl = document.createElement('a')
                     createUl.innerHTML = item.title
                     let Nametitle = item.title
-                    createUl.href = `/detail/${Nametitle}`
+                    createUl.href = `/suggested_details/${Nametitle}`
                     MainInput.appendChild(createUl)
                })
 
@@ -742,7 +742,7 @@
                     var createUl = document.createElement('a')
                     createUl.innerHTML = item.title
                     let Nametitle = item.title
-                    createUl.href = `/detail/${Nametitle}`
+                    createUl.href = `/suggested_details/${Nametitle}`
                     MainInput.appendChild(createUl)
                })
             }
@@ -757,7 +757,7 @@
                     var createUl = document.createElement('a')
                     createUl.innerHTML = item.title
                     let Nametitle = item.title
-                    createUl.href = `/detail/${Nametitle}`
+                    createUl.href = `/suggested_details/${Nametitle}`
                     MainInput.appendChild(createUl)
                })
             }

@@ -33,6 +33,8 @@ urlpatterns = [
     path('ddrbreaks', views.ddrbreaks, name='ddrbreaks'),
     path('breakfast', views.breakfast, name='breakfast'),
     path('suggested', views.suggested, name='suggested'),
+    path('suggested_details/<str:title>',
+         views.suggested_details, name='suggested_details'),
 
     # API
     path('drinks', views.drinks, name='drinks'),
