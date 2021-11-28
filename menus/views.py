@@ -161,7 +161,10 @@ def suggested_details(request, title):
     print(recipes)
     print(dish_data)
 
-    return render(request, 'menus/suggested-detail.html')
+    return render(request, 'menus/suggested-detail.html', {
+        'data': dish_data,
+        'recipes': recipes,
+    })
 
 
 def your_menu(request, title):

@@ -1,32 +1,38 @@
 {% extends 'menus/base.html' %}
 
 {% block style %}
+<style>
+    .drinkWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
+    .detail-container {}
+</style>
 
 {% endblock %}
 
 {% block body %}
 {% for d in data %}
 
-<h1>{{d}}</h1>
+<h1>{{d.title}}</h1>
 {% endfor %}
 
-{% for d in drinks %}
-<h1 id="drinktitle">{{d}}</h1>
-{% endfor %}
-<div class="menu-container">
+{% for d in data %}
+<div class="detail-container">
     <div class="dish-container">
-        <p>Your Starter course today:</p>
+        <p>Here are details about: {{d.title}}</p>
 
         <div class="name-starter" id="salad">
-            <h2 id="name">{{dish1}}</h2>
+            <h2 id="name">{{d.title}}</h2>
         </div>
-        <a href="/media/{{dish1.image}}">
-            <img id="pic" src="/media/{{dish1.image}}" alt="" width="400" height="300"></img>
+        <a href="/media/{{d.image}}">
+            <img id="pic" src="/media/{{d.image}}" alt="" width="400" height="300"></img>
         </a>
 
         <div class="description" id="starter-description">
-
+            {{d.description}}
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
@@ -53,9 +59,7 @@
             <div class="sulphites" hidden></div>
         </div>
     </div>
-
-
-    <div class="drink-wrapper">
+    <div class="drinkWrapper">
         <div class="info">
             <div id="info"></div>
             <div class="drink-allergy">
@@ -66,10 +70,14 @@
                 </div>
 
             </div>
-            <button id="close"><i class="fas fa-times"></i></button>
+
         </div>
     </div>
 </div>
+<div class="recipe">
+    {{recipes}}
+</div>
+{% endfor %}
 
 
 {% endblock %}
