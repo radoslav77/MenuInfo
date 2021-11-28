@@ -148,8 +148,10 @@ def menus(request):
 def suggested_details(request, title):
     data = dishdata.objects.filter(title_dish=title)
     recipe_data = recipedata.objects.filter(for_dish=title)
+    drink_data = pairdata.objects.filter(dish=title)
     dish_data = []
     recipes = []
+    drinks = []
     for i in data:
         dish_data.append({
             'title': i,
@@ -158,12 +160,24 @@ def suggested_details(request, title):
         })
     for j in recipe_data:
         recipes.append(j.recipe)
-    print(recipes)
-    print(dish_data)
+
+    for d in drink_data:
+        beverage_data = beveragedata.objects.filter(title=d.drink)
+        for b in beverage_data:
+            drinks.append({
+                'title': b.title,
+                'description': b.description,
+                'type': b.type_alcochol,
+            })
+
+    # print(recipes)
+    # print(dish_data)
+    # print(drinks)
 
     return render(request, 'menus/suggested-detail.html', {
         'data': dish_data,
         'recipes': recipes,
+        'drinks': drinks,
     })
 
 

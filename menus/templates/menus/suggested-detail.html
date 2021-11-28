@@ -7,8 +7,6 @@
         flex-direction: column;
         justify-content: center;
     }
-
-    .detail-container {}
 </style>
 
 {% endblock %}
@@ -36,10 +34,12 @@
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
+            {% for drink in drinks %}
             <div class="drink" id="starter">
-
+                <p>{{drink.title}}</p>
                 <!-- <input type="button" value="" id="starter">-->
             </div>
+            {% endfor %}
         </div>
         <div class="contain" id="starter_alergy">
             <h2>Contains:</h2>
