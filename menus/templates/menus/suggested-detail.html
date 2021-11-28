@@ -3,9 +3,13 @@
 {% block style %}
 <style>
     .drinkWrapper {
+        margin-left: 5px;
+        width: 470px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        background-color: #fff;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
     }
 </style>
 
@@ -36,7 +40,7 @@
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
             {% for drink in drinks %}
             <div class="drink" id="starter">
-                <p>{{drink.title}}</p>
+                <p id="drinkTitle">{{drink.title}}</p>
                 <!-- <input type="button" value="" id="starter">-->
             </div>
             {% endfor %}
@@ -59,14 +63,19 @@
             <div class="sulphites" hidden></div>
         </div>
     </div>
+
     <div class="drinkWrapper">
+
         <div class="info">
-            <div id="info"></div>
+            {% for info in drinks %}
+            <div id="info">{{info.description}}</div>
+            {% endfor %}
             <div class="drink-allergy">
                 <div class="drink-contain" id="drink-contain">
                     <h3>Contains:</h3>
                     <p id="sulph" hidden></p>
                     <p id="glut" hidden></p>
+                    <p id="try"></p>
                 </div>
 
             </div>
@@ -77,6 +86,28 @@
 <div class="recipe">
     {{recipes}}
 </div>
+
+<script>
+    const URL_DRINK_ING = ('/beverage_ing')
+    GetDataDrink(URL_DRINK_ING)
+    const titleDrink = document.getElementById('drinkTitle').innerHTML
+    const entryInfo = document.getElementById('try')
+
+    async function GetDataDrink(url) {
+        const res = await fetch(url)
+        const data = await res.json()
+
+        data.forEach(entry => {
+            let titles = []
+            titles.push(entry.title)
+            if (entry.title == titleDrink) {
+                entryInfo.innerHTML = entry.ingredients
+            }
+
+        });
+        //console.log(data)
+    }
+</script>
 {% endfor %}
 
 
