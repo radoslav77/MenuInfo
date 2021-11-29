@@ -161,8 +161,7 @@ def suggested_details(request, title):
         })
     for j in recipe_data:
         recipes.append(j.recipe)
-        #ingr = j.recipe.split(',')
-       # recipes.append(ingr[0: -1])
+
     for d in recipes:
         ingredients.append(d)
         print(d)
@@ -174,10 +173,6 @@ def suggested_details(request, title):
                 'description': b.description,
                 'type': b.type_alcochol,
             })
-
-    print(ingredients)
-    # print(dish_data)
-    # print(drinks)
 
     return render(request, 'menus/suggested-detail.html', {
         'data': dish_data,
