@@ -151,6 +151,7 @@ def suggested_details(request, title):
     drink_data = pairdata.objects.filter(dish=title)
     dish_data = []
     recipes = []
+    ingredients = []
     drinks = []
     for i in data:
         dish_data.append({
@@ -160,7 +161,11 @@ def suggested_details(request, title):
         })
     for j in recipe_data:
         recipes.append(j.recipe)
-
+        #ingr = j.recipe.split(',')
+       # recipes.append(ingr[0: -1])
+    for d in recipes:
+        ingredients.append(d)
+        print(d)
     for d in drink_data:
         beverage_data = beveragedata.objects.filter(title=d.drink)
         for b in beverage_data:
@@ -170,13 +175,13 @@ def suggested_details(request, title):
                 'type': b.type_alcochol,
             })
 
-    # print(recipes)
+    print(ingredients)
     # print(dish_data)
     # print(drinks)
 
     return render(request, 'menus/suggested-detail.html', {
         'data': dish_data,
-        'recipes': recipes,
+        'recipes': ingredients,
         'drinks': drinks,
     })
 
