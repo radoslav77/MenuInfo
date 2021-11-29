@@ -164,7 +164,7 @@ def suggested_details(request, title):
 
     for d in recipes:
         ingredients.append(d)
-        print(d)
+
     for d in drink_data:
         beverage_data = beveragedata.objects.filter(title=d.drink)
         for b in beverage_data:

@@ -1,16 +1,19 @@
 const URL_DRINK_ING = ('/beverage_ing')
 GetDataDrink(URL_DRINK_ING)
-const titleDrink = document.getElementById('drinkTitle').innerHTML
-const entryInfo = document.getElementById('try')
+ContainAllergents()
+
+
 
 async function GetDataDrink(url) {
     const res = await fetch(url)
     const data = await res.json()
 
     data.forEach(entry => {
+        const titleDrink = document.getElementById('drinkTitle')
+        const entryInfo = document.getElementById('try')
         let titles = []
         titles.push(entry.title)
-        if (entry.title == titleDrink) {
+        if (entry.title == titleDrink.innerHTML) {
             entryInfo.innerHTML = entry.ingredients
         }
 
@@ -48,7 +51,7 @@ i.forEach(item => {
 
 //console.log(i)
 
-ContainAllergents()
+
 
 
 function ContainAllergents() {
