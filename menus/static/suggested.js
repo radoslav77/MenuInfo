@@ -34,7 +34,7 @@
     var PeaNutFree = new Set()
     var NutFree = new Set()
 
-    //console.log(ConPeanut)
+    //console.log(Vegan)
     //console.log(PeaNutFree)
     var meatDishes = new Set()
 
@@ -162,22 +162,25 @@
         })
         //saving vegan options 
         Vegan.forEach(item => {
-            NewVegan.forEach(e => {
+            //console.log(item)
+            /*NewVegan.forEach(e => {
                
                 if (item.title === e) {
                     //console.log(item.title,'-',e)
                     Vegan.delete(item)
                 }
-            })
+            })*/
             // list of non vegan products
             var noVegan = ['Pork', 'pork', 'Lamb', 'lamb', 'Chicken', 'chicken', 'beef', 'Beef', 'Eggs', 'Egg', 'Yolks',
                 'Yolk', 'Butter', 'Fish', 'Mussels', 'Mussel', 'Oysters', 'Oyster', 'Prawns', 'Prawn', 'Crabs', 'Crab', 'Lobster',
-                'Lobsters', 'Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'fraiche', 'salmon', 'bass', 'bass']
+                'Lobsters', 'Milk', 'Butter', 'Cream', 'Yoghurt', 'Cheese', 'fraiche', 'salmon', 'bass']
             // removing all non vegan titles from the set
             var recArr = item.recipe.split(/\s+/)
             recArr.forEach(e => {
+                
                 noVegan.forEach(type => {
-                    if (e.toLowerCase() === type.toLowerCase() + ',') {
+                   // console.log(type.toLowerCase()+',')
+                    if (e.toLowerCase() === type.toLowerCase()||e.toLowerCase() === type.toLowerCase() + ',') {
                         Vegan.delete(item)
 
                     }
@@ -429,7 +432,7 @@
         })
     }
 
-
+   // console.log(Vegan)
 //Buttons to deffrent type of allergy free dishes
     const ButtonsEl = document.querySelector('.buttons').children
     //console.log(ButtonEl)
@@ -606,6 +609,7 @@
                     let mainGroup = new Set()
                     let dessertGroup = new Set()
                     Vegan.forEach(element => {
+                        
                         if(element.dish === element.title){                           
                             if (element.type === 'starter'){                                
                                 starterGroup.add(element)                                                              
