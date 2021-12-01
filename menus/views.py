@@ -133,6 +133,33 @@ def js_memu_input(request):
     return HttpResponse(json.dumps(data_form), content_type="application/json")
 
 
+def logged_user(requets):
+    if requets.user.is_authenticated:
+        data = requets.user.username
+        return HttpResponse(json.dumps(data), content_type="application/json")
+    else:
+        return redirect('user_info')
+
+
+def user_info(request):
+    data = User.objects.all()
+
+    user_info = []
+    for user in data:
+        current_user = request.user.groups.filter(name=user.groups)
+        groups = user.groups.filter(name='bqt')
+        print(groups)
+        user_info.append({
+            'user': user.username,
+            'email': user.email,
+            'password': user.password,
+            # 'groups': groups
+
+
+        })
+    return HttpResponse(json.dumps(user_info), content_type="application/json")
+
+
 def menus(request):
     if request.user.is_authenticated:
 

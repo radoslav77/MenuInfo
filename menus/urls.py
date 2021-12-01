@@ -45,6 +45,8 @@ urlpatterns = [
     path('dishes', views.dishes, name='dishes'),
     path('edit-recipe', views.js_form, name='js_form'),
     path('menu_input', views.js_memu_input, name='js_memu_input'),
-    path('js-dish', views.js_dish, name='js_dish')
+    path('js-dish', views.js_dish, name='js_dish'),
+    path('user_info', views.user_info, name='user_info'),
+    path('logged_user', views.logged_user, name='logged_user')
 
 ]
