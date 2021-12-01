@@ -1,6 +1,6 @@
 const URL_DRINK_ING = ('/beverage_ing')
 GetDataDrink(URL_DRINK_ING)
-ContainAllergents()
+
 
 
 
@@ -51,7 +51,7 @@ i.forEach(item => {
 
 //console.log(i)
 
-
+ContainAllergents()
 
 
 function ContainAllergents() {

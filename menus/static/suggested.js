@@ -75,9 +75,21 @@
                     Contain(recipe.recipe, e.title)
                 if(e.dish) {
                     ConGluten.forEach(title => {
-                       
+                      
                         if(!title.includes(e.dish)){
                             Glutefree.add(e)
+                            
+                           var gluten = ['Flour', 'Oats', 'Barley', 'Waffle']
+                           var GlutenRecipe = e.recipe.split(/\s+/)
+                           
+                           GlutenRecipe.forEach(r => {
+                               
+                               gluten.forEach(item => {
+                                if(r.toLowerCase() === item.toLowerCase() || r.toLowerCase() === item.toLowerCase() + ','){
+                                    Glutefree.delete(e)
+                                 }
+                               })
+                           })
                         }
                     })
                     
