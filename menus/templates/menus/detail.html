@@ -203,25 +203,19 @@
     getLoggedInUser(USER_LOGGED_IN)
     const User_URL_info = ('/user_info')
     getUserData(User_URL_info)
+
     async function getLoggedInUser(url) {
         const res = await fetch(url)
         const data = await res.json()
         console.log(data)
 
+    }
 
-        async function getUserData(url) {
-            const res = await fetch(url)
-            const user = await res.json()
+    async function getUserData(url) {
+        const res = await fetch(url)
+        const user = await res.json()
 
-            data.forEach(item => {
-                if (item === data) {
-                    console.log(item, '-', data.username)
-                }
-            })
-
-
-        }
-
+        console.log(user)
     }
 
 

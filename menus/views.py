@@ -143,20 +143,17 @@ def logged_user(requets):
 
 def user_info(request):
     data = User.objects.all()
-
     user_info = []
     for user in data:
-        current_user = request.user.groups.filter(name=user.groups)
-        groups = user.groups.filter(name='bqt')
-        print(groups)
-        user_info.append({
-            'user': user.username,
-            'email': user.email,
-            'password': user.password,
-            # 'groups': groups
+        for g in user.groups.all():
+            user_info.append({
+                'user': user.username,
+                'email': user.email,
+                'password': user.password,
+                'groups': g.name
 
 
-        })
+            })
     return HttpResponse(json.dumps(user_info), content_type="application/json")
 
 
