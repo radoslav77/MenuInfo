@@ -75,7 +75,7 @@ function ContainAllergents() {
         })
 
         dairies.forEach(all => {
-            console.log(all)
+            //console.log(all)
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   
             if (  found == all.toLowerCase()||found == all){
                 const DairyData = document.querySelector('.dairies')
