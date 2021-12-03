@@ -204,17 +204,14 @@
     const User_URL_info = ('/user_info')
     getUserData(User_URL_info)
 
-
-    var UserData = new Set()
+    var UserCurrent = []
+    var UserData = new Array([])
     async function getLoggedInUser(url) {
         const res = await fetch(url)
         const data = await res.json()
+        UserCurrent.push(data)
         //console.log(data)
-        UserData.forEach(item => {
-            if (item.user === data) {
-                console.log(item)
-            }
-        })
+
 
     }
 
@@ -222,12 +219,21 @@
         const res = await fetch(url)
         const user = await res.json()
         user.forEach(u => {
-            UserData.add(u)
+            //console.log(UserCurrent)
+            //console.log(u.groups)
+            UserData.push(u)
+            if (UserCurrent[0] === u.user && u.groups === 'sommelier') {
+                console.log(u.user)
+                console.log(UserCurrent[0])
+            }
+
         })
 
         //console.log(user)
     }
-    //console.log(UserData)
+    //console.log(UserData.length)
+    //
+
 
     //const User = {{ user }}
     //console.log(User)
