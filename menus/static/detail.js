@@ -1,3 +1,5 @@
+    
+    
     const ingredient = {
             dairy : ['Milk','Butter', 'Cream','Yoghurt','Cheese'],
             gluten : ['Flour', 'Oats', 'Barley','Waffle'],
