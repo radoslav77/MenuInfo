@@ -262,36 +262,15 @@
             //console.log(u.groups)
             UserData.push(u)
             EditBtn.addEventListener('click', () => {
-                if (UserCurrent[0] === u.user && u.groups === 'sommelier') {
-
-
-                    DivDetails.style.opacity = 0.5
-                    DivDetails.style.zIndex = -1
-                    WorningDiv.style.opacity = 1
-                    WorningDiv.hidden = false
-                    WorningDiv.classList.add('contain')
-                    WorningDiv.innerHTML = 'You DO NOT have permition for this action! Contact your administarator!'
-
-
-                } else if (UserCurrent[0] === u.user && u.groups === 'bqt') {
-
-                    DivDetails.style.opacity = 0.5
-                    DivDetails.style.zIndex = -1
-                    WorningDiv.style.opacity = 1
-                    WorningDiv.hidden = false
-                    WorningDiv.classList.add('contain')
-                    WorningDiv.innerHTML = 'You DO NOT have permition for this action! Contact your administarator!'
-
-
-                } else if (UserCurrent[0] === u.user && u.groups === 'chef') {
-
-                    WorningDiv.hidden = true
+                if (UserCurrent[0] === u.user && u.groups === 'chef') {
+                    WorningDiv.style.display = 'none'
                     DivDetails.style.display = 'none'
                     DivForm.hidden = false
 
 
+                } else {
 
-                } else if (UserCurrent[0] === u.user && u.groups === 'chefs') {
+
 
                     DivDetails.style.opacity = 0.5
                     DivDetails.style.zIndex = -1
