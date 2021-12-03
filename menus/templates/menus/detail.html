@@ -204,6 +204,21 @@
     const User_URL_info = ('/user_info')
     getUserData(User_URL_info)
 
+
+    const URL_EDIT_FORM = ('/edit-recipe')
+    getDataForm(URL_EDIT_FORM)
+    const title = document.getElementById('title').innerText
+    const EditRecipe = document.getElementById('edit')
+    const inputTitle = document.getElementById('form_title')
+    const inputSelector = document.getElementById('selector')
+    const input_For_Dish = document.getElementById('form_for_dish')
+    const inputRecipe = document.getElementById('recipe')
+    const inputMethod = document.getElementById('method')
+    const EditBtn = document.getElementById('edit')
+    const DivForm = document.querySelector('.editform')
+    const DivDetails = document.querySelector('.container-details')
+    const ReturnEl = document.getElementById('return')
+
     var UserCurrent = []
     var UserData = new Array([])
     async function getLoggedInUser(url) {
@@ -223,8 +238,22 @@
             //console.log(u.groups)
             UserData.push(u)
             if (UserCurrent[0] === u.user && u.groups === 'sommelier') {
-                console.log(u.user)
-                console.log(UserCurrent[0])
+                //console.log(u.user)
+                //console.log(UserCurrent[0])
+            } else if (UserCurrent[0] === u.user && u.groups === 'bqt') {
+                //console.log(u.user)
+                //console.log(UserCurrent[0])
+            } else if (UserCurrent[0] === u.user && u.groups === 'chef') {
+                EditBtn.addEventListener('click', () => {
+                    DivDetails.style.display = 'none'
+                    DivForm.hidden = false
+
+                })
+                ReturnEl.addEventListener('click', () => {
+                    location.reload()
+                })
+            } else if (UserCurrent[0] === u.user && u.groups === 'chefs') {
+
             }
 
         })
@@ -237,19 +266,7 @@
 
     //const User = {{ user }}
     //console.log(User)
-    const URL_EDIT_FORM = ('/edit-recipe')
-    getDataForm(URL_EDIT_FORM)
-    const title = document.getElementById('title').innerText
-    const EditRecipe = document.getElementById('edit')
-    const inputTitle = document.getElementById('form_title')
-    const inputSelector = document.getElementById('selector')
-    const input_For_Dish = document.getElementById('form_for_dish')
-    const inputRecipe = document.getElementById('recipe')
-    const inputMethod = document.getElementById('method')
-    const EditBtn = document.getElementById('edit')
-    const DivForm = document.querySelector('.editform')
-    const DivDetails = document.querySelector('.container-details')
-    const ReturnEl = document.getElementById('return')
+
 
     async function getDataForm(url) {
         const res = await fetch(url)
@@ -271,14 +288,7 @@
 
 
     }
-    EditBtn.addEventListener('click', () => {
-        DivDetails.style.display = 'none'
-        DivForm.hidden = false
 
-    })
-    ReturnEl.addEventListener('click', () => {
-        location.reload()
-    })
 </script>
 
 
