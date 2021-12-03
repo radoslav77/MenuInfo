@@ -91,6 +91,24 @@
         color: #000;
         font-size: 14px;
     }
+
+    .worning {
+        position: fixed;
+        top: 55%;
+        left: 20%;
+        height: 100px;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        padding: 30px 50px;
+
+    }
+
+    @media only screen and (max-width: 800px) {
+        .worning {
+            height: auto;
+        }
+    }
 </style>
 
 {% endblock %}
@@ -119,9 +137,10 @@
         </ul>
 
     </div>
+
     {% for title in data %}
     <p> Sub recipe to the Dish
-        <span style="font-size: 20px;"> {{title.title}}</span>
+        <span style=" font-size: 20px;"> {{title.title}}</span>
     </p>
     {% endfor %}
     <div class="subrecipe" style="box-shadow:0 2px 3px rgba(0, 0, 1, 0.5) ;">
@@ -178,6 +197,9 @@
         <a href="{% url 'plated' %}"> Back to recipes</a>
     </div>
 </div>
+<div class="worning" id="worning" style="box-shadow:0 2px 3px rgba(1, 1, 1, 0.5);" hidden>
+
+</div>
 <div class="editform" hidden>
     <form action="{% url 'edit_recipe'  %}" method="POST" id="editform">
         {% csrf_token %}
@@ -218,6 +240,8 @@
     const DivForm = document.querySelector('.editform')
     const DivDetails = document.querySelector('.container-details')
     const ReturnEl = document.getElementById('return')
+    const WorningDiv = document.getElementById('worning')
+
 
     var UserCurrent = []
     var UserData = new Array([])
@@ -237,25 +261,47 @@
             //console.log(UserCurrent)
             //console.log(u.groups)
             UserData.push(u)
-            if (UserCurrent[0] === u.user && u.groups === 'sommelier') {
-                //console.log(u.user)
-                //console.log(UserCurrent[0])
-            } else if (UserCurrent[0] === u.user && u.groups === 'bqt') {
-                //console.log(u.user)
-                //console.log(UserCurrent[0])
-            } else if (UserCurrent[0] === u.user && u.groups === 'chef') {
-                EditBtn.addEventListener('click', () => {
+            EditBtn.addEventListener('click', () => {
+                if (UserCurrent[0] === u.user && u.groups === 'sommelier') {
+
+
+                    DivDetails.style.opacity = 0.5
+                    DivDetails.style.zIndex = -1
+                    WorningDiv.style.opacity = 1
+                    WorningDiv.hidden = false
+                    WorningDiv.classList.add('contain')
+                    WorningDiv.innerHTML = 'You DO NOT have permition for this action! Contact your administarator!'
+
+
+                } else if (UserCurrent[0] === u.user && u.groups === 'bqt') {
+
+                    DivDetails.style.opacity = 0.5
+                    DivDetails.style.zIndex = -1
+                    WorningDiv.style.opacity = 1
+                    WorningDiv.hidden = false
+                    WorningDiv.classList.add('contain')
+                    WorningDiv.innerHTML = 'You DO NOT have permition for this action! Contact your administarator!'
+
+
+                } else if (UserCurrent[0] === u.user && u.groups === 'chef') {
+
+                    WorningDiv.hidden = true
                     DivDetails.style.display = 'none'
                     DivForm.hidden = false
 
-                })
-                ReturnEl.addEventListener('click', () => {
-                    location.reload()
-                })
-            } else if (UserCurrent[0] === u.user && u.groups === 'chefs') {
 
-            }
 
+                } else if (UserCurrent[0] === u.user && u.groups === 'chefs') {
+
+                    DivDetails.style.opacity = 0.5
+                    DivDetails.style.zIndex = -1
+                    WorningDiv.style.opacity = 1
+                    WorningDiv.hidden = false
+                    WorningDiv.classList.add('contain')
+                    WorningDiv.innerHTML = 'You DO NOT have permition for this action! Contact your administarator!'
+
+                }
+            })
         })
 
         //console.log(user)
@@ -285,9 +331,15 @@
             }
         });
 
-
-
     }
+
+    WorningDiv.addEventListener('click', () => {
+        location.reload()
+    })
+
+    ReturnEl.addEventListener('click', () => {
+        location.reload()
+    })
 
 </script>
 
