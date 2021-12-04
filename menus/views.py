@@ -591,7 +591,7 @@ def pairing(request, title):
 
 def drinks_data(request):
     if request.user.is_authenticated:
-        if request.user.groups.filter(name='sommelier'):
+        if request.user.groups.filter(name='sommelier') or request.user.groups.filter(name='bqt'):
             data = beveragedata.objects.all()
             drink_data = []
             wine = []

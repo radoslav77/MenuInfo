@@ -48,10 +48,15 @@
 
 {% endif %}
 <div class="linksback">
+    <a href="#" onclick="goBack()">Go Back</a>
     <a href="{% url 'plated' %}">Return to Recipes</a>
     <a href="{% url 'dishes' %}">Return to Dish</a>
 </div>
 <script>
+    // function from w3schools.com
+    function goBack() {
+        window.history.back();
+    }
 
 </script>
 {% endblock %}
