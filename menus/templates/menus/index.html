@@ -12,6 +12,13 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>BQT Menu Selector</title>
+    <style>
+        #name {
+            letter-spacing: 1px;
+            font-size: 25px;
+            word-spacing: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,7 +65,9 @@
             {% if not user.is_authenticated %}
             <p>Recipes,Handovers and Lots of FUN</p>
             {% else %}
-            <h3>Hello {{user_title}} {% filter upper %} {{user}} {% endfilter %} </h3>
+            <h3 id="name">Hello {{user_title}}
+                {% filter upper %} {{user}} {% endfilter %}
+            </h3>
             {% endif %}
         </div>
     </div>

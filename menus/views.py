@@ -29,16 +29,23 @@ descriptions = []
 
 
 def index(request):
-    users = User.objects.all()
+    if request.user.is_authenticated:
 
-    for user in users:
-        if user.groups.filter(name='chef'):
+        if request.user.groups.filter(name='chef'):
             return render(request, 'menus/index.html', {
                 'user_title': 'Chef'
             })
-        elif user.groups.filter(name='sommelier'):
+        elif request.user.groups.filter(name='sommelier'):
             return render(request, 'menus/index.html', {
                 'user_title': 'Sommelier'
+            })
+        elif request.user.groups.filter(name='chefs'):
+            return render(request, 'menus/index.html', {
+                'user_title': 'Chef'
+            })
+        elif request.user.groups.filter(name='bqt'):
+            return render(request, 'menus/index.html', {
+                'user_title': 'Event Manager'
             })
     return render(request, 'menus/index.html', {
 
