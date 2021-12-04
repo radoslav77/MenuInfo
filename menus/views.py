@@ -637,7 +637,7 @@ def drinks_data(request):
 
 def drink_detail(request, title):
     if request.user.is_authenticated:
-        if request.user.groups.filter(name='sommelier'):
+        if request.user.groups.filter(name='sommelier') or request.user.groups.filter(name='bqt'):
             drink = beveragedata.objects.filter(title=title)
             print(drink)
         return render(request, 'menus/drink.html', {
@@ -655,7 +655,7 @@ def delete_beverage(request, title):
             beverage_data.delete()
             return redirect('drinks_data')
     return render(request, 'menus/notallowed.html', {
-        'msg': 'You are not allowd to acses this page! Contact your administrater!'
+        'msg': 'You are not allowd to perform this function! Contact your administrater!'
     })
 
 
