@@ -18,7 +18,7 @@ const DivForm = document.querySelector('.editform')
 const DivDetails = document.querySelector('.container-details')
 const ReturnEl = document.getElementById('return')
 const WorningDiv = document.getElementById('worning')
-
+const PairBtn   = document.getElementById('pair')
 
 var UserCurrent = []
 var UserData = new Array([])
@@ -26,7 +26,7 @@ async function getLoggedInUser(url) {
     const res = await fetch(url)
     const data = await res.json()
     UserCurrent.push(data)
-    //console.log(data)
+   // console.log(PairBtn)
 
 
 }
@@ -58,6 +58,27 @@ async function getUserData(url) {
 
             }
         })
+       /* PairBtn.addEventListener('click', () => {
+            console.log(123)
+            if (UserCurrent[0] === u.user && u.groups === 'sommelier' || UserCurrent[0] === u.user && u.groups === 'chef') {
+                WorningDiv.style.display = 'none'
+                DivDetails.style.display = 'none'
+                DivForm.hidden = false
+
+
+            } else {
+
+
+
+                DivDetails.style.opacity = 0.5
+                DivDetails.style.zIndex = -1
+                WorningDiv.style.opacity = 1
+                WorningDiv.hidden = false
+                WorningDiv.classList.add('contain')
+                WorningDiv.innerHTML = 'You DO NOT have permition for this action! Contact your administarator!'
+
+            }
+        })*/
     })
 
     //console.log(user)

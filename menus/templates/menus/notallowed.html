@@ -31,6 +31,14 @@
     .helptext {
         width: 50%;
     }
+
+    .linksback {
+        width: 50%;
+        margin: 5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -39,8 +47,10 @@
 {% else %}
 
 {% endif %}
-
-
+<div class="linksback">
+    <a href="{% url 'plated' %}">Return to Recipes</a>
+    <a href="{% url 'dishes' %}">Return to Dish</a>
+</div>
 <script>
 
 </script>

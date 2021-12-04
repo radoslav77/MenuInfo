@@ -186,7 +186,7 @@
     <div class="link-container">
 
         {% for t in data %}
-        <a href="{% url 'pairing' t %}">Pair this dish with Bevarige</a>
+        <a href="{% url 'pairing' t %}" id="pair">Pair this dish with Bevarige</a>
 
         {% if t.for_dish %}
         <a href="{% url 'delete_dish' t.for_dish %}">Delete Dish: <p class="p">{{t.for_dish}}</p></a>
