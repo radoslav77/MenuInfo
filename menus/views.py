@@ -594,11 +594,41 @@ def drinks_data(request):
         if request.user.groups.filter(name='sommelier'):
             data = beveragedata.objects.all()
             drink_data = []
+            wine = []
+            spirits = []
+            beers = []
+            softdrinks = []
+            coffee = []
+            tea = []
+            champagnes = []
+
             for d in data:
                 drink_data.append(d)
-            print(drink_data)
+                if d.type_alcochol == 'Wine':
+                    wine.append(d)
+                elif d.type_alcochol == 'Spirits':
+                    spirits.append(d)
+                elif d.type_alcochol == 'Beers':
+                    beers.append(d)
+                elif d.type_alcochol == 'Softdrinks':
+                    softdrinks.append(d)
+                elif d.type_alcochol == 'Coffee':
+                    coffee.append(d)
+                elif d.type_alcochol == 'Tea':
+                    tea.append(d)
+                elif d.type_alcochol == 'Champagnes':
+                    champagnes.append(d)
+                # print(spirits)
             return render(request, 'menus/bev.html', {
-                'data': drink_data
+                'data': drink_data,
+                'wine': wine,
+                'spirits': spirits,
+                'beers': beers,
+                'softdrinks': softdrinks,
+                'coffee': coffee,
+                'tea': tea,
+                'champagnes': champagnes
+
             })
     return render(request, 'menus/notallowed.html', {
         'msg': 'You are not allowd to acses this page! Contact your administrater!'

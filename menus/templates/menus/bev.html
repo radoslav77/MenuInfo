@@ -26,11 +26,46 @@
 
 <div class="input" id="ddr-container">
     <ul id="ddr">
-        {% for item in data %}
-        <a href="{% url 'drink_detail' item  %}">
-
-            <li>{{item}}</li>
-
+        <p>Wine</p>
+        {% for w in wine %}
+        <a href="{% url 'drink_detail' w  %}">
+            <li>{{w}}</li>
+        </a>
+        {% endfor %}
+        <p>Champagnes</p>
+        {% for ch in champagnes %}
+        <a href="{% url 'drink_detail' ch  %}">
+            <li>{{ch}}</li>
+        </a>
+        {% endfor %}
+        <p>Spirits</p>
+        {% for s in spirits %}
+        <a href="{% url 'drink_detail' s  %}">
+            <li>{{s}}</li>
+        </a>
+        {% endfor %}
+        <p>Beers</p>
+        {% for b in beers %}
+        <a href="{% url 'drink_detail' b  %}">
+            <li>{{b}}</li>
+        </a>
+        {% endfor %}
+        <p>Softdrinks</p>
+        {% for soft in softdrinks %}
+        <a href="{% url 'drink_detail' soft  %}">
+            <li>{{soft}}</li>
+        </a>
+        {% endfor %}
+        <p>Teas</p>
+        {% for t in tea %}
+        <a href="{% url 'drink_detail' t  %}">
+            <li>{{t}}</li>
+        </a>
+        {% endfor %}
+        <p>Coffees</p>
+        {% for c in coffee %}
+        <a href="{% url 'drink_detail' c  %}">
+            <li>{{c}}</li>
         </a>
         {% endfor %}
     </ul>

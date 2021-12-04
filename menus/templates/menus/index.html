@@ -46,6 +46,7 @@
                 {% endif %}
                 {% if request.user|has_group:"sommelier" %}
                 <li><a href="{% url 'beverage' %}">Input Beverage</a></li>
+                <li><a href="{% url 'drinks_data' %}">Beverage</a></li>
                 {% endif %}
                 {% endif %}
                 {% if not user.is_authenticated %}
@@ -62,7 +63,7 @@
     </nav>
     <div class="hero">
         <div class="container">
-            <h1>Welcom to InterContinental BQT Menus info</h1>
+            <h1>Welcome to InterContinental BQT Menus info</h1>
             {% if not user.is_authenticated %}
 
             {% else %}
