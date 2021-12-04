@@ -255,20 +255,20 @@
             //console.log(e)
             var num = e.split(/\s+/)
             //console.log(num)
-            var dairies = ingredient.dairy
-            var glutens = ingredient.gluten
-            var nuts = ingredient.nuts
-            var eggs = ingredient.eggs
-            var peanuts = ingredient.peanut
-            var celery = ingredient.celery
-            var crustaceans = ingredient.crustaceans
-            var fish = ingredient.fish
-            var lupin = ingredient.lupin
-            var molluscs = ingredient.molluscs
-            var mustard = ingredient.mustard
-            var sesame = ingredient.sesame
-            var soya = ingredient.soy
-            var sulphites = ingredient.sulphites
+            var dairies = allergen.dairy
+            var glutens = allergen.gluten
+            var nuts = allergen.nuts
+            var eggs = allergen.eggs
+            var peanuts = allergen.peanut
+            var celery = allergen.celery
+            var crustaceans = allergen.crustaceans
+            var fish = allergen.fish
+            var lupin = allergen.lupin
+            var molluscs = allergen.molluscs
+            var mustard = allergen.mustard
+            var sesame = allergen.sesame
+            var soya = allergen.soy
+            var sulphites = allergen.sulphites
 
 
 

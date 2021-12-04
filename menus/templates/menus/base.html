@@ -35,6 +35,10 @@
                 <li><a href="{% url 'menus' %}">Menus </a></li>
                 <li><a href="{% url 'plated' %}">Recipes</a></li>
                 <li><a href="">Handover</a></li>
+                {% if request.user|has_group:"bqt" %}
+                <li><a href="{% url 'menu_input' %}">Input menu</a></li>
+                <li><a href="{% url 'suggested' %}">Dish Suggestions</a></li>
+                {% endif %}
                 {% if request.user|has_group:"chef" %}
                 <li><a href="{% url 'recipe_input' %}">Input Recipe</a></li>
                 <li><a href="{% url 'dish_input' %}">Input Dish</a></li>
