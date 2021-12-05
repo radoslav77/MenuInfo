@@ -1,19 +1,24 @@
 {% extends 'menus/newbase.html' %}
-
+{% load auth_extras %}
 {% block style %}
-
+<style>
+    #drinkparagraph {
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+</style>
 
 {% endblock %}
 
 {% block body %}
 {% for d in data %}
+{% if request.user|has_group:"bqt" %}
 <div class="delete">
     <a href="{% url 'your_menu_delete' d %}">Delete Menu</a>
 </div>
-
+{% endif %}
 <h1>{{d}}</h1>
 {% endfor %}
-<p id="drinkparagraph">Your drinks for Tonight's Dinner!</p>
+<p id="drinkparagraph">Your drink for Tonight's Dinner!</p>
 {% for d in drinks %}
 <h1 id="drinktitle">{{d}}</h1>
 {% endfor %}
