@@ -14,8 +14,8 @@ import os
 from pathlib import Path
 
 import environ
-from google.cloud import secretmanager
-
+#from google.cloud import secretmanager
+'''
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # [START gaestd_py_django_secret_config]
@@ -50,22 +50,22 @@ elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
 else:
     raise Exception(
         "No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
-# [END gaestd_py_django_secret_config]
-'''
+# [END gaestd_py_django_secret_config]'''
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-'''
+
 # SECURITY WARNING: keep the secret key used in production secret!
-# 'django-insecure-q4e3=kxgc)_u_at_3ffp12f#maa5xx8g2@u8il9euf1!2zn-25'
-SECRET_KEY = env("SECRET_KEY")
+#
+# env("SECRET_KEY")
+SECRET_KEY = 'django-insecure-q4e3=kxgc)_u_at_3ffp12f#maa5xx8g2@u8il9euf1!2zn-25'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")  # True
-
+DEBUG = True  # env("DEBUG")
 ALLOWED_HOSTS = ['*']
 
 
@@ -111,7 +111,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bqt.wsgi.application'
 
-
+'''
 # Database
 # [START db_setup]
 # [START gaestd_py_django_database_config]
@@ -135,8 +135,8 @@ if os.getenv("TRAMPOLINE_CI", None):
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
-
 '''
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -146,7 +146,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
 # [START db_setup]
 if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
