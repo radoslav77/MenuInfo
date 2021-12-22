@@ -161,3 +161,9 @@ i:active {
   margin: 10px;
   margin-top: 17px;
 }
+
+@media screen and (max-width: 800px) {
+  .dish-container {
+    width: auto;
+  }
+}
