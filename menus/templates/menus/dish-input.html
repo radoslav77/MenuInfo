@@ -1,4 +1,5 @@
 {% extends 'menus/base.html' %}
+{% load static %}
 {% block style %}
 <style>
     body {
@@ -8,14 +9,17 @@
     form {
         font-family: inherit;
     }
-    #id_title_dish{
+
+    #id_title_dish {
         background-color: #fff;
-       transform: scale(100%);
-    }
-    #id_image{
         transform: scale(100%);
     }
-    #addrecipe{
+
+    #id_image {
+        transform: scale(100%);
+    }
+
+    #addrecipe {
         width: 2%;
         height: 16px;
     }
@@ -34,10 +38,11 @@
         {{form1}}
 
         <input type="submit" style="margin-top: 10px;">
-        To Add more recipes to this dish click please click the checkbox. <input type="checkbox" name="addrecipe" id="addrecipe">
-   
+        To Add more recipes to this dish click please click the checkbox. <input type="checkbox" name="addrecipe"
+            id="addrecipe">
+
     </form>
-    
+
     <script>
         const title = document.getElementById('id_title_dish')
         const ForDish = document.getElementById('id_for_dish')
@@ -45,7 +50,7 @@
         const TitleEl = document.getElementById('id_title')
         const labelTitleEl = document.querySelector('[for=id_title]')
         const labelForDishEl = document.querySelector('[for=id_for_dish]')
-       
+
 
 
         DescEl.addEventListener('keydown', () => {
@@ -71,55 +76,55 @@
 
         const FormEl = document.getElementById('dish-form')
   /*
-        title.addEventListener('keydown', () => {
-            ForDish.innerHTML = title.value
-            console.log(ForDish)
-            console.log(title.value)
-        })
-        ForDish.addEventListener('click', () => {
-            ForDish.innerHTML = title.value
-        })
+              title.addEventListener('keydown', () => {
+                  ForDish.innerHTML = title.value
+                  console.log(ForDish)
+                  console.log(title.value)
+              })
+              ForDish.addEventListener('click', () => {
+                  ForDish.innerHTML = title.value
+              })
+            
+              NewFormLink.addEventListener('click', () => {
+                  NewForm.innerHTML = ` <tr>
+                              <th><label for="id_title">Title:</label></th>
+                              <td><input type="text" name="title" maxlength="200" required id="id_title"></td>
+                          </tr>
+                          <tr>
+                              <th><label for="id_selector">Selector:</label></th>
+                              <td><select name="selector" required id="id_selector">
+                                      <option value="" selected>---------</option>
       
-        NewFormLink.addEventListener('click', () => {
-            NewForm.innerHTML = ` <tr>
-                        <th><label for="id_title">Title:</label></th>
-                        <td><input type="text" name="title" maxlength="200" required id="id_title"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="id_selector">Selector:</label></th>
-                        <td><select name="selector" required id="id_selector">
-                                <option value="" selected>---------</option>
-
-                                <option value="main">Main</option>
-
-                                <option value="starter">Starter</option>
-
-                                <option value="dessert">Dessert</option>
-
-                                <option value="breakfast">Breakfast</option>
-
-                                <option value="ddrbreaks">DDRbreaks</option>
-
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <th><label for="id_for_dish">For dish:</label></th>
-                        <td><input type="text" name="for_dish" maxlength="200" required id="id_for_dish"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="id_recipe">Recipe:</label></th>
-                        <td><textarea name="recipe" cols="40" rows="10" required id="id_recipe">
-                    </textarea></td>
-                    </tr>
-                    <tr>
-                        <th><label for="id_method">Method:</label></th>
-                        <td><textarea name="method" cols="40" rows="10" required id="id_method">`
-
-            FormEl.appendChild(NewForm)
-        })
-
-
-*/
+                                      <option value="main">Main</option>
+      
+                                      <option value="starter">Starter</option>
+      
+                                      <option value="dessert">Dessert</option>
+      
+                                      <option value="breakfast">Breakfast</option>
+      
+                                      <option value="ddrbreaks">DDRbreaks</option>
+      
+                                  </select></td>
+                          </tr>
+                          <tr>
+                              <th><label for="id_for_dish">For dish:</label></th>
+                              <td><input type="text" name="for_dish" maxlength="200" required id="id_for_dish"></td>
+                          </tr>
+                          <tr>
+                              <th><label for="id_recipe">Recipe:</label></th>
+                              <td><textarea name="recipe" cols="40" rows="10" required id="id_recipe">
+                          </textarea></td>
+                          </tr>
+                          <tr>
+                              <th><label for="id_method">Method:</label></th>
+                              <td><textarea name="method" cols="40" rows="10" required id="id_method">`
+      
+                  FormEl.appendChild(NewForm)
+              })
+      
+      
+      */
 
     </script>
     {% endif %}

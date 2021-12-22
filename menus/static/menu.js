@@ -19,7 +19,7 @@ getDrinks(API_DATA_DRINKS)
 async function getDrinks(url) {
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data)
+    //console.log(data)
     var EntryDrinks = data[0]
 
     EntryDrinks.forEach(drink => {
@@ -53,41 +53,42 @@ async function getDrinks(url) {
     })
 const DessertDrinkContainer = document.getElementById('dessert')
 //console.log(DessertDrinkContainer)
-drinks_dessert.forEach((b,idx) => {
+    drinks_dessert.forEach((b,idx) => {
 
-    const NewDrink = document.createElement('input')
-    NewDrink.type = 'button'
-    NewDrink.value = b
-    NewDrink.id = b
+        const NewDrink = document.createElement('input')
+        NewDrink.type = 'button'
+        NewDrink.value = b
+        NewDrink.id = b
 
 
 
-    DessertDrinkContainer.appendChild(NewDrink)
-})
+        DessertDrinkContainer.appendChild(NewDrink)
+    })
 DessertDrinkContainer.removeChild(DessertDrinkContainer.firstChild)
     
 const MainDrinkContainer = document.getElementById('main')
-drinks.forEach(b => {
-    const NewDrink = document.createElement('input')
-    NewDrink.type = 'button'
-    NewDrink.value = b
-    NewDrink.id = b
+    drinks.forEach(b => {
+        const NewDrink = document.createElement('input')
+        NewDrink.type = 'button'
+        NewDrink.value = b
+        NewDrink.id = b
 
-    MainDrinkContainer.appendChild(NewDrink)
-})
+        MainDrinkContainer.appendChild(NewDrink)
+    })
 
 MainDrinkContainer.removeChild(MainDrinkContainer.firstChild)
 
 const StarterDrinkContainer = document.getElementById('starter')
 //console.log(drinks_starter)
-drinks_starter.forEach(b => {                       
-    const NewDrink = document.createElement('input')
-    NewDrink.type = 'button'
-    NewDrink.value = b
-    NewDrink.id = b
+    drinks_starter.forEach(b => {                       
+        const NewDrink = document.createElement('input')
+        NewDrink.type = 'button'
+        NewDrink.value = b
+        NewDrink.id = b
 
-    StarterDrinkContainer.appendChild(NewDrink)
-})
+        StarterDrinkContainer.appendChild(NewDrink)
+        
+    })
 StarterDrinkContainer.removeChild(StarterDrinkContainer.firstChild)
    
 }
@@ -211,7 +212,7 @@ const URL_DATA =('/alergy')
             }
             inputEls.forEach((element) => {
                 var el = element
-                
+                //console.log(el)
                 el.addEventListener('mousedown', () => {
                    
                         //var containsContainer = document.getElementById('drink-contain')
@@ -378,20 +379,20 @@ function Allergents(input, title) {
     input.forEach(e => {
         var num = e.split(/\s+/)
         //console.log(num)
-        var dairies = ingredient.dairy
-        var glutens = ingredient.gluten
-        var nuts = ingredient.nuts
-        var eggs = ingredient.eggs
-        var peanuts = ingredient.peanut
-        var celery = ingredient.celery
-        var crustaceans = ingredient.crustaceans
-        var fish =  ingredient.fish
-        var lupin = ingredient.lupin
-        var molluscs = ingredient.molluscs
-        var mustard = ingredient.mustard
-        var sesame = ingredient.sesame
-        var soya = ingredient.soy
-        var sulphites = ingredient.sulphites
+        var dairies = allergents.dairy
+        var glutens = allergents.gluten
+        var nuts = allergents.nuts
+        var eggs = allergents.eggs
+        var peanuts = allergents.peanut
+        var celery = allergents.celery
+        var crustaceans = allergents.crustaceans
+        var fish =  allergents.fish
+        var lupin = allergents.lupin
+        var molluscs = allergents.molluscs
+        var mustard = allergents.mustard
+        var sesame = allergents.sesame
+        var soya = allergents.soy
+        var sulphites = allergents.sulphites
 
         peanuts.forEach(all => {
             const found = num.find(element => element.toLowerCase() == all.toLowerCase())   

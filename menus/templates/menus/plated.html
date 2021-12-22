@@ -1,6 +1,14 @@
 {% extends 'menus/base.html' %}
+{% load static %}
 {% block style %}
-
+<style>
+    @media screen and (max-width: 800px) {
+        img {
+            width: 300;
+            height: 200;
+        }
+    }
+</style>
 {% endblock %}
 {% block body %}
 <div class="body-container">

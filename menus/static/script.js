@@ -11,7 +11,7 @@ async function getDrinks(url) {
     EntryDrinks.forEach(drink => {
         //console.log(drink.dish)
         
-        const StarterNameEl = document.getElementById('salad').innerText
+        const StarterNameElement = document.getElementById('salad').innerText
         const MainNameEl = document.getElementById('mainmain').innerText
         const DessertNameEl = document.getElementById('des').innerText
 
@@ -42,7 +42,7 @@ async function getDrinks(url) {
                 MainDrinkContainer.innerText = drinks
 
             } 
-            if (drink.dish === StarterNameEl){
+            if (drink.dish === StarterNameElement){
                 if (!drinks.includes(drink.drink) ){
                     drinks.push(drink.drink)
                 }
