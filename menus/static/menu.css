@@ -90,7 +90,8 @@ input {
   color: #000;
   background: transparent;
   border: none;
-  width: 100%;
+  width: 60%;
+  overflow-wrap: break-word;
 }
 input:hover {
   cursor: pointer;
@@ -100,8 +101,10 @@ input:active {
 }
 .description {
   margin-top: 5px;
-  padding: 5px;
+  padding: 15px;
   border-top: solid 1px #000;
+  width: 100%;
+  text-align: center;
 }
 .drink-wrapper {
   margin-right: 60%;

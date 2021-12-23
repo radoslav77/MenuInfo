@@ -63,7 +63,7 @@
             TitleEl.hidden = true
             labelForDishEl.hidden = true
             labelTitleEl.hidden = true
-            document.getElementById('new-form').href = `/add_recipe/${title.value}`
+            //document.getElementById('new-form').href = `/add_recipe/${title.value}`
         })
 
 
@@ -76,55 +76,55 @@
 
         const FormEl = document.getElementById('dish-form')
   /*
-              title.addEventListener('keydown', () => {
-                  ForDish.innerHTML = title.value
-                  console.log(ForDish)
-                  console.log(title.value)
-              })
-              ForDish.addEventListener('click', () => {
-                  ForDish.innerHTML = title.value
-              })
+                    title.addEventListener('keydown', () => {
+                        ForDish.innerHTML = title.value
+                        console.log(ForDish)
+                        console.log(title.value)
+                    })
+                    ForDish.addEventListener('click', () => {
+                        ForDish.innerHTML = title.value
+                    })
+                  
+                    NewFormLink.addEventListener('click', () => {
+                        NewForm.innerHTML = ` <tr>
+                                    <th><label for="id_title">Title:</label></th>
+                                    <td><input type="text" name="title" maxlength="200" required id="id_title"></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="id_selector">Selector:</label></th>
+                                    <td><select name="selector" required id="id_selector">
+                                            <option value="" selected>---------</option>
             
-              NewFormLink.addEventListener('click', () => {
-                  NewForm.innerHTML = ` <tr>
-                              <th><label for="id_title">Title:</label></th>
-                              <td><input type="text" name="title" maxlength="200" required id="id_title"></td>
-                          </tr>
-                          <tr>
-                              <th><label for="id_selector">Selector:</label></th>
-                              <td><select name="selector" required id="id_selector">
-                                      <option value="" selected>---------</option>
-      
-                                      <option value="main">Main</option>
-      
-                                      <option value="starter">Starter</option>
-      
-                                      <option value="dessert">Dessert</option>
-      
-                                      <option value="breakfast">Breakfast</option>
-      
-                                      <option value="ddrbreaks">DDRbreaks</option>
-      
-                                  </select></td>
-                          </tr>
-                          <tr>
-                              <th><label for="id_for_dish">For dish:</label></th>
-                              <td><input type="text" name="for_dish" maxlength="200" required id="id_for_dish"></td>
-                          </tr>
-                          <tr>
-                              <th><label for="id_recipe">Recipe:</label></th>
-                              <td><textarea name="recipe" cols="40" rows="10" required id="id_recipe">
-                          </textarea></td>
-                          </tr>
-                          <tr>
-                              <th><label for="id_method">Method:</label></th>
-                              <td><textarea name="method" cols="40" rows="10" required id="id_method">`
-      
-                  FormEl.appendChild(NewForm)
-              })
-      
-      
-      */
+                                            <option value="main">Main</option>
+            
+                                            <option value="starter">Starter</option>
+            
+                                            <option value="dessert">Dessert</option>
+            
+                                            <option value="breakfast">Breakfast</option>
+            
+                                            <option value="ddrbreaks">DDRbreaks</option>
+            
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="id_for_dish">For dish:</label></th>
+                                    <td><input type="text" name="for_dish" maxlength="200" required id="id_for_dish"></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="id_recipe">Recipe:</label></th>
+                                    <td><textarea name="recipe" cols="40" rows="10" required id="id_recipe">
+                                </textarea></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="id_method">Method:</label></th>
+                                    <td><textarea name="method" cols="40" rows="10" required id="id_method">`
+            
+                        FormEl.appendChild(NewForm)
+                    })
+            
+            
+            */
 
     </script>
     {% endif %}

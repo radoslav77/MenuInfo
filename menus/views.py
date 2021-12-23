@@ -354,6 +354,7 @@ def recipe_input(request):
         if request.user.groups.filter(name='chef'):
             if request.method == 'POST':
                 form = Recipe(request.POST, request.FILES)
+                # print(form)
                 if form.is_valid:
                     data = form.save(commit=False)
                     data.save()

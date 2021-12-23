@@ -8,15 +8,15 @@
     const slidDiv = document.querySelector('.drink-wrapper')
 
 
-    const StarterDrinkContainer = document.getElementById('starter')
-    const MainDrinkContainer = document.getElementById('main')
-    const DessertDrinkContainer = document.getElementById('dessert')
+    const StarterDrinkContainer = document.getElementById('starterInfo')
+    const MainDrinkContainer = document.getElementById('mainInfo')
+    const DessertDrinkContainer = document.getElementById('dessertInfo')
 
 const  API_DATA_DRINKS =('/drinks')
 getDrinks(API_DATA_DRINKS)
-    var drinks = new Set() 
-    var drinks_starter = new Set()
-    var drinks_dessert = new Set()
+    var drinks = []
+    var drinks_starter = []
+    var drinks_dessert = []
   
 
     
@@ -29,18 +29,47 @@ async function getDrinks(url) {
     EntryDrinks.forEach(drink => {
        
             if(drink.dish === DessertNameEl){
-                drinks_dessert.add(drink.drink)                 
+                drinks_dessert.push(drink.drink) 
+                const NewDrink = document.createElement('input')
+                NewDrink.type = 'button'
+                NewDrink.value = drink.drink
+                NewDrink.id = drink.drink                
+        
+                DessertDrinkContainer.appendChild(NewDrink)
+                NewDrink.addEventListener('click', ()=> {
+                    slidDiv.scrollIntoView()
+                    slidDiv.style.transform = 'translateX(30vw)' 
+
+                })                
             }
             if (drink.dish === MainNameEl){
-                    drinks.add(drink.drink)      
+                    drinks.push(drink.drink)
+                    const NewDrink = document.createElement('input')
+                    NewDrink.type = 'button'
+                    NewDrink.value = drink.drink
+                    NewDrink.id = drink.drink
+            
+                    MainDrinkContainer.appendChild(NewDrink)
+                    NewDrink.addEventListener('click', ()=> {
+                        slidDiv.scrollIntoView()
+                        slidDiv.style.transform = 'translateX(30vw)' 
+    
+                    })      
             } 
             if (drink.dish === StarterNameEl){
-                    drinks_starter.add(drink.drink)
-                    
-                        
-                        
-                 
-
+                    drinks_starter.push(drink.drink)
+                    const NewDrink = document.createElement('input')
+                    NewDrink.type = 'button'
+                    NewDrink.value = drink.drink
+                    NewDrink.id = drink.drink
+            
+                    StarterDrinkContainer.appendChild(NewDrink)
+                    NewDrink.addEventListener('click', ()=> {
+                        slidDiv.scrollIntoView()
+                        slidDiv.style.transform = 'translateX(30vw)' 
+    
+                    })
+                                                         
             }
     })
    
@@ -48,49 +77,6 @@ async function getDrinks(url) {
 
 
 
-console.log(drinks_starter)
-
-
-//console.log(DessertDrinkContainer)
-
-    drinks_dessert.forEach((b,idx) => {
-        console.log(b)
-        const NewDrink = document.createElement('input')
-        NewDrink.type = 'button'
-        NewDrink.value = b
-        NewDrink.id = b
-
-
-
-        DessertDrinkContainer.appendChild(NewDrink)
-    })
-DessertDrinkContainer.removeChild(DessertDrinkContainer.firstChild)
-    
-
-    drinks.forEach(b => {
-        const NewDrink = document.createElement('input')
-        NewDrink.type = 'button'
-        NewDrink.value = b
-        NewDrink.id = b
-
-        MainDrinkContainer.appendChild(NewDrink)
-    })
-
-MainDrinkContainer.removeChild(MainDrinkContainer.firstChild)
-
-
-//console.log(drinks_starter)
-    drinks_starter.forEach(b => {  
-        console.log(b)                     
-        const NewDrink = document.createElement('input')
-        NewDrink.type = 'button'
-        NewDrink.value = b
-        NewDrink.id = b
-
-        StarterDrinkContainer.appendChild(NewDrink)
-        
-    })
-StarterDrinkContainer.removeChild(StarterDrinkContainer.firstChild)
 
 
     const allergents = {

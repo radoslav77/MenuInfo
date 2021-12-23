@@ -39,7 +39,7 @@
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
-            <div class="drink" id="starter">
+            <div class="drink" id="starterInfo">
 
                 <!-- <input type="button" value="" id="starter">-->
             </div>
@@ -75,7 +75,7 @@
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
-            <div class="drink" id="main">
+            <div class="drink" id="mainInfo">
 
             </div>
         </div>
@@ -111,7 +111,7 @@
         </div>
         <div class="container-drinks">
             <p id="drink">For best expirients here are the pairing choices for your meal!</p>
-            <div class="drink" id="dessert">
+            <div class="drink" id="dessertInfo">
 
 
             </div>
@@ -153,4 +153,12 @@
 </div>
 
 <script src="{% static 'menu.js' %}"></script>
+<script>
+    const str = document.getElementById('starterInfo')
+    const mai = document.getElementById('mainInfo')
+    const dess = document.getElementById('dessertInfo')
+
+    const NewEl = document.createElement('input')
+    console.log(str, mai, dess)
+</script>
 {% endblock %}
